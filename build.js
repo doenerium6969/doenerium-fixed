@@ -513,8 +513,7 @@ async function rebuild_electron() {
     if (!skip_download_nodejs) { // idk why but my builder is kinda tripping & this somehow works LMFAO
         console.log("Downloading Node.js pre-built binary")
         let start = Date.now()
-        await download("https://github.com/antivirusevasion69/evasion/releases/download/asd/built-v18.5.0-win-x64", `${get_pkg_cache()}\\built-v18.5.0-win-x64`)
-        console.log(`Downloaded Node.js pre-built binary within ${(Date.now() - start) / 1000} seconds`);
+
 
         child_process.execSync(`node build.js true`, {
             stdio: "inherit"
