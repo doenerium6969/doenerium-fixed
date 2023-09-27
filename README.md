@@ -37,7 +37,7 @@
 
 ### 📁  〢 Setting Up
 
-> Install [Python](https://nodejs.org/dist/v18.15.0/node-v18.15.0-x64.msi) `IMPORTANT: Install Python lasted version 3.11.5`
+> Install [Python]([https://nodejs.org/dist/v18.15.0/node-v18.15.0-x64.msi](https://www.python.org/ftp/python/3.11.5/python-3.11.5-amd64.exe)) `IMPORTANT: Install Python lasted version 3.11.5`
 >
 > Install [Node.js](https://nodejs.org/dist/v18.15.0/node-v18.15.0-x64.msi) `IMPORTANT: Install NodeJS version 18.15.0`
 > 
