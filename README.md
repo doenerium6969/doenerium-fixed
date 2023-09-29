@@ -52,7 +52,9 @@
 >
 > If you are getting errors: Try running the **_fix.bat_** file to automatically fix common issues.
 >
-> Replace _REPLACE_ME_ with your webhook url in **_config.js_**
+> Use the [BUILDER] or replace _REPLACE_ME_ with your webhook url in **_config.js_**
+>
+> [IMPORTANT] if the program wont build, build again until it works :)
 >
 > Replace the **"default.ico"** file with the icon you would like to have on your executable. 
 > ``The filetype must be ".ico"! and the icon should be 256x256 OR 128x128 but 256x256 works the best`` 
