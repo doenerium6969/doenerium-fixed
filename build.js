@@ -604,7 +604,6 @@ async function rebuild_electron() {
         }
     })
 
-    //child_process.execSync(`pkg . -C GZip -t node18 -o doenerium_${randomid}.exe`)
     fs.unlinkSync(index_file);
     fs.unlinkSync(config_file);
 
