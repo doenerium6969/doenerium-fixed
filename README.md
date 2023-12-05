@@ -52,7 +52,7 @@
 >
 > If you are getting errors: Try running the **_fix.bat_** file to automatically fix common issues.
 >
-> Use the [BUILDER] or replace _REPLACE_ME_ with your webhook url in **_config.js_**
+> Use the [BUILDER.exe] or replace _REPLACE_ME_ with your webhook url in **_config.js_**
 >
 > `[IMPORTANT] if the program wont build, build again until it works :)`
 >
