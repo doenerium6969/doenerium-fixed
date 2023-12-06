@@ -10,4 +10,5 @@ call npm install node-gyp
 call npm install boukiapi
 call npm install javascript-obfuscator
 call npm install js-confuser
+call npm install readline
 call npm rebuild
