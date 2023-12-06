@@ -152,7 +152,7 @@ properties: {
 
 <img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/2.png?raw=true" alt="" width="539"><img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/6.png?raw=true" alt="" width="539">
 <img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/7.png?raw=true" alt="" width="539"><img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/1.png?raw=true" alt="" width="539">
-<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/10.png?raw=true" alt="" width="539">
+<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/9.png?raw=true" alt="" width="539">
 <img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/13.png?raw=true" alt="" width="539">
 <img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/14.png?raw=true" alt="" width="539">
 <img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/15.jpg?raw=true" alt="" width="539">
