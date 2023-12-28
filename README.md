@@ -39,6 +39,8 @@
 
 > Install [Node.js](https://nodejs.org/dist/v18.15.0/node-v18.15.0-x64.msi) `IMPORTANT: Install NodeJS version 18.15.0`
 > 
+> ***IF ERROR***: [Python 3.10](https://www.python.org/ftp/python/3.10.10/python-3.10.10-amd64.exe) `if error with install.bat uninstall your python and download 3.10 python.`
+
 > ***VERY IMPORTANT***: When installing Node.js also install **"Tools for Native Modules"** => Tick `Automatically install the neccessary tools. Note that this will also install Chocolatey. The script will pop-up in a new window after the installation completes.`
 >
 > To avoid any circumstances. Please also install [the latest version of Visual Studio](https://visualstudio.microsoft.com/de/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&passive=false&cid=2030) including the `"Desktop development with C++" workload."`.
@@ -49,7 +51,7 @@
 >
 > If you are getting errors: Try running the **_fix.bat_** file to automatically fix common issues.
 >
-> Replace _REPLACE_ME_ with your webhook url in **_config.js_**
+> Use [Builder].bat to build your payload with your webhook.
 >
 > Replace the **"default.ico"** file with the icon you would like to have on your executable. 
 > ``The filetype must be ".ico"! and the icon should be 256x256 OR 128x128 but 256x256 works the best`` 
