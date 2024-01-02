@@ -124,15 +124,15 @@
 ---
 
 ### 📸 〢 Screenshots
-<img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1191700591181828177/image.png" alt="" width="700">
-<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/2.png?raw=true" alt="" width="539"><img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/6.png?raw=true" alt="" width="539">
-<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/7.png?raw=true" alt="" width="539"><img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/1.png?raw=true" alt="" width="539">
-<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/13.png?raw=true" alt="" width="539">
-<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/14.png?raw=true" alt="" width="539">
-<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/15.jpg?raw=true" alt="" width="539">
+<img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1191700591181828177/image.png" alt="" width="750">
+<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/2.png?raw=true" alt="" width="750"><img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/6.png?raw=true" alt="" width="750">
+<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/7.png?raw=true" alt="" width="750"><img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/1.png?raw=true" alt="" width="750">
+<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/13.png?raw=true" alt="" width="750">
+<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/14.png?raw=true" alt="" width="750">
+<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/15.jpg?raw=true" alt="" width="750">
 
-<img title="" src="https://i.imgur.com/hFryuaR.png" alt="" width="639">
-<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/11.png?raw=true" alt="" width="639">
+<img title="" src="https://i.imgur.com/hFryuaR.png" alt="" width="750">
+<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/11.png?raw=true" alt="" width="750">
 
 
 <a id="todo"></a>
