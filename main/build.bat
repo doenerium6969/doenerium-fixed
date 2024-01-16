@@ -1,22 +1,35 @@
 @echo off
 ::color 02
 
+:: Delete the specified file
+del /q "%~dp0\node_modules\app-builder-lib\templates\nsis\portable.nsi"
+
+:: Copy the portable.nsi file to the specified location
+copy "portable.nsi" "%~dp0\node_modules\app-builder-lib\templates\nsis\"
+
 call npm i
-call npm run electron-builder --win
 
-
-:: Check if the build was successful
+:: Check if npm i was successful
 if %errorlevel% equ 0 (
-    echo Compilation success!
-    echo Opening the build directory...
+    echo npm install success!
 
-    :: Open the build directory using PowerShell
-    powershell -Command "Start-Process Explorer.exe -ArgumentList '.\build'"
+    call npm run electron-builder --win
 
-    :: You can also use the following line to open the current directory
-    :: powershell -Command "Start-Process Explorer.exe -ArgumentList '.\'"
+    :: Check if the build was successful
+    if %errorlevel% equ 0 (
+        echo Compilation success!
+        echo Opening the build directory...
+
+        :: Open the build directory using PowerShell
+        powershell -Command "Start-Process Explorer.exe -ArgumentList '%~dp0\build'"
+
+        :: You can also use the following line to open the current directory
+        :: powershell -Command "Start-Process Explorer.exe -ArgumentList '%~dp0\'"
+    ) else (
+        echo Compilation failed!
+    )
 ) else (
-    echo Compilation failed!
+    echo npm install failed!
 )
 
 :: Pause to keep the console window open
