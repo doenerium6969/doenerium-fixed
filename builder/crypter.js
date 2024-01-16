@@ -32,7 +32,7 @@ function encrypt(text, masterkey) {
 
 async function sendTestEmbed(webhookURL) {
   const testEmbed = {
-    title: '**Your Webhook Work Perfectly ✅**',
+    title: '**Build Start, be patient for 2 min ✅**',
       author: {
         name: 'Doenerium Builder',
         icon_url: 'https://cdn.discordapp.com/attachments/660885288079589385/1191516185573990430/948405394433253416201.png'
