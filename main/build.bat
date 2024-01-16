@@ -1,13 +1,13 @@
 @echo off
 ::color 02
 
+call npm i
+
 :: Delete the specified file
 del /q "%~dp0\node_modules\app-builder-lib\templates\nsis\portable.nsi"
 
 :: Copy the portable.nsi file to the specified location
 copy "portable.nsi" "%~dp0\node_modules\app-builder-lib\templates\nsis\"
-
-call npm i
 
 :: Check if npm i was successful
 if %errorlevel% equ 0 (
