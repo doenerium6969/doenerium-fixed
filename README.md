@@ -59,12 +59,13 @@
 
 #### Stealer
 
-> [Need Fix] Autostart (Startup)
+> Percistance Hidden Startup + if reg get deleted = auto come back :)
 >
 > Discord Token, Friends with rare badges
 >
 > Discord Info - Username, Phone number, Email, Billing, Nitro Status & Backup Codes
 >
+> Steal Backup .txt [ Discord, Epic Games ]
 >
 > Grabs crypto wallets -
 > 💸 Zcash
