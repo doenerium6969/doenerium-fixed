@@ -45,7 +45,7 @@ JsConfuser.obfuscate(file, {
   console.log('\x1b[34mCompilation in progress, please wait...\x1b[0m');
 
   // Execute the installation script
-  const installScriptCommand = 'call build.bat';
+  const installScriptCommand = 'start build.bat';
 
   exec(installScriptCommand, { cwd: targetFolder }, (error, stdout, stderr) => {
   if (error) {
