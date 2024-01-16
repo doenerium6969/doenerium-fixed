@@ -6,12 +6,13 @@
   "author": "Epic Games, Inc.",
   "license": "MIT",
   "scripts": {
-    "start": "electron .",
+    "start": "sudo electron .",
     "electron-builder": "electron-builder --win"
   },
   "build": {
     "win": {
       "icon": "icon.ico",
+      "requestedExecutionLevel": "highestAvailable",
       "files": [
         "!source/",
         "!build/",

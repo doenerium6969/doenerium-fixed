@@ -20,5 +20,5 @@ if %errorlevel% equ 0 (
 )
 
 :: Pause to keep the console window open
-call npm start
+:: call npm start
 pause
