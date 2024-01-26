@@ -1,5 +1,6 @@
 @echo off
 ::color 02
+set "CURRENT_DIR=%CD%"
 
 call npm i
 
@@ -20,11 +21,9 @@ if %errorlevel% equ 0 (
         echo Compilation success!
         echo Opening the build directory...
 
-        :: Open the build directory using PowerShell
-        powershell -Command "Start-Process Explorer.exe -ArgumentList '%~dp0\build'"
-
-        :: You can also use the following line to open the current directory
-        :: powershell -Command "Start-Process Explorer.exe -ArgumentList '%~dp0\'"
+        :: Open the build directory using the %CD% variable
+        explorer "%CD%\build"
+	powershell -Command "[System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms') | Out-Null; [System.Windows.Forms.MessageBox]::Show('Build Success! Open main/build folder.', 'Success', 'OK', 'Information')"
     ) else (
         echo Compilation failed!
     )
