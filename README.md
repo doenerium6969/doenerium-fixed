@@ -69,7 +69,7 @@
 >
 > Discord Info - Username, Phone number, Email, Billing, Nitro Status & Backup Codes
 >
-> Steal Backup .txt [ Discord, Epic Games, Github ]
+> Steal Backup 2FA Code [ Discord, Epic Games, Github ]
 >
 > Grabs crypto wallets -
 > 💸 Zcash
