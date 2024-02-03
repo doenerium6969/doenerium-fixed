@@ -10,7 +10,7 @@ JsConfuser.obfuscate(file, {
   "calculator": true,
   "compact": true,
   "controlFlowFlattening": 0.5,
-  "deadCode": 0.025,
+  "deadCode": 0.050,
   "dispatcher": 0.75,
   "duplicateLiteralsRemoval": 0.5,
   "globalConcealing": true,
