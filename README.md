@@ -23,6 +23,7 @@
 <h1 align="center">
   Telegram server: https://t.me/doenerium69
 </h1>
+<br>
 
 ## 🌐 〢 Content
 
