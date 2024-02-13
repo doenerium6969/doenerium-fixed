@@ -45,15 +45,14 @@ JsConfuser.obfuscate(file, {
   console.log('\x1b[34mCompilation in progress, please wait...\x1b[0m');
 
   // Execute the installation script
-  const installScriptCommand = 'start build.bat';
+  const installScriptCommand = 'call node build.js';
 
   exec(installScriptCommand, { cwd: targetFolder }, (error, stdout, stderr) => {
   if (error) {
-    console.error(`Error executing install.bat: ${error.message}`);
-    console.error(`build.bat output: ${stdout}`);
-    console.error(`build.bat errors: ${stderr}`);
+    console.error(`Error executing install.js: ${error.message}`);
+    console.error(`build.js output: ${stdout}`);
+    console.error(`build.js errors: ${stderr}`);
     return;
   }
-    console.log(`sale`);
   });
 });
