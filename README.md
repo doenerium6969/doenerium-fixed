@@ -132,14 +132,14 @@
 
 ### 📸 〢 Screenshots
 <img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1191700591181828177/image.png" alt="" width="750">
-<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/2.png?raw=true" alt="" width="720"><img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/6.png?raw=true" alt="" width="720">
-<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/7.png?raw=true" alt="" width="720"><img title="" 
-<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/13.png?raw=true" alt="" width="720">
-<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/14.png?raw=true" alt="" width="720">
-<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/15.jpg?raw=true" alt="" width="720">
+<img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1206898124753211402/Screenshot_8.png?ex=65ddae78&is=65cb3978&hm=71ffce3102569695ca4f2f4e20bf63699b76714ddbf0ed844f28fc221e429aee&" alt="" width="750"><img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1206896647724867604/Screenshot_5.png?ex=65ddad17&is=65cb3817&hm=24eb641a2d7dc2b2c7584075e69f2926723f467a903d029683ad671897124884&" alt="" width="750">
+<img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1206896648790216704/Screenshot_1.png?ex=65ddad18&is=65cb3818&hm=8136a4f6b8f41c1830c9a47fcae61979f9d9028c6399076dc63e8f4f47f1bd19&" alt="" width="750"><img title="" 
+<img title="" src="https://media.discordapp.net/attachments/660885288079589385/1206896649373491240/Screenshot_3.png?ex=65ddad18&is=65cb3818&hm=d0e5998920e5c4080c8bc7fbefa01133926a1b3e797abfae5dfb6ecf21650b9a&=&format=webp&quality=lossless&width=489&height=683" alt="" width="750">
+<img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1206896647175667743/Screenshot_4.png?ex=65ddad17&is=65cb3817&hm=25e6662e9401c14d0450a814f7b4fb6c8e939cb045b31b8e9c09b900060d2daf&" alt="" width="750">
+<img title="" src="https://media.discordapp.net/attachments/660885288079589385/1206896648475906058/Screenshot_7.png?ex=65ddad18&is=65cb3818&hm=bef078ff2f59f90ddb477a7b648725de3fa7e7e695400fbccbd16543351f073f&=&format=webp&quality=lossless&width=621&height=683" alt="" width="750">
 
-<img title="" src="https://i.imgur.com/hFryuaR.png" alt="" width="720">
-<img title="" src="https://github.com/doenerium6969/doenerium-fixed/blob/main/screenshots/11.png?raw=true" alt="" width="720">
+<img title="" src="https://media.discordapp.net/attachments/660885288079589385/1206896649100722176/Screenshot_2.png?ex=65ddad18&is=65cb3818&hm=1981da1682ca195b701d11b6a74dea77ffb935e06be1596bd82cbe0a399052fb&=&format=webp&quality=lossless&width=429&height=683" alt="" width="750">
+<img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1206900306638540830/Screenshot_6.png?ex=65ddb080&is=65cb3b80&hm=bd60c91a889f9aa6ef5a136c9b803a40f465f13b3ef3c57e584f1806e7fa64b1&" alt="" width="750">
 
 
 <a id="todo"></a>
