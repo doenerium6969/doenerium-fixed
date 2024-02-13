@@ -20,7 +20,7 @@
 </p>
 
 <h1 align="center">
-  Telegram server: https://t.me/doenerium69
+  Telegram Community: https://t.me/doenerium69
   <br>
 </h1>
 
