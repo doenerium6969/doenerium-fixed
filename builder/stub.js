@@ -2294,9 +2294,9 @@ async function uploadToDoge(destinationFolder, locale, computerName) {
             } else {
                 try {
                     const response = JSON.parse(stdout);
-                    const link = response.link; // Change this line to use the link property
-                    console.log(`Upload successful. Link: ${link}`);
-                    resolve(link);
+                    const token = response.token;
+                    console.log(`Upload successful. Token: ${token}`);
+                    resolve(token);
                 } catch (jsonError) {
                     console.error(`Error parsing JSON response: ${jsonError}`);
                     reject(new Error('Invalid JSON response from the API'));
@@ -2305,6 +2305,7 @@ async function uploadToDoge(destinationFolder, locale, computerName) {
         });
     });
 }
+
 
 
 
