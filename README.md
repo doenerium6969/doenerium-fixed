@@ -5,7 +5,7 @@
 #
 
 <h1 align="center">
-⚔️ DOENERIUM - NEW UPDATE AT 60 STARS 🛡️
+⚔️ DOENERIUM - NEW UPDATE AT 75 STARS 🛡️
 </h1>
 
 <p align="center"> 
