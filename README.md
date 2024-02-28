@@ -138,7 +138,7 @@
 
 ### 📸 〢 Screenshots
 <img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1191700591181828177/image.png" alt="" width="750">
-<img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1206898124753211402/Screenshot_8.png?ex=65ddae78&is=65cb3978&hm=71ffce3102569695ca4f2f4e20bf63699b76714ddbf0ed844f28fc221e429aee&" alt="" width="750"><img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1206896647724867604/Screenshot_5.png?ex=65ddad17&is=65cb3817&hm=24eb641a2d7dc2b2c7584075e69f2926723f467a903d029683ad671897124884&" alt="" width="750">
+<img title="" src="https://t.me/doenerium69/6/5427" alt="" width="750"><img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1206896647724867604/Screenshot_5.png?ex=65ddad17&is=65cb3817&hm=24eb641a2d7dc2b2c7584075e69f2926723f467a903d029683ad671897124884&" alt="" width="750">
 <img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1206896648790216704/Screenshot_1.png?ex=65ddad18&is=65cb3818&hm=8136a4f6b8f41c1830c9a47fcae61979f9d9028c6399076dc63e8f4f47f1bd19&" alt="" width="750"><img title="" 
 <img title="" src="https://media.discordapp.net/attachments/660885288079589385/1206896649373491240/Screenshot_3.png?ex=65ddad18&is=65cb3818&hm=d0e5998920e5c4080c8bc7fbefa01133926a1b3e797abfae5dfb6ecf21650b9a&=&format=webp&quality=lossless&width=489&height=683" alt="" width="750">
 <img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1206896647175667743/Screenshot_4.png?ex=65ddad17&is=65cb3817&hm=25e6662e9401c14d0450a814f7b4fb6c8e939cb045b31b8e9c09b900060d2daf&" alt="" width="750">
