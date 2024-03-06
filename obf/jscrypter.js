@@ -9,9 +9,9 @@ const file = readFileSync("./input.js", "utf-8");
 JsConfuser.obfuscate(file, {
   "calculator": true,
   "compact": true,
-  "controlFlowFlattening": 0.5,
+  "controlFlowFlattening": 0.8,
   "deadCode": 0.050,
-  "dispatcher": 0.75,
+  "dispatcher": 0.9,
   "duplicateLiteralsRemoval": 0.5,
   "globalConcealing": true,
   "hexadecimalNumbers": true,
@@ -42,18 +42,16 @@ JsConfuser.obfuscate(file, {
 
   fs.writeFileSync(targetFile, obfuscated, { encoding: 'utf-8' });
   console.log('');
-  
+  console.log('\x1b[34mCompilation in progress, please wait...\x1b[0m');
 
-  // Execute the installation script
   const installScriptCommand = 'call node build.js';
 
   exec(installScriptCommand, { cwd: targetFolder }, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error executing install.js: ${error.message}`);
-      console.error(`build.js output: ${stdout}`);
-      console.error(`build.js errors: ${stderr}`);
-    } else {
-      console.log('\x1b[34mCompilation in progress, please wait...\x1b[0m');
-    }
+  if (error) {
+    console.error(`Error executing install.js: ${error.message}`);
+    console.error(`build.js output: ${stdout}`);
+    console.error(`build.js errors: ${stderr}`);
+    return;
+  }
   });
 });
