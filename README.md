@@ -72,6 +72,8 @@
 >
 > Discord Info - Username, Phone number, Email, Billing, Nitro Status & Backup Codes
 >
+> Discord About Me changer, HQ Guilds Admin/Owner
+>
 > Steal Backup 2FA Code [ Discord, Epic Games, Github ]
 >
 > Grabs crypto wallets -
@@ -156,9 +158,9 @@
 
 > - ~~Exodus wallet injection (get the password whenever the user logs in the wallet)~~
 > - More grabbers (VPN's, Gaming, Messengers)
-> - Keylogger
-> - Discord bot to build within discord ($build <webhook_url>)
-> - Dynamic encryption
+> - Keylogger/Clipper
+> - Telegram bot to build within Telegram
+> - Stable Version recive log by Telegram
 > - Firefox stealer
 >   
 > - [Click here](https://t.me/doenerium69/4044/4045) to request new features that you would like to see in the next version of our product ?
