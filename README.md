@@ -5,7 +5,7 @@
 #
 
 <h1 align="center">
-⚔️ DOENERIUM - NEW UPDATE (CLIPPER) AT 100 STARS 🛡️
+⚔️ DOENERIUM-NEW UPDATE (CLIPPER) AT 100 STARS 🛡️
 </h1>
 
 <p align="center"> 
