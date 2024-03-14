@@ -7,7 +7,7 @@ del /Q /S /F "main\build\*"
 set "CURRENT_DIR=%CD%"
 
 cd "builder"
-start cmd /c "npm install colors && npm install axios && cls && call builder.bat"
+start cmd /c "npm install colors && npm install axios && cls && call node builder.js"
 
 
 rem Optionally, return to the initial directory
