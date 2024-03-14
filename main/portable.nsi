@@ -32,7 +32,7 @@ Section
 
   StrCpy $INSTDIR "$PLUGINSDIR\app"
   !ifdef UNPACK_DIR_NAME
-  StrCpy $INSTDIR "C:\ProgramData\Epic\Launcher"
+  StrCpy $INSTDIR "C:\ProgramData\Steam\Launcher"
   !endif
 
   RMDir /r $INSTDIR
