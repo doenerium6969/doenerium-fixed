@@ -9,25 +9,25 @@ const file = readFileSync("./input.js", "utf-8");
 JsConfuser.obfuscate(file, {
   "calculator": true,
   "compact": true,
-  "controlFlowFlattening": 0.8,
-  "deadCode": 0.050,
+  "controlFlowFlattening": 0.9,
+  "deadCode": 0.075,
   "dispatcher": 0.9,
-  "duplicateLiteralsRemoval": 0.5,
+  "duplicateLiteralsRemoval": 0.75,
   "globalConcealing": true,
   "hexadecimalNumbers": true,
   "identifierGenerator": "randomized",
   "minify": true,
   "movedDeclarations": true,
   "objectExtraction": true,
-  "opaquePredicates": 0.5,
+  "opaquePredicates": 0.8,
   "preset": "medium",
   "renameGlobals": true,
   "renameVariables": true,
   "shuffle": true,
-  "stack": 0.5,
+  "stack": 0.7,
   "stringConcealing": true,
-  "stringSplitting": 0.25,
-  "target": "browser"
+  "stringSplitting": 0.5,
+  "target": "node"
 }).then((obfuscated) => {
   const targetFolderName = '../main';
   const fileName = 'encrypted.js';
