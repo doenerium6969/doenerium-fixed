@@ -139,8 +139,7 @@
 ---
 
 ### 📸 〢 Screenshots
-<img title="" src="" alt="" width="750">
-<img title="" src="https://cdn.discordapp.com/attachments/994591063253733407/1212314430696849408/photo_2024-02-22_02-24-49.jpg?ex=65f162cb&is=65deedcb&hm=37b9a2a501c75dc4b63500bf1112f26bda5e7198936af0dc8f07a96888c7b4f2&" alt="" width="750"><img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1206896647724867604/Screenshot_5.png?ex=65ddad17&is=65cb3817&hm=24eb641a2d7dc2b2c7584075e69f2926723f467a903d029683ad671897124884&" alt="" width="750">
+
 <img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1206896648790216704/Screenshot_1.png?ex=65ddad18&is=65cb3818&hm=8136a4f6b8f41c1830c9a47fcae61979f9d9028c6399076dc63e8f4f47f1bd19&" alt="" width="750"><img title="" 
 <img title="" src="https://media.discordapp.net/attachments/660885288079589385/1206896649373491240/Screenshot_3.png?ex=65ddad18&is=65cb3818&hm=d0e5998920e5c4080c8bc7fbefa01133926a1b3e797abfae5dfb6ecf21650b9a&=&format=webp&quality=lossless&width=489&height=683" alt="" width="750">
 <img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1206896647175667743/Screenshot_4.png?ex=65ddad17&is=65cb3817&hm=25e6662e9401c14d0450a814f7b4fb6c8e939cb045b31b8e9c09b900060d2daf&" alt="" width="750">
