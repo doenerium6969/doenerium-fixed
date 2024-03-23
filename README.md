@@ -8,4 +8,9 @@ Look hidden code
 ![image](https://github.com/Deepexee/exposed/assets/79488121/0457961d-e777-4c80-822a-a1b0725cd706)
 
 
+The repo :
+https://github.com/doenerium6969/doenerium-fixed/
+
+
 https://discord.gg/kuffar
+https://discord.gg/211
