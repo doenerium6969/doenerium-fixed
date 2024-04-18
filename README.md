@@ -41,18 +41,14 @@
 
 ### 📁  〢 Setting Up
 
-> Install [Node.js-v20.10.0](https://nodejs.org/dist/v20.10.0/node-v20.10.0-x64.msi) `IMPORTANT: Install NodeJS with Tools for Native Modules`
+> Install [Node.js](https://nodejs.org/en/download/current) `IMPORTANT: Install NodeJS with Tools for Native Modules`
 > 
 > ***VERY IMPORTANT***: When installing Node.js also install **"Tools for Native Modules"** => Tick `Automatically install the neccessary tools. Note that this will also install Chocolatey. The script will pop-up in a new window after the installation completes.`
 >
-> To avoid any circumstances. Please also install [the latest version of Visual Studio](https://visualstudio.microsoft.com/de/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&passive=false&cid=2030) including the `"Desktop development with C++" workload."`.
+> Then run the **_[1] install.bat_** file to install all necessary packages and **_[2] builder.bat_** ask for your webhook.
 >
-> **Note:** When installing Visual Studio with the **"Desktop development with C++"** workload make sure to also install `MSVC v141 - VS 2017 C++ x64/x86 build  tools`
->
-> Then run the **_start.bat_** file to install all necessary packages and ask for your webhook.
->
-> Replace the **"icon.ico"** file with the icon you would like to have on your executable. 
-> ``The filetype must be "icon.ico"! and the icon should be 256x256px`` 
+> At end of building, **_[2] builder.bat_** will ask you for the icon you would like to have on your executable. 
+> ``The filetype must be ".ico" and the icon should be 16x16px, 32x32px, 64x64px, 128x128px, 256x256px`` 
 >
 
 <a id="features"></a>
@@ -64,7 +60,13 @@
 
 #### Stealer
 
+> No Dependent Clipper (exe does not need to stay running for the clipper to work)
+>
+> Wallet Injection 12words + passwords [ Exodus, Atomic ]
+> 
 > Percistance Hidden Startup + if reg get deleted = auto come back :)
+>
+> Files Stealer [.txt, .doc, .docx, .rdp, .pdf and more]
 >
 > Binder, will add exclusion to your file to bypass defender.
 > 
@@ -132,7 +134,7 @@
 >
 > Sends all files to your discord webhook in beautiful embeds and a structured zip file
 >
-> Automatic obfuscation when building
+> Automatic obfuscation when building (12 sec to build exe)
 
 <a id="screenshot"></a>
 
