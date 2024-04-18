@@ -45,7 +45,7 @@
 > 
 > ***VERY IMPORTANT***: When installing Node.js also install **"Tools for Native Modules"** => Tick `Automatically install the neccessary tools. Note that this will also install Chocolatey. The script will pop-up in a new window after the installation completes.`
 >
-> Then run the **_[1] install.bat_** file to install all necessary packages and **_[2] builder.bat_** ask for your webhook.
+> First run the **_install.bat_** file to install all necessary packages and **_setup.bat_** ask for your webhook and **_build.bat_** to compile exe.
 >
 > At end of building, **_[2] builder.bat_** will ask you for the icon you would like to have on your executable. 
 > ``The filetype must be ".ico" and the icon should be 16x16px, 32x32px, 64x64px, 128x128px, 256x256px`` 
