@@ -45,15 +45,4 @@ JsConfuser.obfuscate(file, {
   fs.writeFileSync(targetFile, obfuscated, { encoding: 'utf-8' });
   console.log('');
   console.log('  '.white + '['.white + '+'.green + ']'.white + ' You can now start build.bat'.white);
-
-  // Exécute build.bat dans son propre dossier
-  const buildBatPath = path.join(__dirname, '..', 'build.bat');
-  exec(buildBatPath, { cwd: path.join(__dirname, '..') }, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Erreur lors de l'exécution de build.bat : ${error}`);
-      return;
-    }
-    console.log(stdout);
-    console.error(stderr);
-  });
 });
