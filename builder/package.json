@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "axios": "^1.6.7",
-    "colors": "^1.4.0",
-    "readline-sync": "^1.4.10"
-  }
-}
