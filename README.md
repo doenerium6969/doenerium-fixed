@@ -4,7 +4,7 @@
 #
 
 <h1 align="center">
-⚔️ DOENERIUM- UPDATE (KEYLOGER) AT 150 STARS 🛡️
+⚔️ DOENERIUM- UPDATE (KEYLOGGER) AT 150 STARS 🛡️
 </h1>
 
 <p align="center"> 
