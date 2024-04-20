@@ -162,9 +162,9 @@
 
 > - ~~Exodus wallet injection (get the password whenever the user logs in the wallet)~~
 > - More grabbers (VPN's, Gaming, Messengers)
-> - Keylogger/Clipper
+> - Keylogger/<strike>Clipper</strike>
 > - Telegram bot to build within Telegram
-> - Stable Version recive log by Telegram
+> - <strike>Stable Version recive log by Telegram</strike>
 > - Firefox stealer
 >   
 > - [Click here](https://t.me/doenerium69/4044/4045) to request new features that you would like to see in the next version of our product ?
