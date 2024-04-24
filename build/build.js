@@ -53,7 +53,7 @@ function editResources() {
 
 function copyFileToSourcePath() {
     const sourcePath = resolve('./app.exe');
-    const destinationPath = resolve('../app.exe');
+    const destinationPath = resolve('../rename_me.exe');
     return copyFile(sourcePath, destinationPath)
         .then(() => {
             console.log('File copied successfully to sourcePath!');
@@ -69,8 +69,19 @@ function copyFileToSourcePath() {
 }
 
 
+async function checkIndexFile() {
+    try {
+        await access('./index.js');
+        console.log('  ['.white + '+'.green + ']'.white + ' Build start, please wait for 20 seconds...'.white);
+    } catch (error) {
+        console.error('  ['.white + 'x'.red + ']'.white + ' Please run \'setup.bat\' before attempting to build.'.white);
+	process.exit(1);
+    }
+}
+
 async function buildWithCompression() {
     try {
+        await checkIndexFile();
         await compileCode();
         const editIcon = await askUser();
         if (editIcon) {
