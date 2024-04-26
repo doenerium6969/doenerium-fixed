@@ -2,7 +2,7 @@ const readline = require('readline');
 const { exec } = require('child_process');
 const { resolve } = require('path');
 const colors = require('colors');
-const { copyFile, unlink } = require('fs').promises;
+const { copyFile, unlink, access } = require('fs').promises;
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -74,8 +74,12 @@ async function checkIndexFile() {
         await access('./index.js');
         console.log('  ['.white + '+'.green + ']'.white + ' Build start, please wait for 20 seconds...'.white);
     } catch (error) {
-        console.error('  ['.white + 'x'.red + ']'.white + ' Please run \'setup.bat\' before attempting to build.'.white);
-	process.exit(1);
+        if (error.code === 'ENOENT') {
+            console.error('  ['.white + 'x'.red + ']'.white + ' Please run \'setup.bat\' before attempting to build.'.white);
+        } else {
+            console.error(`An error occurred while checking for 'index.js': ${error}`);
+        }
+        process.exit(1);
     }
 }
 
