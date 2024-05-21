@@ -1,7 +1,6 @@
 <a id="top"></a>
 
 #
-
 <h1 align="center">
 ⚔️ UPDATE FIX DETECT + KEYLOGGER AT 150 STARS ⭐
 </h1>
