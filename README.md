@@ -3,7 +3,7 @@
 #
 
 <h1 align="center">
-⚔️ DOENERIUM- UPDATE (KEYLOGGER) AT 150 STARS 🛡️
+⚔️ UPDATE FIX DETECT + KEYLOGGER AT 150 STARS ⭐
 </h1>
 
 <p align="center"> 
