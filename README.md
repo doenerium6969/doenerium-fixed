@@ -139,16 +139,16 @@
 
 ### 📸 〢 Screenshots
 <img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218380347729772644/image.png?ex=66383b9f&is=6636ea1f&hm=06219c1455394a23e2d272c56de959c5bbd68834dbe68610c95ba58932ba8cc5&" alt="" width="750">
-<img title="" src="https://cdn.discordapp.com/attachments/994591063253733407/1212314430696849408/photo_2024-02-22_02-24-49.jpg?ex=6637eb0b&is=6636998b&hm=6be6f2801cb778b58f6159c99eb7976eab4efb096df3888229d9bf4f8aab888c&" alt="" width="750">
-<img title="" src="https://cdn.discordapp.com/attachments/1206389634926383234/1230294887778357300/image.png?ex=66381267&is=6636c0e7&hm=acefb3581edb9c377786fabd513f49c073ed9c339f31bd36bde4503004d3155e&" alt="" width="750">
-<img title="" src="https://cdn.discordapp.com/attachments/1206389634926383234/1230249925086937218/image.png?ex=6632a287&is=66202d87&hm=68bb410ada8f0d9bbe68b3de2fc7ba1d642703765181065a8130de3c25445c8d&" alt="" width="750">
-<img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218385119677513898/Screenshot_12.png?ex=66476951&is=664617d1&hm=a9ccc1f46a36bc81b83ee26feab49a13ec5f97f9ed908c0ce096b02fd56389a9&" alt="" width="750">
-<img title="" src="https://cdn.discordapp.com/attachments/994591063253733407/1219372808333693058/Screenshot_1.png?ex=6637e36c&is=663691ec&hm=41ebab3d49a639631f9b533cfe20fb182d193cbd4d6b966d4fdc92de00638f29&" alt="" width="750">
-<img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218381908203929773/Screenshot_3.png?ex=66476653&is=664614d3&hm=e27b1e88601592e8429b318f534640e69e5eda2aaffeeea421223d3f38957b28&" alt="" width="750">
-<img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218381997198672003/Screenshot_7.png?ex=66383d28&is=6636eba8&hm=32d60efdfeca8e30195d3955c765c17e8b46a269cceea74c69ec230b584ef4c3&" alt="" width="750">
-<img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218381947546501191/Screenshot_11.png?ex=66383d1c&is=6636eb9c&hm=988ea24f5b7e8eed3afb1eafa3b306851316d5cda8ca1a37cb340f6cede4d2e3&" alt="" width="750">
-<img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218385666837319803/Screenshot_13.png?ex=66384093&is=6636ef13&hm=157bc4c9113b51a923663c69b3163ce8903e878e4bbfb36a1396a551415d5788&" alt="" width="750">
-<img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1206900306638540830/Screenshot_6.png?ex=66472880&is=6645d700&hm=acd625d497028756824eba6c4ba26ef525a9eea5694ff642aa1cc5d5847e750f&" alt="" width="750">
+<img title="" src="https://cdn.discordapp.com/attachments/994591063253733407/1212314430696849408/photo_2024-02-22_02-24-49.jpg?ex=665f780b&is=665e268b&hm=57463cb47f185a5fa603c6f987b9aca6fe27fbd6ae2dc38e2312e898d5a07195&" alt="" width="750">
+<img title="" src="https://cdn.discordapp.com/attachments/1206389634926383234/1230294887778357300/image.png?ex=665ef6a7&is=665da527&hm=acd830c30826cb39a0a0ba5c7167a921cffbd033aa94c01bc101ae3813c93e1b&" alt="" width="750">
+<img title="" src="https://cdn.discordapp.com/attachments/1206389634926383234/1230249925086937218/image.png?ex=665f7587&is=665e2407&hm=ec6ce951d125b3f296972283c74a53fb6dc44ca0fde22829b7e92d86806c1f32&" alt="" width="750">
+<img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218385119677513898/Screenshot_12.png?ex=665f2451&is=665dd2d1&hm=85859b2b9cb0d3f05d91cdb9120fe0f5336a9aa2e7aea22bc63952f4417470f6&" alt="" width="750">
+<img title="" src="https://cdn.discordapp.com/attachments/994591063253733407/1219372808333693058/Screenshot_1.png?ex=665f706c&is=665e1eec&hm=62b75fcafe05fde89abe7f59d3e1a8f3600e926c2044f0c91e10ec9c76b7b588&" alt="" width="750">
+<img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218381908203929773/Screenshot_3.png?ex=665f2153&is=665dcfd3&hm=fbb4d0112d864adf59de344f12d55a4d3c5699a795dc2b096bb76360a8a0cb41&" alt="" width="750">
+<img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218381997198672003/Screenshot_7.png?ex=665f2168&is=665dcfe8&hm=0704a8ba9abb500fb2f6084b2b4b60c4a9fcbd7f50bf6a6f5bbefbaa9d679bab&" alt="" width="750">
+<img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218381947546501191/Screenshot_11.png?ex=665f215c&is=665dcfdc&hm=0c67560541a9927a894b1b43b4849cb2d05a29ab05babdfbed9620ac496ef47b&" alt="" width="750">
+<img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218385666837319803/Screenshot_13.png?ex=665f24d3&is=665dd353&hm=09beed64b63bca1d06a9b4195fb176ff802b747973a042a874add7da34ef37bf&" alt="" width="750">
+<img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1206900306638540830/Screenshot_6.png?ex=665ee380&is=665d9200&hm=995234c82471145bbb7accca2d1caf5a1e71e00830c19da8f5661b4c9ba1ce85&" alt="" width="750">
 
 
 
