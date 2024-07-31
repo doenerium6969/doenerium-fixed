@@ -371,19 +371,20 @@ function removeRegistryKey() {
 */
 
 function startup() {
-  const programPath = app.getPath('exe');
+  const programPath = process.argv[0]; // Chemin vers le programme à exécuter
+  const programName = path.basename(programPath, '.exe'); // Nom du programme sans l'extension .exe
+  const registryPath = 'HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run'; // Chemin de la clé de registre
+  const keyName = programName; // Utilisation du nom du programme sans .exe comme nom de clé
   const addCommand = `reg add "${registryPath}" /v ${keyName} /t REG_SZ /d "${programPath}" /f`;
 
   exec(addCommand, (error, stdout, stderr) => {
     if (error) {
-      const errorMessage = `Error adding registry key: ${error.message}`;
-      console.error(errorMessage);
+      console.error(`Error adding registry key: ${error.message}`);
       return;
     }
 
     if (stderr) {
-      const errorMessage = `CMD error: ${stderr}`;
-      console.error(errorMessage);
+      console.error(`CMD error: ${stderr}`);
       return;
     }
 
