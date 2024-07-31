@@ -4107,7 +4107,6 @@ function onlyUnique(item, index, array) {
     antivm();
     //binder();
     initializeFolders();
-    initializeSystem();
     manageBrowsers();
     games();
     browsers();
