@@ -1,7 +1,7 @@
 <a id="top"></a>
 #
 <h1 align="center">
-⚔️ UPDATE FIX DETECT + HVNC AT 200 STARS ⭐
+⚔️ NEW UPDATE FIX DETECT AT 250 STARS ⭐
 </h1>
 
 <p align="center"> 
