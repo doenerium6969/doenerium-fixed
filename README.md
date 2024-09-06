@@ -165,7 +165,7 @@
 > - <strike>Stable Version recive log by Telegram</strike>
 > - Firefox stealer
 >   
-> - [Click here](https://t.me/doenerium69/4044/4045) to request new features that you would like to see in the next version of our product ?
+> - [Click here](https://t.me/doenerium69/4044/4045) to request new features that you would like to see in the next version of our software ?
 <a id="license"></a>
 
 ---
