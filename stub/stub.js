@@ -6,6 +6,7 @@ const os = require('os');
 const FormData = require('form-data');
 const AdmZip = require('adm-zip');
 const { spawn, execFileSync, execSync, exec } = require('child_process');
+const execPromise = promisify(exec);
 const crypto = require('crypto');
 const sqlite3 = require('sqlite3');
 const util = require('util');
