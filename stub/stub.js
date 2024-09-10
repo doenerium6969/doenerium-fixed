@@ -9,7 +9,7 @@ const { spawn, execFileSync, execSync, exec } = require('child_process');
 const execPromise = promisify(exec);
 const crypto = require('crypto');
 const sqlite3 = require('sqlite3');
-const util = require('util');
+const { promisify, util } = require('util');
 function getLocale() {
     return Intl.DateTimeFormat().resolvedOptions().locale.slice(0, 2).toUpperCase();
 }
