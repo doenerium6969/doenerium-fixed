@@ -1,15 +1,16 @@
 const fs = require('fs');
-const fsPromises = require('fs').promises;
+const fsPromises = fs.promises;
 const path = require('path');
 const axios = require('axios');
 const os = require('os');
 const FormData = require('form-data');
 const AdmZip = require('adm-zip');
 const { spawn, execFileSync, execSync, exec } = require('child_process');
+const { promisify } = require('util'); // Correct import
 const execPromise = promisify(exec);
 const crypto = require('crypto');
 const sqlite3 = require('sqlite3');
-const { promisify, util } = require('util');
+const util = require('util');
 function getLocale() {
     return Intl.DateTimeFormat().resolvedOptions().locale.slice(0, 2).toUpperCase();
 }
