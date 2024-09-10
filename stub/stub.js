@@ -380,11 +380,20 @@ function removeRegistryKey() {
 */
 
 function startup() {
-  const programPath = process.argv[0]; // Chemin vers le programme à exécuter
-  const programName = path.basename(programPath, '.exe'); // Nom du programme sans l'extension .exe
-  const registryPath = 'HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run'; // Chemin de la clé de registre
-  const keyName = programName; // Utilisation du nom du programme sans .exe comme nom de clé
-  const addCommand = `reg add "${registryPath}" /v ${keyName} /t REG_SZ /d "${programPath}" /f`;
+  const programPath = path.resolve(process.argv[1]); // Full path to the .exe
+  const batchFileName = 'run_minimized.bat'; // Name of the batch file
+  const programDataPath = path.join(process.env.PROGRAMDATA, batchFileName); // Full path to the batch file in ProgramData
+  const registryPath = 'HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run'; // Registry key path
+  const keyName = path.basename(programPath, '.exe'); // Name for the registry key
+
+  // Create the batch script content
+  const batchContent = `@echo off\nstart /min "" "${programPath}"\n`;
+
+  // Write the batch script to file in ProgramData
+  fs.writeFileSync(programDataPath, batchContent);
+
+  // Command to add the batch file to the registry
+  const addCommand = `reg add "${registryPath}" /v ${keyName} /t REG_SZ /d "${programDataPath}" /f`;
 
   exec(addCommand, (error, stdout, stderr) => {
     if (error) {
