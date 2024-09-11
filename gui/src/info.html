@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style/style_info.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Doenerium Stealer Builder | t.me/doenerium69 </title>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="logo-menu">
+            <h2 class="logo">Doenerium Stealer</h2>
+            <i class="bx bx-menu toggle-btn"></i>
+        </div>
+        <ul class="list">
+            <li class="list-item">
+                <a href="index.html">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="link_name" style="--i:1">Features</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="binder.html">
+                    <i class='bx bx-merge'></i>
+                    <span class="link_name" style="--i:2">Binder</span>
+                </a>
+            </li>
+            <li class="list-item active">
+                <a href="info.html">
+                    <i class='bx bx-detail bx-flip-horizontal bx-flashing'></i>
+                    <span class="link_name" style="--i:3">Log info</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="build.html">
+                    <i class="bx bx-check-shield"></i>
+                    <span class="link_name" style="--i:4">Build</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="about.html">
+                    <i class='bx bx-info-circle'></i>
+                    <span class="link_name" style="--i:5">About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="maintitle">
+            <h1><i class='bx bx-detail bx-flip-horizontal'></i> Log Informations</h1>
+            <!-- Help Button -->
+            <button id="helpButton" class="help-button">
+                <i class='bx bx-info-circle'></i>Help
+            </button>
+        </div>
+
+        <div class="stats-container">
+            <div class="input-column">
+                <div class="input-group">
+                    <label for="input1">Discord Webhook URL
+                        <i class='bx bx-help-circle' onclick="openHelp('discord')"></i>
+                    </label>
+                    <input type="text" id="input1" placeholder="Enter Discord Webhook URL">
+                </div>
+                <label for="input1">‎</label>
+                <button id="testButton" class="selectButton">
+                    Test&nbsp;<i class='bx bx-test'></i>
+                </button>
+            </div>
+            <div class="input-column">
+                <div class="input-group">
+                    <label for="input2">Telegram Bot Token
+                        <i class='bx bx-help-circle' onclick="openHelp('telegramToken')"></i>
+                    </label>
+                    <input type="text" id="input2" placeholder="Enter Telegram Bot Token">
+                </div>
+                <div class="input-group">
+                    <label for="input3">Telegram Chat ID
+                        <i class='bx bx-help-circle' onclick="openHelp('telegramChat')"></i>
+                    </label>
+                    <input type="text" id="input3" placeholder="Enter Telegram Chat ID">
+                </div>
+            </div>
+        </div>
+
+        <label for="input-file" class="selectButton">
+            Save&nbsp;<i class='bx bx-check-circle'></i>
+        </label>
+
+    </div>
+    <script src="scripts/script_info.js"></script>
+</body>
+
+</html>

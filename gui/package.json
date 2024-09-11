@@ -1,0 +1,16 @@
+{
+  "name": "Doenerium Builder",
+  "version": "2.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adapters",
+  "license": "GPL-3.0-only",
+  "devDependencies": {
+    "electron": "^23.3.13",
+    "electron-builder": "^24.13.3"
+  }
+}

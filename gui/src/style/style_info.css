@@ -1,0 +1,258 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: url(img/bg.gif) no-repeat;
+    background-size: cover;
+    background-position: center;
+    user-select: none;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 100%;
+    background: transparent;
+    backdrop-filter: blur(4px);
+    padding: 6px 14px;
+    transition: .5s;
+}
+
+.sidebar.active {
+    width: 260px;
+}
+
+.sidebar .logo-menu {
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+    width: 120%;
+    height: 70px;
+}
+
+.sidebar .logo-menu .logo {
+    font-size: 23px;
+    color: #fff;
+    pointer-events: none;
+    opacity: 0;
+    transition: .3s;
+}
+
+.sidebar.active .logo-menu .logo {
+    opacity: 1;
+    transition-delay: .2s;
+}
+
+.sidebar .logo-menu .toggle-btn {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.sidebar.active .logo-menu .toggle-btn {
+    left: 90%;
+}
+
+.sidebar .list {
+    margin-top: 10px;
+}
+
+.list .list-item {
+    list-style: none;
+    width: 100%;
+    height: 50px;
+    margin: 5px 0;
+    line-height: 50px;
+}
+
+.list .list-item a {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: .5s;
+}
+
+.list .list-item.active a,
+.list .list-item a:hover {
+    background: rgba(255, 255, 255, .2);
+}
+
+.list .list-item a i {
+    min-width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.sidebar .link_name {
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s;
+}
+
+.sidebar.active .link_name {
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: calc(.1s * var(--i));
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.maintitle {
+    margin-bottom: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond noir transparent */
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin-bottom: 20px;
+    gap: 10px; /* Réduire l'espace entre les colonnes */
+}
+
+.input-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Réduire l'espace entre les inputs */
+    flex: 1; /* Permet aux colonnes de prendre la même largeur */
+}
+
+.input-group {
+    text-align: left;
+}
+
+.input-group label {
+    color: #fff;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 14px;
+}
+
+.input-group input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 14px;
+    backdrop-filter: blur(3px); /* Applique un effet de flou à l'arrière-plan */
+    -webkit-backdrop-filter: blur(3px); /* Pour la compatibilité avec les navigateurs basés sur WebKit */
+}
+
+.container .selectButton {
+    color: #fff;
+    width: 43vh;
+    height: 3vh;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 16px;
+    border-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 18px;
+}
+
+.container .selectButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.container .selectButton input[type="file"] {
+    display: none;
+}
+
+.container .aboutRisk {
+    margin-top: 5vh;
+    color: #fff;
+}
+
+.container .aboutRisk h2 {
+    text-align: center;
+}
+
+.container .aboutRisk p {
+    text-align: center;
+    margin-left: 35vh;
+    margin-right: 35vh;
+}
+
+.container .aboutRisk .bold {
+    font-weight: bold;
+}
+.input-group {
+    position: relative;
+    margin-bottom: 10px; /* Espace entre les groupes de champs */
+}
+
+input[type="text"].locked {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ccc;
+    cursor: not-allowed; 
+}
+
+input[type="text"].locked::placeholder {
+    color: #ccc; 
+}
+
+input[type="text"]:disabled::placeholder {
+    content: "Locked";
+}
+
+.help-button {
+    position: absolute;
+    right: 15px;
+    top: 11px;
+    background-color: #fff200;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 7px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.help-button i {
+    margin-right: 8px;
+}
+
+.help-button:hover {
+    background-color: #fff200;
+}

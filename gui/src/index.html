@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style/style_index.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Doenerium Stealer Builder | t.me/doenerium69</title>
+    <style>
+        .toggle-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #fff200;
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .toggle-button:hover {
+            background-color: #ffd700;
+        }
+        .checkbox-container {
+            margin-top: 20px;
+        }
+        .checkbox-list-wrapper {
+            display: flex;
+            justify-content: space-between;
+        }
+        .checkbox-list {
+            display: flex;
+            flex-direction: column;
+        }
+        .spacer {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="logo-menu">
+            <h2 class="logo">Doenerium Stealer</h2>
+            <i class="bx bx-menu toggle-btn"></i>
+        </div>
+        <ul class="list">
+            <li class="list-item active">
+                <a href="index.html">
+                    <i class='bx bx-grid-alt bx-flashing'></i>
+                    <span class="link_name" style="--i:1">Features</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="binder.html">
+                    <i class='bx bx-merge'></i>
+                    <span class="link_name" style="--i:2">Binder</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="info.html">
+                    <i class='bx bx-detail bx-flip-horizontal'></i>
+                    <span class="link_name" style="--i:3">Log info</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="build.html">
+                    <i class="bx bx-check-shield"></i>
+                    <span class="link_name" style="--i:4">Build</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="about.html">
+                    <i class='bx bx-info-circle'></i>
+                    <span class="link_name" style="--i:5">About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="maintitle">
+            <h1><i class='bx bx-shield'></i> Doenerium Builder</h1>
+        </div>
+        <div class="checkbox-container">
+            <button id="toggleButton" class="toggle-button">Check All</button>
+            <div class="checkbox-list-wrapper">
+                <div class="checkbox-list left-list">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="games" name="games" value="games">
+                        <label for="games"> Games Stealer</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="browsers" name="browsers" value="browsers">
+                        <label for="browsers">Browsers Stealer</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="filevpn" name="filevpn" value="filevpn">
+                        <label for="filevpn">File/VPN Stealer</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="backupcodes" name="backupcodes" value="backupcodes">
+                        <label for="backupcodes">2FA/A2F Stealer</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="wallet" name="wallet" value="wallet">
+                        <label for="wallet">Wallet Injection</label>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+                <div class="checkbox-list right-list">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="disableuac" name="disableuac" value="disableuac">
+                        <label for="disableuac">Disable UAC</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="computerinfo" name="computerinfo" value="computerinfo">
+                        <label for="computerinfo">Computer Info</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="hideconsole" name="hideconsole" value="hideconsole">
+                        <label for="hideconsole">Hide Console</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="startup" name="startup" value="startup">
+                        <label for="startup">Basic Startup</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="antivm" name="antivm" value="antivm">
+                        <label for="antivm">Anti-VM/RDP</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/script_index.js"></script>
+</body>
+
+</html>

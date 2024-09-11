@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style/style_binder.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Doenerium Stealer Builder | t.me/doenerium69</title>
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="logo-menu">
+            <h2 class="logo">Doenerium Stealer</h2>
+            <i class="bx bx-menu toggle-btn"></i>
+        </div>
+        <ul class="list">
+            <li class="list-item">
+                <a href="index.html">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="link_name" style="--i:1">Features</span>
+                </a>
+            </li>
+            <li class="list-item active">
+                <a href="binder.html">
+                    <i class='bx bx-merge bx-flashing'></i>
+                    <span class="link_name" style="--i:2">Binder</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="info.html">
+                    <i class='bx bx-detail bx-flip-horizontal'></i>
+                    <span class="link_name" style="--i:3">Log info</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="build.html">
+                    <i class="bx bx-check-shield"></i>
+                    <span class="link_name" style="--i:4">Build</span>
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="about.html">
+                    <i class='bx bx-info-circle'></i>
+                    <span class="link_name" style="--i:5">About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Arrière-plan avec effet de flou -->
+        <div class="background-blur"></div>
+
+        <div class="maintitle">
+            <h1><i class='bx bx-merge'></i> Doenerium Binder</h1>
+            <!-- Nouveau bouton d’aide -->
+            <button id="helpButton" class="help-button">
+                <i class='bx bx-info-circle'></i>Help
+            </button>
+        </div>
+        
+        <div class="input-section">
+            <div class="background-overlay">
+                <p>Enter the direct link of your alternative files:</p>
+                <input type="text" id="bindFileInput" placeholder="*Optional">
+            </div>
+        </div>
+
+        <div class="button-container">
+            <!-- Existing Bind Button -->
+            <label class="selectButton" for="fileInput" id="bindButton">
+                Bind&nbsp;<i class='bx bx-check-circle'></i>
+            </label>
+
+            <label class="selectButton" for="fileInput" id="resetButton">
+                Reset&nbsp;<i class='bx bx-reset'></i>
+            </label>
+        </div>
+    </div>
+    <script src="scripts/script_binder.js"></script>
+</body>
+</html>
