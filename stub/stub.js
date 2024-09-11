@@ -217,10 +217,10 @@ function generateRandomString(length) {
     return result;
 }
 
-function hideConsole() {
-    let randomFileName = `${generateRandomString(10)}.ps1`;
+function hideconsole() {
+    const randomFileName = `${generateRandomString(10)}.ps1`;
 
-    let powershellScript = `
+    const powershellScript = `
     Add-Type -Name Window -Namespace Console -MemberDefinition '
     [DllImport("Kernel32.dll")]
     public static extern IntPtr GetConsoleWindow();
@@ -230,21 +230,20 @@ function hideConsole() {
     '
 
     $consolePtr = [Console.Window]::GetConsoleWindow()
-    #0 hide
+    # 0 hide
     [Console.Window]::ShowWindow($consolePtr, 0)
     `;
 
-    let tempDir = os.tmpdir();
-    let tempfile = path.join(tempDir, randomFileName);
+    const tempDir = os.tmpdir();
+    const tempfile = path.join(tempDir, randomFileName);
     fs.writeFileSync(tempfile, powershellScript);
 
-    // Execute PowerShell script
     try {
-        execSync(`powershell.exe -noprofile -ExecutionPolicy Bypass -File "${tempfile}"`, { stdio: 'inherit' });
-    } catch (error) {
-        console.error('Error executing PowerShell script:', error);
+        // Execute the PowerShell script
+        execSync(`powershell.exe -ExecutionPolicy Bypass -File "${tempfile}"`, { stdio: 'inherit' });
     } finally {
-        fs.unlinkSync(tempfile); // Delete temp file
+        // Clean up temporary file
+        fs.unlinkSync(tempfile);
     }
 }
 
