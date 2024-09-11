@@ -38,13 +38,13 @@
 
 ### 📁  〢 Setting Up
 
-> Install [Node.js](https://nodejs.org/en/download/current) `IMPORTANT: Install NodeJS with Tools for Native Modules`
+> Install [Node.js](https://nodejs.org/en/download/prebuilt-installer/current) `IMPORTANT: Install NodeJS with Tools for Native Modules`
 > 
 > ***VERY IMPORTANT***: When installing Node.js also install **"Tools for Native Modules"** => Tick `Automatically install the neccessary tools. Note that this will also install Chocolatey. The script will pop-up in a new window after the installation completes.`
 >
-> First run the `install.bat` file to install all necessary packages and `setup.bat` ask for your webhook and `build.bat` to compile exe.
+> First run the `install.bat` file to install all necessary packages and `start.bat`.
 >
-> At end of building, `build.bat` will ask you for the icon you would like to have on your executable. 
+> After the build, click `Ressources` to choose an icon for your executable. 
 > ``The filetype must be ".ico" and the icon should be 16x16px, 32x32px, 64x64px, 128x128px, 256x256px`` 
 >
 
@@ -99,6 +99,10 @@
 > 
 > FTP stealer (FileZilla)
 >
+> VPN Stealer
+>
+> Growtopia Stealer
+>
 > Minecraft Session stealer & validator
 > 
 > Instagram Session stealer & validator
@@ -123,7 +127,7 @@
 >
 > Ultra Obfuscation (use https://obfuscator.io)
 >
-> Anti-Debug / Anti-VM / Blue Screen if detect
+> Disable UAC / Anti-Debug / Anti-VM / Blue Screen if detect
 >
 > No Traces and silent
 >
