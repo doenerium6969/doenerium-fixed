@@ -142,8 +142,8 @@
 ---
 
 ### 📸 〢 Screenshots
-<img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218380347729772644/image.png?ex=66db0cdf&is=66d9bb5f&hm=da616af76c9974e94b4ab77ef1bcfddc3b4a354f42263622165c891cec645327&" alt="" width="750">
-<img title="" src="https://media.discordapp.net/attachments/660885288079589385/1257629839192756254/323762873-9f605b31-b796-4566-bb85-d90e8951c7d0.png?ex=66db74cf&is=66da234f&hm=d0a93087af4dda422fd530088424833242fe55a6ae78f0233bb909cfb0a62846&" alt="" width="750">
+<img title="" src="https://cdn.discordapp.com/attachments/1223099035162771528/1283265834130866227/image.png?ex=66e25df0&is=66e10c70&hm=36cbd4913289165ae69c9434b9778f623ead77e2450a22ff1bec66a6f79b98f0&" alt="" width="750">
+<img title="" src="https://cdn.discordapp.com/attachments/1223099035162771528/1283270003491213394/Sans_titre.png?ex=66e261d2&is=66e11052&hm=e8f1d2997fc5e829131f876d9841f0f258c4fb9d4b1a69650978f4ae7f3c4feb&" alt="" width="750">
 <img title="" src="https://cdn.discordapp.com/attachments/1206389634926383234/1230294887778357300/image.png?ex=66db8c67&is=66da3ae7&hm=6facdb3d3b1d4bbb59e584dc7bf8b74ebd099b19e2310943b8bc4ce44d80e923&" alt="" width="750">
 <img title="" src="https://cdn.discordapp.com/attachments/1206389634926383234/1230249925086937218/image.png?ex=66db6287&is=66da1107&hm=e4b95108219e5ce2536143dc9728a212004115282ca8ad985720c46755174331&" alt="" width="750">
 <img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218385119677513898/Screenshot_12.png?ex=66db1151&is=66d9bfd1&hm=394749579e2880468e9df8256d3be34ebae97f3e7b216cdd3bfacd80557a6b31&" alt="" width="750">
