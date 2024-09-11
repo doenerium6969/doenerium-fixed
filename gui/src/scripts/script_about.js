@@ -23,7 +23,7 @@ document.getElementById('telegram-link').addEventListener('click', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const url = 'https://raw.githubusercontent.com/doenerium6969/doenerium-fixed/gui/about';
+    const url = 'https://raw.githubusercontent.com/doenerium6969/doenerium-fixed/main/gui/about';
     const aboutTextElement = document.getElementById('about-text');
     
     // Ajouter un paramètre de cache busting avec un timestamp
