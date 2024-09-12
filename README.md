@@ -121,7 +121,7 @@
 
 
 
-#### Additional
+### 🏹 〢 Additional
 
 > Internet connection check every 3 seconds before it starts stealing
 >
