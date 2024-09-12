@@ -135,7 +135,7 @@
 >
 > Sends all files to your discord webhook in beautiful embeds and a structured zip file
 >
-> Automatic obfuscation when building (12 sec to build exe)
+> Automatic obfuscation when building (12 sec to build exe | 30-40mb)
 
 <a id="screenshot"></a>
 
