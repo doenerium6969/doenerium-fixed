@@ -1,5 +1,5 @@
 <a id="top"></a>
-#
+
 <h1 align="center">
 ⚔️ NEW UPDATE FIX DETECT AT 250 STARS ⭐
 </h1>
