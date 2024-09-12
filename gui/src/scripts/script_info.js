@@ -78,11 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return regex.test(token);
     }
 
-    // Function to validate the Telegram chat ID
+    // Function to validate the Telegram chat ID | i just add for group
     function isValidTelegramChatID(chatID) {
-        const regex = /^\d+$/;
-        return regex.test(chatID);
+    const regex = /^-?\d+$/;
+    return regex.test(chatID);
     }
+
 
     // Function to enable/disable text fields based on input
     function updateInputStates() {
