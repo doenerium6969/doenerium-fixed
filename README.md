@@ -185,9 +185,3 @@ By downloading this, you agree to the Commons Clause license and that you're not
 ### ⚠️ 〢 Note
 
 I am not responsible for any damages this software may cause after being acquired. This software was made for personal education and sandbox testing.
-
-### Credits
-
-Credits to Pandoric / PandoricGalaxy for creating this beautiful README file
-
-<p align="center"><a href=#top>Back to Top</a></p>
