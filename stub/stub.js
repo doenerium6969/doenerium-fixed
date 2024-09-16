@@ -70,7 +70,6 @@ async function main() {
     }
 }
 
-
 function executeCommand(command, callback) {
     exec(command, (error, stdout, stderr) => {
         if (error) {
