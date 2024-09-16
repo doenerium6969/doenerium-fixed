@@ -1,5 +1,4 @@
 <a id="top"></a>
-
 <h1 align="center">
 ⚔️ NEW UPDATE NEW FEATURES AT 250 STARS ⭐
 </h1>
