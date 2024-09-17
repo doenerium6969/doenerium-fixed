@@ -352,9 +352,6 @@ helpButton.addEventListener('click', () => {
         }
         helpButton.style.display = 'none';
         newButton.style.display = 'none';
-
-        // Search for app.exe and show alert
-        handleButtonClick();
     });
 });
 
@@ -376,9 +373,6 @@ newButton.addEventListener('click', () => {
         }
         helpButton.style.display = 'none';
         newButton.style.display = 'none';
-
-        // Search for app.exe and show alert
-        handleButtonClick();
     });
 });
 });
