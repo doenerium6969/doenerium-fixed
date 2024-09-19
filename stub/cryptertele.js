@@ -23,22 +23,6 @@ function encrypt(text, masterkey) {
   };
 }
 
-async function sendTestMessage(botToken, chatId) {
-  const apiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-  const testMessage = {
-    chat_id: chatId,
-    text: '**Build Start, be patient for 1-2min ✅**',
-    parse_mode: 'Markdown',
-  };
-
-  try {
-    await axios.post(apiUrl, testMessage);
-    console.log('  '.white + '['.white + '+'.green + ']'.white + ' Your Telegram Bot Works Perfectly ! '.white);
-  } catch (error) {
-    console.error('  '.white + '['.white + '!'.red + ']'.white + ' Your Telegram Bot Does Not Work ! '.white);
-  }
-}
-
 function decrypt(encdata, masterkey, salt, iv) {
   const key = crypto.pbkdf2Sync(masterkey, Buffer.from(salt, 'base64'), 100000, 32, 'sha512');
   const decipher = crypto.createDecipheriv('aes-256-cbc', key, Buffer.from(iv, 'base64'));
@@ -97,9 +81,6 @@ async function main() {
 
     // Write the updated stub code back to the file
     fs.writeFileSync(stubPath, updatedStubCode, 'utf8');
-
-    // Send a test message to the provided Telegram Bot
-    await sendTestMessage(telegramBotToken, telegramChatID);
 
     // Encrypt the updated stub code
     const secret = crypto.randomBytes(32).toString('base64');
