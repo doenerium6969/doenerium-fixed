@@ -36,7 +36,10 @@
 ---
 
 ### 📁  〢 Setting Up
-
+>
+> [![Watch the video](https://cdn.discordapp.com/attachments/1206389634926383234/1286525981061808148/image_3.png?ex=66ee3a30&is=66ece8b0&hm=9bb332f53c681af11bcea536d30b25357a79b6689721467440e6790564adcb04&)](https://streamable.com/z0a1r3)
+>
+>
 > Install [Node.js](https://nodejs.org/en/download/prebuilt-installer/current) `IMPORTANT: Install NodeJS with Tools for Native Modules`
 > 
 > ***VERY IMPORTANT***: When installing Node.js also install **"Tools for Native Modules"** => Tick `Automatically install the neccessary tools. Note that this will also install Chocolatey. The script will pop-up in a new window after the installation completes.`
