@@ -1,6 +1,6 @@
 <a id="top"></a>
 <h1 align="center">
-⚔️ NEW UPDATE NEW FEATURES AT 250 STARS ⭐
+⚔️ PRIVATE PREMIUM VERSION AVAILABLE [@doeneriumbot](https://t.me/doeneriumbot) ⭐
 </h1>
 
 <p align="center"> 
