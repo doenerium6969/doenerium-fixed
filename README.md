@@ -1,6 +1,6 @@
 <a id="top"></a>
 <h1 align="center">
-💎 PRIVATE PREMIUM VERSION AVAILABLE https://t.me/doeneriumbot ⭐
+💎 PRIVATE VERSION AVAILABLE https://t.me/doeneriumbot ⭐
 </h1>
 
 <p align="center"> 
