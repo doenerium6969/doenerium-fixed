@@ -1,6 +1,6 @@
 <a id="top"></a>
 <h1 align="center">
-💎 TELEGRAM GET BANNED [JOIN SIGNAL GROUP](https://signal.group/#CjQKINwhRSwlkYd4w1pcJN3EL2aapCh4xgZ6ZjOLo71W8xsGEhAZ4-O5d5rI47UIsGCDDzsw) ⭐
+💎 TELEGRAM GET BANNED JOIN SIGNAL GROUP https://urlr.me/zQB8m ⭐
 </h1>
 
 <p align="center"> 
