@@ -1,6 +1,6 @@
 <a id="top"></a>
 <h1 align="center">
-💎 TELEGRAM GET BANNED JOIN SIGNAL GROUP https://urlr.me/zQB8m ⭐
+💎 TELEGRAM GET BANNED JOIN SIGNAL https://urlr.me/zQB8m ⭐
 </h1>
 
 <p align="center"> 
