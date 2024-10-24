@@ -2,7 +2,7 @@
 <h1 align="center">
 💎 TELEGRAM GET BANNED JOIN SIGNAL https://urlr.me/zQB8m ⭐
 </h1>
-
+<br>
 <p align="center"> 
   <kbd>
 <img src="https://images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%3Fsize%3D96%26quality%3Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp" width="328"></img>
@@ -14,13 +14,7 @@
 <img src="https://img.shields.io/github/stars/doenerium69/doenerium?color=brightgreen">
 <img src="https://img.shields.io/github/forks/doenerium69/doenerium?color=brightgreen">
 </p>
-
-<h1 align="center">
-  Telegram Community: https://t.me/doenerium69
-  <br>
-  <br>
-</h1>
-
+<br>
 
 ## 🌐 〢 Content
 
