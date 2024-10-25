@@ -17,9 +17,9 @@ document.getElementById('github-link').addEventListener('click', () => {
 });
 
 // ## TELEGRAM BUTTON ## //
-const telegramLink = 'https://t.me/doenerium69';
-document.getElementById('telegram-link').addEventListener('click', () => {
-    shell.openExternal(telegramLink);
+const discordLink = 'https://discord.gg/doenerium';
+document.getElementById('discord-link').addEventListener('click', () => {
+    shell.openExternal(discordLink);
 });
 
 document.addEventListener('DOMContentLoaded', () => {
