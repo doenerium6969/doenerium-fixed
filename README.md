@@ -1,6 +1,6 @@
 <a id="top"></a>
 <h1 align="center">
-💎 TELEGRAM GET BANNED JOIN https://discord.gg/doenerium ⭐
+💎 TELEGRAM GET BANNED JOIN discord.gg/doenerium ⭐
 </h1>
 <br>
 <p align="center"> 
