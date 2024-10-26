@@ -9,6 +9,10 @@
   </kbd>
 </p>
 
+<h1 align="center">
+💎 NEXT UPDATE + FIX DETECT AT 270 STARS ⭐
+</h1>
+
 <p align="center">
 <img src="https://img.shields.io/github/last-commit/doenerium6969/doenerium-fixed?style=flat">
 <img src="https://img.shields.io/github/stars/doenerium69/doenerium?color=brightgreen">
