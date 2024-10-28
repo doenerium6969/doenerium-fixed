@@ -143,14 +143,14 @@
 
 ### 📸 〢 Screenshots
 <img title="" src="https://cdn.discordapp.com/attachments/1199547023398010950/1286508649233256529/image.png?ex=671afd0c&is=6719ab8c&hm=0cfc91f4ecb8c833c08cb4166ccf975c3a66906b4944855e399297751e1412fe&" alt="" width="820">
-<img title="" src="https://cdn.discordapp.com/attachments/1223099035162771528/1283270003491213394/Sans_titre.png?ex=671a6992&is=67191812&hm=161fd2c05088f4b08875e9773faf07325aa3399419f038fdd0f81c0ae9a159be&" alt="" width="820">
-<img title="" src="https://cdn.discordapp.com/attachments/1206389634926383234/1230294887778357300/image.png?ex=671ad467&is=671982e7&hm=8fb952ffffbdf82b1b79eb7f5347d4387e473e6a066d82d205d666dac9d92447&" alt="" width="820">
-<img title="" src="https://cdn.discordapp.com/attachments/1206389634926383234/1230249925086937218/image.png?ex=671aaa87&is=67195907&hm=44b06c3f897955d880d15b21ddeb8a7970b8c69c52918fdd27e16210d6fe4015&" alt="" width="820">
-<img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218385119677513898/Screenshot_12.png?ex=671a5951&is=671907d1&hm=e913425383d4a0063ca2608f1dbaf1a58c11f2325585ace5b3dbc8c3c4a0d2bf&" alt="" width="820">
-<img title="" src="https://cdn.discordapp.com/attachments/994591063253733407/1219372808333693058/Screenshot_1.png?ex=671aa56c&is=671953ec&hm=9fcc82a50fff9cb992a9cb95c15b0fc2432aeee6c1b305feb8e65d2ea7874e57&" alt="" width="820">
-<img title="" src="https://cdn.discordapp.com/attachments/994591063253733407/1219372808333693058/Screenshot_1.png?ex=671aa56c&is=671953ec&hm=9fcc82a50fff9cb992a9cb95c15b0fc2432aeee6c1b305feb8e65d2ea7874e57&" alt="" width="820">
-<img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218381997198672003/Screenshot_7.png?ex=671aff28&is=6719ada8&hm=1ffc3777b662cd0700f522dadc6aa04ac491a4e4dc72f0fa75ff1147eee08c2f&" alt="" width="820">
-<img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218381947546501191/Screenshot_11.png?ex=671aff1c&is=6719ad9c&hm=23f6f2a0b3a7d8508b015023c776703738e5f115ea5057845b3b3dd5dc954b5e&" alt="" width="820">
+<img title="" src="https://cdn.discordapp.com/attachments/1223099035162771528/1283270003491213394/Sans_titre.png?ex=67210112&is=671faf92&hm=2b3fb1e6ca56354705f5e918f4e8f78694b84ed634bc3121972cb62a322369ab&" alt="" width="820">
+<img title="" src="https://cdn.discordapp.com/attachments/1206389634926383234/1230294887778357300/image.png?ex=6720c327&is=671f71a7&hm=8f5afdd0447d69581828df633031e9abcf759cfa045d7eea24b4039d19e8635e&" alt="" width="820">
+<img title="" src="https://cdn.discordapp.com/attachments/1206389634926383234/1230249925086937218/image.png?ex=67209947&is=671f47c7&hm=93860a109bd232399a38b205bdfe1a97b5a188fccec194e9b7ef99f434a6f7c4&" alt="" width="820">
+<img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218385119677513898/Screenshot_12.png?ex=6720f0d1&is=671f9f51&hm=23931ba4fca25f3dc328fa8ad697752455c28ae05eb4e59aab4074e68ae17934&" alt="" width="820">
+<img title="" src="https://cdn.discordapp.com/attachments/994591063253733407/1219372808333693058/Screenshot_1.png?ex=6720942c&is=671f42ac&hm=ab37ea8301d58b509c8ce5fa67403f2204ca862f5de12899cab0fc753ceeea4e&" alt="" width="820">
+<img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218381908203929773/Screenshot_3.png?ex=6720edd3&is=671f9c53&hm=75824f25be2f649cbdda2b2af800d2e8522c755ace6980ba2341d6af2cec28f6&" alt="" width="820">
+<img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218381997198672003/Screenshot_7.png?ex=6720ede8&is=671f9c68&hm=6d828b24c67a11a4c2a31a872564ed96c265be007e22d763e14d15a111344357&" alt="" width="820">
+<img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218381947546501191/Screenshot_11.png?ex=6720eddc&is=671f9c5c&hm=5627c51d2e00e369ae46e8789e12817a841e1c19bf3d15d52b352bb46537e1e9&" alt="" width="820">
 <img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218385666837319803/Screenshot_13.png?ex=671a59d3&is=67190853&hm=1b51f272718955635f5d654d9bb44957b8bf8f7776352a2dffb69d23470a5fbd&" alt="" width="820">
 <img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1206900306638540830/Screenshot_6.png?ex=671ac140&is=67196fc0&hm=6d78c5f88c3aebf3cda4a1074cc4098949ba31eb9336f59f13b99155f5b80b12&" alt="" width="820">
 
