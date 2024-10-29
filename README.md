@@ -35,7 +35,7 @@
 
 ### 📁  〢 Setting Up
 >
-> [![Watch the video](https://cdn.discordapp.com/attachments/1206389634926383234/1286525981061808148/image_3.png?ex=671db030&is=671c5eb0&hm=314f91f95c25128f62b36f27284cc8133e2f1bc913647a3534365d0c83f4fc79&)](https://streamable.com/veupi7)
+> [![Watch the video](https://cdn.discordapp.com/attachments/1206389634926383234/1286525981061808148/image_3.png?ex=67224d70&is=6720fbf0&hm=b9ea9d96e464fa00dce8c432b0f9638a9c830b1c7479bf7b89d9c553979a424c&)](https://streamable.com/veupi7)
 >
 >
 > Install [Node.js](https://nodejs.org/en/download/prebuilt-installer/current) `IMPORTANT: Install NodeJS with Tools for Native Modules`
