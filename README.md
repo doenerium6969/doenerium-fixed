@@ -1,6 +1,6 @@
 <a id="top"></a>
 <h1 align="center">
-💎 TELEGRAM AND DISCORD GET BANNED 🫡
+💎 TELEGRAM AND DISCORD GET BANNED 😐
 </h1>
 <br>
 <p align="center"> 
