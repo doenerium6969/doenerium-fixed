@@ -152,7 +152,7 @@
 <img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218381997198672003/Screenshot_7.png?ex=674334e8&is=6741e368&hm=d6a822052e01feb0e4f6ade7963633fb4bbceebfb8a1982a5a2b1d6b6425bbe0&" alt="" width="820">
 <img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218381947546501191/Screenshot_11.png?ex=674334dc&is=6741e35c&hm=b8bcf607c8a6dd0ad3bccb8a16e8cf4d64a89e7773ac92e9381c1d9c2b4ee959&" alt="" width="820">
 <img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218385666837319803/Screenshot_13.png?ex=67433853&is=6741e6d3&hm=d3efe46f962453d8e37124b4b11226e13325ce71a1478ab073bf1a93cdbb103c&" alt="" width="820">
-<img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1206900306638540830/Screenshot_6.png?ex=6742f700&is=6741a580&hm=b7598afd86086cec3fea6910696e3f328394e2f2de143d80ed7c4ff939f7a54f&" alt="" width="820">
+<img title="" src="https://cdn.discordapp.com/attachments/660885288079589385/1206900306638540830/Screenshot_6.png?ex=674f7d40&is=674e2bc0&hm=ba8adf0ea3ac201fc017e984c9e9bc3da29a4c1f0536bd24aa071c40a3c11015&" alt="" width="820">
 
 
 
