@@ -142,7 +142,7 @@
 ---
 
 ### 📸 〢 Screenshots
-<img title="" src="https://cdn.discordapp.com/attachments/1199547023398010950/1286508649233256529/image.png?ex=6731668c&is=6730150c&hm=b0916aad7c0da9504d3762aaa148158cdcf081da1afe223e0777e29a6f4f6297&" alt="" width="820">
+<img title="" src="https://cdn.discordapp.com/attachments/1199547023398010950/1286508649233256529/image.png?ex=675061cc&is=674f104c&hm=aeecb9f4d7a098f9bb651c100f73287b8effa27bf991ff6b684383bd5d6ef407&" alt="" width="820">
 <img title="" src="https://cdn.discordapp.com/attachments/1223099035162771528/1283270003491213394/Sans_titre.png?ex=674936d2&is=6747e552&hm=17a0153ea4308a6bc460099183f3a08ce0d838ca0ada14ac6ce9bb55965f6628&" alt="" width="820">
 <img title="" src="https://cdn.discordapp.com/attachments/1206389634926383234/1230294887778357300/image.png?ex=6748f8e7&is=6747a767&hm=6a9430a1597f0580d606de87976c1802f17923e820d06fe8ac26e6fffab49ef6&" alt="" width="820">
 <img title="" src="https://cdn.discordapp.com/attachments/1206389634926383234/1230249925086937218/image.png?ex=6748cf07&is=67477d87&hm=d32db0b85e34214386e66d1a222ea10adb43b6da3fe40efbd36a039065759462&" alt="" width="820">
