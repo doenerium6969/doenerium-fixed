@@ -2,6 +2,7 @@
 <h1 align="center">
 💎 TELEGRAM AND DISCORD GET BANNED 😐                                                      
     <br>      JOIN -> rvlt.gg/WF80RrNf
+    <br>  INSTAGRAM -> instagram.com/doenerium69
 </h1>
 <br>
 <p align="center"> 
