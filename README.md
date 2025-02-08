@@ -1,7 +1,7 @@
 <a id="top"></a>
 <h1 align="center">
 💎 TELEGRAM AND DISCORD GET BANNED 😐                                                      
-                  JOIN -> rvlt.gg/WF80RrNf
+                  .JOIN -> rvlt.gg/WF80RrNf
 </h1>
 <br>
 <p align="center"> 
