@@ -12,7 +12,7 @@
 </p>
 
 <h1 align="center">
-💎 NEXT UPDATE + FIX DETECT AT 360 STARS ⭐
+💎 NEXT UPDATE + FIX DETECT AT 380 STARS ⭐
 </h1>
 
 <p align="center">
