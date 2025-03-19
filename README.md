@@ -37,7 +37,7 @@
 
 ### 📁  〢 Setting Up
 >
-> [![Watch the video](https://cdn.discordapp.com/attachments/1206389634926383234/1286525981061808148/image_3.png?ex=679aeeb0&is=67999d30&hm=74bec78cd83c97999b17bdcd4d8c002f779beace5e1e87d4fb859e37ebba5fd1&)](https://streamable.com/veupi7)
+> [![Watch the video](https://cdn.discordapp.com/attachments/1206389634926383234/1286525981061808148/image_3.png?ex=67dc30f0&is=67dadf70&hm=44f6202f8da98ebcef5bfd1764f5c9ef0603b40a4d5564f21258620ce4b1fa19&)](https://streamable.com/veupi7)
 >
 >
 > Install [Node.js](https://nodejs.org/en/download/prebuilt-installer/current) `IMPORTANT: Install NodeJS with Tools for Native Modules`
@@ -144,8 +144,8 @@
 ---
 
 ### 📸 〢 Screenshots
-<img title="" src="https://cdn.discordapp.com/attachments/1199547023398010950/1286508649233256529/image.png?ex=679ade8c&is=67998d0c&hm=3e2805c0aaa6f5e51d46443e6fc492ad914bce75b14ba2e8f146e86bb01ad8f8&" alt="" width="820">
-<img title="" src="https://cdn.discordapp.com/attachments/1223099035162771528/1283270003491213394/Sans_titre.png?ex=679af3d2&is=6799a252&hm=bbd4549274aaa54834a2cb33617cf05c1109a2bcc33efa362d3695674238aadc&" alt="" width="820">
+<img title="" src="https://cdn.discordapp.com/attachments/1199547023398010950/1286508649233256529/image.png?ex=67dc20cc&is=67dacf4c&hm=2417400f2fac64b11389dc1ab688972d8736b2190699d1d8e6f3473cfcfdf68f&" alt="" width="820">
+<img title="" src="![image](https://github.com/user-attachments/assets/d2d6e3e7-971a-41a0-bbe2-2c6012aec363)" alt="" width="820">
 <img title="" src="https://cdn.discordapp.com/attachments/1206389634926383234/1230294887778357300/image.png?ex=679b5ea7&is=679a0d27&hm=d809cc4600126d923833577679e6057b370b084ec67f0447470669d3ac09155d&" alt="" width="820">
 <img title="" src="https://cdn.discordapp.com/attachments/1206389634926383234/1230249925086937218/image.png?ex=679b34c7&is=6799e347&hm=a9fd89a7aa643bd96e99486cab58b11c84b40e7e8b502448520d606a4355a9d4&" alt="" width="820">
 <img title="" src="https://media.discordapp.net/attachments/994591063253733407/1218385119677513898/Screenshot_12.png?ex=679ae391&is=67999211&hm=113116921a55528bc7df9128d4d68eddc2f767bbc9b88ac26e455aaec4ebed3b&" alt="" width="820">
