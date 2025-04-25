@@ -1,6 +1,6 @@
 <a id="top"></a>
 <h1 align="center">
-💎 TELEGRAM AND DISCORD GET BANNED 😐                                                      
+⚠ TELEGRAM AND DISCORD GET BANNED 😐                                                      
     <br>      JOIN -> rvlt.gg/WF80RrNf
     <br>  INSTAGRAM -> instagram.com/doenerium69
 </h1>
